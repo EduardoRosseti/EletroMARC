@@ -142,10 +142,8 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtCadForNome" alignment="0" pref="273" max="32767" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtCadForCel" alignment="0" pref="176" max="32767" attributes="0"/>
-                              <Component id="txtCadForTel" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="txtCadForCel" alignment="0" pref="273" max="32767" attributes="0"/>
+                          <Component id="txtCadForTel" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtCadForCnpj" alignment="0" min="-2" pref="204" max="-2" attributes="0"/>
                           <Component id="txtCadForEma" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -272,10 +270,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel9" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -290,7 +287,7 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
@@ -300,7 +297,7 @@
                                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="txtCadForNum" min="-2" pref="41" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="56" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
@@ -310,18 +307,20 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="txtCadForBai" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -350,17 +349,17 @@
                           <Component id="txtCadForCid" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cbCadForUf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" min="-2" pref="62" max="-2" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="68" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -373,7 +372,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Cidade"/>
+                <Property name="text" type="java.lang.String" value="*Cidade:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCadForCid">
@@ -383,7 +382,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Bairro"/>
+                <Property name="text" type="java.lang.String" value="*Bairro:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCadForBai">
@@ -393,7 +392,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Rua"/>
+                <Property name="text" type="java.lang.String" value="*Rua:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCadForNum">
@@ -411,7 +410,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Complemento"/>
+                <Property name="text" type="java.lang.String" value="Complemento:"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -445,12 +444,12 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="11" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CEP"/>
+                <Property name="text" type="java.lang.String" value="*CEP:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
               <Properties>
-                <Property name="text" type="java.lang.String" value="UF"/>
+                <Property name="text" type="java.lang.String" value="*UF:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbCadForUf">

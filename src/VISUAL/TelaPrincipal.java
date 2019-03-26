@@ -15,6 +15,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JTable;
+import javax.swing.ImageIcon;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -50,20 +51,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         desktop = new javax.swing.JDesktopPane();
+        painelImagemFundo2 = new VISUAL.PainelImagemFundo();
+        painelImagemFundo1 = new VISUAL.PainelImagemFundo();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         cadastro = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         cadCliente = new javax.swing.JMenuItem();
         cadFabricante = new javax.swing.JMenuItem();
         cadFornecedor = new javax.swing.JMenuItem();
-        cadFun = new javax.swing.JMenuItem();
-        cadOrc = new javax.swing.JMenuItem();
-        cadUsu = new javax.swing.JMenuItem();
-        cadVal = new javax.swing.JMenuItem();
-        cadMer = new javax.swing.JMenuItem();
         cadGar = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
+        cadFun = new javax.swing.JMenuItem();
+        cadUsu = new javax.swing.JMenuItem();
+        jMenu10 = new javax.swing.JMenu();
+        cadMer = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        cadOrc = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
         CadCon = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
+        cadVal = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -106,10 +118,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setText("Seja-Bem Vindo ao Sistema");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("ELETRO M.A.R.C.");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         filler3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        desktop.setBackground(new java.awt.Color(255, 255, 255));
         desktop.setPreferredSize(new java.awt.Dimension(1280, 720));
 
         javax.swing.GroupLayout desktopLayout = new javax.swing.GroupLayout(desktop);
@@ -123,15 +138,38 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 719, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Sistema");
-        jMenuBar1.add(jMenu1);
+        javax.swing.GroupLayout painelImagemFundo2Layout = new javax.swing.GroupLayout(painelImagemFundo2);
+        painelImagemFundo2.setLayout(painelImagemFundo2Layout);
+        painelImagemFundo2Layout.setHorizontalGroup(
+            painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        painelImagemFundo2Layout.setVerticalGroup(
+            painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
-        cadastro.setText("CADASTRO");
+        painelImagemFundo1.setImg(new ImageIcon("src/images/imagem_fundo.jpg"));
+
+        javax.swing.GroupLayout painelImagemFundo1Layout = new javax.swing.GroupLayout(painelImagemFundo1);
+        painelImagemFundo1.setLayout(painelImagemFundo1Layout);
+        painelImagemFundo1Layout.setHorizontalGroup(
+            painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1264, Short.MAX_VALUE)
+        );
+        painelImagemFundo1Layout.setVerticalGroup(
+            painelImagemFundo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 820, Short.MAX_VALUE)
+        );
+
+        cadastro.setText("FUNÇÕES");
         cadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastroActionPerformed(evt);
             }
         });
+
+        jMenu3.setText("Clientes / Fornecedores");
 
         cadCliente.setText("Cliente");
         cadCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +177,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 cadClienteActionPerformed(evt);
             }
         });
-        cadastro.add(cadCliente);
+        jMenu3.add(cadCliente);
 
         cadFabricante.setText("Fabricante");
         cadFabricante.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +185,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 cadFabricanteActionPerformed(evt);
             }
         });
-        cadastro.add(cadFabricante);
+        jMenu3.add(cadFabricante);
 
         cadFornecedor.setText("Fornecedor");
         cadFornecedor.addActionListener(new java.awt.event.ActionListener() {
@@ -155,47 +193,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 cadFornecedorActionPerformed(evt);
             }
         });
-        cadastro.add(cadFornecedor);
-
-        cadFun.setText("Funcionario");
-        cadFun.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadFunActionPerformed(evt);
-            }
-        });
-        cadastro.add(cadFun);
-
-        cadOrc.setText("Orçamento");
-        cadOrc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadOrcActionPerformed(evt);
-            }
-        });
-        cadastro.add(cadOrc);
-
-        cadUsu.setText("Usuario");
-        cadUsu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadUsuActionPerformed(evt);
-            }
-        });
-        cadastro.add(cadUsu);
-
-        cadVal.setText("Valores serviços");
-        cadVal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadValActionPerformed(evt);
-            }
-        });
-        cadastro.add(cadVal);
-
-        cadMer.setText("Mercadorias");
-        cadMer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadMerActionPerformed(evt);
-            }
-        });
-        cadastro.add(cadMer);
+        jMenu3.add(cadFornecedor);
 
         cadGar.setText("Garantia de fornecedores");
         cadGar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +201,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 cadGarActionPerformed(evt);
             }
         });
-        cadastro.add(cadGar);
+        jMenu3.add(cadGar);
+
+        cadastro.add(jMenu3);
+
+        jMenu9.setText("Colaboradores");
+
+        cadFun.setText("TelaFuncionárioCadastro");
+        cadFun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadFunActionPerformed(evt);
+            }
+        });
+        jMenu9.add(cadFun);
+
+        cadUsu.setText("TelaUsuárioCadastro");
+        cadUsu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadUsuActionPerformed(evt);
+            }
+        });
+        jMenu9.add(cadUsu);
+
+        cadastro.add(jMenu9);
+
+        jMenu10.setText("Estoque");
+
+        cadMer.setText("Mercadorias");
+        cadMer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadMerActionPerformed(evt);
+            }
+        });
+        jMenu10.add(cadMer);
+
+        cadastro.add(jMenu10);
+
+        jMenu7.setText("Orçamento e Ordem de Serviço");
+
+        cadOrc.setText("Orçamento & Ordem de Serviço");
+        cadOrc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadOrcActionPerformed(evt);
+            }
+        });
+        jMenu7.add(cadOrc);
+
+        cadastro.add(jMenu7);
+
+        jMenu8.setText("Vendas");
 
         CadCon.setText("Controle de mercadoria");
         CadCon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,12 +262,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 CadConActionPerformed(evt);
             }
         });
-        cadastro.add(CadCon);
+        jMenu8.add(CadCon);
+
+        cadVal.setText("Valores serviços");
+        cadVal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadValActionPerformed(evt);
+            }
+        });
+        jMenu8.add(cadVal);
+
+        cadastro.add(jMenu8);
 
         jMenuBar1.add(cadastro);
 
-        jMenu6.setText("jMenu6");
-        jMenuBar1.add(jMenu6);
+        jMenu1.setText("SISTEMA");
+
+        jMenuItem2.setText("Gerenciador");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem1.setText("Trocar Usuário");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem4.setText("Sobre?");
+        jMenu1.add(jMenuItem4);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("SAIR");
+
+        jMenuItem3.setText("Sair do Sistema");
+        jMenu2.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -229,24 +302,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(829, 829, 829)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(275, Short.MAX_VALUE))
             .addComponent(desktop, javax.swing.GroupLayout.DEFAULT_SIZE, 1264, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(829, 829, 829)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(painelImagemFundo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(259, Short.MAX_VALUE))
+            .addComponent(painelImagemFundo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(painelImagemFundo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelImagemFundo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2359, 2359, 2359)
                 .addComponent(desktop, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(508, 508, 508))
         );
@@ -398,17 +481,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu10;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;
+    private VISUAL.PainelImagemFundo painelImagemFundo1;
+    private VISUAL.PainelImagemFundo painelImagemFundo2;
     // End of variables declaration//GEN-END:variables
 
    
