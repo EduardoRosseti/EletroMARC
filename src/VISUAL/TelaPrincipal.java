@@ -25,10 +25,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     CTabela controletabela;
     public static int cod;
     private static int lin;
+    PainelImagemFundo t ;
 
     public TelaPrincipal() {
+        t = new PainelImagemFundo();
         initComponents();
-        
+        desktop.add(t);
+        t.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -168,8 +171,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painelImagemFundo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-
-        painelImagemFundo1.setImg(new ImageIcon("src/images/imagem_fundo.jpg"));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));

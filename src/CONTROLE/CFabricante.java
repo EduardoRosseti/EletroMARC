@@ -45,6 +45,8 @@ public class CFabricante {
             fabricante.setBairro(rs.getString(10));
             fabricante.setCidade(rs.getString(11));
             fabricante.setComplemento(rs.getString(12));
+            fabricante.setEstado(rs.getString(13));
+    
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);

@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import DAO.BD;
 import MODELO.Mercadoria;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -36,14 +35,7 @@ public class MercadoriaDAO {
             bd.getPst().setString(4, mercadoria.getMarca());
             bd.getPst().setString(5, mercadoria.getModelo());
             bd.getPst().setFloat(6, mercadoria.getValorCustoMercadoria());
-            bd.getPst().setString(7, mercadoria.getRg());
-            bd.getPst().setString(8, mercadoria.getEmail());
-            bd.getPst().setString(9, mercadoria.getRua());
-            bd.getPst().setInt(10, mercadoria.getNumero());
-            bd.getPst().setString(11, mercadoria.getCep());
-            bd.getPst().setString(12, mercadoria.getBairro());
-            bd.getPst().setString(13, mercadoria.getCidade());
-            bd.getPst().setString(14, mercadoria.getComplemento());
+            bd.getPst().setString(7, mercadoria.getNome());
             JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();

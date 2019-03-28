@@ -21,6 +21,7 @@ public class FabricanteDAO {
     public String msg;
     public String sql;
     
+    
     public FabricanteDAO(){
         bd = new BD();
     }
@@ -46,7 +47,7 @@ public class FabricanteDAO {
     public String gravar(Fabricante fabricante) {
         this.fabricante = fabricante;
         try {
-            bd.setSql("insert into tbfabricante (COD_FABRICANTE, NOME,TELEFONE,CELUALR,CNPJ,EMAIL,RUA,RUA_NUMERO,CEP,BAIRO,CIDADE,COMPLEMENTO) values(?,?,?,?,?,?,?,?,?,?,?,?)");
+            bd.setSql("insert into tbfabricante (COD_FABRICANTE, NOME,TELEFONE,CELUALR,CNPJ,EMAIL,RUA,RUA_NUMERO,CEP,BAIRO,CIDADE,COMPLEMENTO,ESTADO) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
             //JOptionPane.showMessageDialog(null,sql);
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
@@ -62,6 +63,7 @@ public class FabricanteDAO {
             bd.getPst().setString(10, fabricante.getBairro());
             bd.getPst().setString(11, fabricante.getCidade());
             bd.getPst().setString(12, fabricante.getComplemento());
+            bd.getPst().setString(13, fabricante.getEstado());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
                 return msg = "Falha no cadastro";

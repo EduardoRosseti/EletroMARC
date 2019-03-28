@@ -16,10 +16,9 @@ public class Mercadoria {
     private int codFornecedor;
     private String marca;
     private String modelo;
+    private String nome;
     private float valorCustoMercadoria;
 
-    
-    
     public int getCod() {
         return cod;
     }
@@ -76,6 +75,14 @@ public class Mercadoria {
 
     public void setCodFabricante(int codFabricante) {
         this.codFabricante = codFabricante;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     

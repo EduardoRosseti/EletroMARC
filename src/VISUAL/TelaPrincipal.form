@@ -398,11 +398,6 @@
       </Layout>
     </Container>
     <Container class="VISUAL.PainelImagemFundo" name="painelImagemFundo1">
-      <Properties>
-        <Property name="img" type="javax.swing.ImageIcon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new ImageIcon(&quot;src/images/imagem_fundo.jpg&quot;)" type="code"/>
-        </Property>
-      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

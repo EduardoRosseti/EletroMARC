@@ -7,7 +7,7 @@ package CONTROLE;
 
 import DAO.MercadoriaDAO;
 import MODELO.Mercadoria;
-import MODELO.Mercadoria;
+import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +19,7 @@ public class CMercadoria {
            CMercadoria cMercadoria;
     public Mercadoria mercadoria;
     public MercadoriaDAO mercadoriaDao;
+    private ResultSet rs;
     
     public CMercadoria(){
         mercadoria = new Mercadoria();
@@ -34,19 +35,12 @@ public String gravar(Mercadoria mercadoria){
            // JOptionPane.showMessageDialog(null,"antes DAO" + mercadoria.getCod());
             rs = mercadoriaDao.localizar((mercadoria.getCod()));
             mercadoria.setCod(rs.getInt(1));
-            mercadoria.setNome(rs.getString(2));
-            mercadoria.setDataNasc(rs.getString(3));
-            mercadoria.setTelefone(rs.getString(4));
-            mercadoria.setCelular(rs.getString(5));
-            mercadoria.setCpf(rs.getString(6));
-            mercadoria.setRg(rs.getString(7));
-            mercadoria.setEmail(rs.getString(8));
-            mercadoria.setRua(rs.getString(9));
-            mercadoria.setNumero(rs.getInt(10));
-            mercadoria.setCep(rs.getString(11));
-            mercadoria.setBairro(rs.getString(12));
-            mercadoria.setCidade(rs.getString(13));
-            mercadoria.setComplemento(rs.getString(14));
+            mercadoria.setCodFabricante(rs.getInt(2));
+            mercadoria.setCodFornecedor(rs.getInt(3));
+            mercadoria.setMarca(rs.getString(4));
+            mercadoria.setModelo(rs.getString(5));
+            mercadoria.setValorCustoMercadoria(rs.getFloat(6));
+            mercadoria.setNome(rs.getString(7));
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);
