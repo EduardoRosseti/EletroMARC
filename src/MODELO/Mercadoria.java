@@ -12,11 +12,14 @@ package MODELO;
 public class Mercadoria {
     private int cod;
     private int codMercadoria;
+    private int codFabricante;
     private int codFornecedor;
     private String marca;
     private String modelo;
     private float valorCustoMercadoria;
 
+    
+    
     public int getCod() {
         return cod;
     }
@@ -65,6 +68,14 @@ public class Mercadoria {
 
     public void setValorCustoMercadoria(float valorCustoMercadoria) {
         this.valorCustoMercadoria = valorCustoMercadoria;
+    }
+
+    public int getCodFabricante() {
+        return codFabricante;
+    }
+
+    public void setCodFabricante(int codFabricante) {
+        this.codFabricante = codFabricante;
     }
     
     

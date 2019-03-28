@@ -54,6 +54,34 @@ public class ClienteDAO {
             } else {
                 bd.connection.close();
                // return msg = "Cadastro realizado com sucesso";
+    public String gravar(Cliente cliente) {
+        this.cliente = cliente;
+        try {
+            bd.setSql("insert into tbcliente (COD_CLIENTE,NOME,DATA_NASCIMENTO,TELEFONE,CELUALR,CPF,RG,EMAIL,RUA,RUA_NUMERO,CEP,BAIRO,CIDADE,COMPLEMENTO) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            System.out.println(bd.getSql());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+            bd.getPst().setInt(1, cliente.getCod());
+            bd.getPst().setString(2, cliente.getNome());
+            bd.getPst().setString(3, cliente.getDataNasc());
+            bd.getPst().setString(4, cliente.getTelefone());
+            bd.getPst().setString(5, cliente.getCelular());
+            bd.getPst().setString(6, cliente.getCpf());
+            bd.getPst().setString(7, cliente.getRg());
+            bd.getPst().setString(8, cliente.getEmail());
+            bd.getPst().setString(9, cliente.getRua());
+            bd.getPst().setInt(10, cliente.getNumero());
+            bd.getPst().setString(11, cliente.getCep());
+            bd.getPst().setString(12, cliente.getBairro());
+            bd.getPst().setString(13, cliente.getCidade());
+            bd.getPst().setString(14, cliente.getComplemento());
+            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                //return msg = "Falha no cadastro";
+            } else {
+                bd.connection.close();
+               // return msg = "Cadastro realizado com sucesso";
 
             }
         } catch (Exception e) {
