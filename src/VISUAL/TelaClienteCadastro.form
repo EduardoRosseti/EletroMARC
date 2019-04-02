@@ -35,7 +35,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnDadExcluir" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
+              <Component id="btnAlterar" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -60,7 +60,7 @@
                   <Component id="btnCadCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnDadExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
@@ -505,7 +505,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Alterar"/>
+        <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
@@ -628,10 +628,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDadExcluirActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnAlterar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

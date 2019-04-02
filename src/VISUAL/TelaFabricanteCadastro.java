@@ -39,7 +39,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cTabela = new CTabela();
         cFabricante = new CFabricante();
         cValidacao = new CValidacao();
-        preencherTabelaa();
+
     }
     
         public int getCod() {
@@ -58,54 +58,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         this.lin = lin;
     }
     
-    public void preencherTabelaa() {
-        String []p = new String[5];
-        p[0] = "codigo";p[1]="nome";p[2]="cnpj";p[3]="telefone";p[4]="tbfabricante";
-        String[] colunas = new String[]{"Codigo", "Nome", "CNPJ", "Telefone"};
-        ArrayList dados = cTabela.preencherFabricante(p);
-        //JOptionPane.showMessageDialog(null, "preenche funcao" + dados);
-        
-        //JOptionPane.showMessageDialog(null, "CONSTRUTOR ");
-        tbBusca.setModel(cTabela.tabela.CTabela(dados, colunas));
-        //tbBusca.setModel((controletabela.tabela.Tabela(dados, colunas)));
-        //JOptionPane.showMessageDialog(null, "MOOODEL" + tbBusca.getModel());
-        tbBusca.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(70);
-        tbBusca.getColumnModel().getColumn(0).setResizable(false);
-        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(325);
-        tbBusca.getColumnModel().getColumn(1).setResizable(false);
-        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(160);
-        tbBusca.getColumnModel().getColumn(2).setResizable(false);
-        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(160);
-        tbBusca.getColumnModel().getColumn(3).setResizable(false);
-        tbBusca.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tbBusca.setAutoCreateRowSorter(true);
-          }
-    
-        public void pesquisar(){
-        
-        boolean result;
-        //JOptionPane.showMessageDialog(null,"dentro pesquisar "+cFabricante.fabricante.getCod());
-        cFabricante.fabricante.setCod(getCod());
-        result = cFabricante.buscar(cFabricante.fabricante);
-        //JOptionPane.showMessageDialog(null, result);
-        if(result){
-            //txtCadFabCod.setText(Integer.toString(cFabricante.fabricante.getCod()));
-            txtCadFabNome.setText((cFabricante.fabricante.getNome()));
-
-            txtCadFabTel.setText(cFabricante.fabricante.getTelefone());
-            //JOptionPane.showMessageDialog(null,cFabricante.fabricante.getTelefone());
-            txtCadFabCel.setText(cFabricante.fabricante.getCelular());
-            txtCadFabCnpj.setText(cFabricante.fabricante.getCnpj());
-            txtCadFabEma.setText(cFabricante.fabricante.getEmail());
-            txtCadFabRua.setText(cFabricante.fabricante.getRua());
-            txtCadFabNum.setText(Integer.toString(cFabricante.fabricante.getNumero()));
-            txtCadFabCep.setText(cFabricante.fabricante.getCep());
-            txtCadFabBai.setText(cFabricante.fabricante.getBairro());
-            txtCadFabCid.setText(cFabricante.fabricante.getCidade());
-            txtCadFabCom.setText(cFabricante.fabricante.getComplemento());
-        }
-    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,6 +108,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 

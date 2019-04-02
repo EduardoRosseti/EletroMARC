@@ -416,7 +416,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrar.setText("Confirmar");
+        btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);

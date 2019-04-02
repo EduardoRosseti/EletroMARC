@@ -154,6 +154,11 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         btnCadCancelar = new javax.swing.JButton();
         btnCadCancelar1 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel4.setPreferredSize(new java.awt.Dimension(357, 300));
 

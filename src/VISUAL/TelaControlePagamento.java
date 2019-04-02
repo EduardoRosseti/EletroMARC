@@ -119,6 +119,11 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jButton1.setText("Confirmar");
 
         btnDadExcluir.setText("Excluir");

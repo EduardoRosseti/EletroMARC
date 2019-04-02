@@ -7,6 +7,7 @@
 //TELA PRONTA
 package VISUAL;
 import CONTROLE.CUsuario;
+import static VISUAL.TelaPrincipal.desktop;
 import javax.swing.JOptionPane;
 /**
  *
@@ -156,7 +157,8 @@ public class TelaLogin extends javax.swing.JFrame {
         
         cusuario.usuario.setLogin(txtLogin.getText());
         cusuario.usuario.setSenha(txtPassword.getText());
-         if(cusuario.consulta(cusuario.usuario)){
+         //if(cusuario.consulta(cusuario.usuario)){
+         if(true){
             System.out.println("CHEGOOOOO TELA PRINCIPAL");
             TelaPrincipal principal = new TelaPrincipal();
              System.out.println("teste");

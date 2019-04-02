@@ -43,13 +43,13 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="jButton6" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="btnAlterar" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jButton5" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="btnCancelar" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                              <Component id="jButton2" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="btnExcluir" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
+                              <Component id="btnCadastrar" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -74,10 +74,10 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
@@ -85,10 +85,13 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane5">
       <AuxValues>
@@ -215,12 +218,14 @@
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtFunCadLog" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtFunCadSen" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFunCadLog" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -286,20 +291,26 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="btnExcluir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Excluir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton6">
+    <Component class="javax.swing.JButton" name="btnAlterar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cadastrar"/>
+        <Property name="text" type="java.lang.String" value="Alterar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

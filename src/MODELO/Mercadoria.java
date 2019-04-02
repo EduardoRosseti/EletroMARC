@@ -18,6 +18,7 @@ public class Mercadoria {
     private String modelo;
     private String nome;
     private float valorCustoMercadoria;
+    
 
     public int getCod() {
         return cod;

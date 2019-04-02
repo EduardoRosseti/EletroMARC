@@ -6,7 +6,10 @@
 package CONTROLE;
 
 import DAO.GarantiaFornecedorDAO;
+import MODELO.Cliente;
 import MODELO.GarantiaFornecedor;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,10 +20,37 @@ public class CGarantiaFornecedor {
            CGarantiaFornecedor cGarantiaFornecedor;
     public GarantiaFornecedor garantiaFornecedor;
     public GarantiaFornecedorDAO garantiaFornecedorDao;
-    
+     private ResultSet rs;
     public CGarantiaFornecedor() {
         garantiaFornecedorDao = new GarantiaFornecedorDAO();
         garantiaFornecedor = new GarantiaFornecedor();
+    }
+    
+    
+    public String gravar(GarantiaFornecedor garantiaFornecedor){
+        return garantiaFornecedorDao.gravar(garantiaFornecedor);
+        
+    }
+    public boolean buscar(GarantiaFornecedor garantiaFornecedor){
+        
+        try {
+           // JOptionPane.showMessageDialog(null,"antes DAO" + cliente.getCod());
+            rs = garantiaFornecedorDao.localizar((garantiaFornecedor.getCod()));
+            garantiaFornecedor.setCod(rs.getInt(1));
+            //Corrigir a FK
+          //  garantiaFornecedor.setcod(rs.getInt(2));
+            garantiaFornecedor.setValorPagoFornecedor(rs.getFloat(2));
+            garantiaFornecedor.setDataCadastro(rs.getString(3));
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro " + e);
+        }
+    
+    return false;
+    }
+    public String apagar (GarantiaFornecedor garantiaFornecedor){
+        String msg = garantiaFornecedorDao.apagar(garantiaFornecedor.getCod());
+        return msg;
     }
     
 }

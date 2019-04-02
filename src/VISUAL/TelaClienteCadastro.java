@@ -88,7 +88,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnDadExcluir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -356,7 +356,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrar.setText("Alterar");
+        btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -468,7 +468,12 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Cadastrar");
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -482,7 +487,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -503,7 +508,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                     .addComponent(btnCadCancelar)
                     .addComponent(btnCadastrar)
                     .addComponent(btnDadExcluir)
-                    .addComponent(jButton1))
+                    .addComponent(btnAlterar))
                 .addGap(15, 15, 15))
         );
 
@@ -662,15 +667,19 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCadBairroActionPerformed
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadCancelar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnDadExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbCadUf;
     private javax.swing.JComboBox<String> cbPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;

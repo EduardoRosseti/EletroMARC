@@ -59,6 +59,11 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
         btnCadCancelar1 = new javax.swing.JButton();
         btnCadCancelar2 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         btnCadCancelar.setText("Cancelar");
         btnCadCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
