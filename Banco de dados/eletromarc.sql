@@ -1,13 +1,15 @@
-﻿-- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 19-Mar-2019 às 02:46
--- Versão do servidor: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: 28-Mar-2019 às 02:11
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -19,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `eletromarc`
 --
+CREATE DATABASE IF NOT EXISTS `eletromarc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `eletromarc`;
 
 -- --------------------------------------------------------
 
@@ -26,7 +30,8 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `tbcliente`
 --
 
-CREATE TABLE `tbcliente` (
+DROP TABLE IF EXISTS `tbcliente`;
+CREATE TABLE IF NOT EXISTS `tbcliente` (
   `COD_CLIENTE` int(5) NOT NULL,
   `NOME` varchar(50) CHARACTER SET utf8 NOT NULL,
   `DATA_NASCIMENTO` date NOT NULL,
@@ -41,7 +46,8 @@ CREATE TABLE `tbcliente` (
   `BAIRRO` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
   `CIDADE` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `COMPLEMENTO` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `ESTADO` varchar(2) CHARACTER SET utf8 DEFAULT NULL
+  `ESTADO` varchar(2) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`COD_CLIENTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -50,7 +56,8 @@ CREATE TABLE `tbcliente` (
 -- Estrutura da tabela `tbfabricante`
 --
 
-CREATE TABLE `tbfabricante` (
+DROP TABLE IF EXISTS `tbfabricante`;
+CREATE TABLE IF NOT EXISTS `tbfabricante` (
   `COD_FABRICANTE` int(5) NOT NULL,
   `NOME` varchar(50) NOT NULL,
   `TELEFONE` varchar(10) NOT NULL,
@@ -63,7 +70,8 @@ CREATE TABLE `tbfabricante` (
   `BAIRRO` varchar(30) NOT NULL,
   `CIDADE` varchar(50) NOT NULL,
   `COMPLEMENTO` varchar(100) NOT NULL,
-  `ESTADO` varchar(2) NOT NULL
+  `ESTADO` varchar(2) NOT NULL,
+  PRIMARY KEY (`COD_FABRICANTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -72,7 +80,8 @@ CREATE TABLE `tbfabricante` (
 -- Estrutura da tabela `tbfornecedor`
 --
 
-CREATE TABLE `tbfornecedor` (
+DROP TABLE IF EXISTS `tbfornecedor`;
+CREATE TABLE IF NOT EXISTS `tbfornecedor` (
   `COD_FORNECEDOR` int(5) NOT NULL,
   `NOME` varchar(50) NOT NULL,
   `TELEFONE` varchar(10) NOT NULL,
@@ -85,7 +94,8 @@ CREATE TABLE `tbfornecedor` (
   `CIDADE` varchar(50) NOT NULL,
   `COMPLEMENTO` varchar(100) NOT NULL,
   `ESTADO` varchar(2) NOT NULL,
-  `CNPJ` varchar(14) NOT NULL
+  `CNPJ` varchar(14) NOT NULL,
+  PRIMARY KEY (`COD_FORNECEDOR`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -94,8 +104,9 @@ CREATE TABLE `tbfornecedor` (
 -- Estrutura da tabela `tbfuncionario`
 --
 
-CREATE TABLE `tbfuncionario` (
-  `COD_FUNCIONARIO` int(5) NOT NULL,
+DROP TABLE IF EXISTS `tbfuncionario`;
+CREATE TABLE IF NOT EXISTS `tbfuncionario` (
+  `COD_FUNCIONARIO` int(5) NOT NULL AUTO_INCREMENT,
   `NOME_FUNCIONARIO` varchar(50) NOT NULL,
   `DATA_NASCIMENTO` date NOT NULL,
   `TELEFONE` varchar(10) NOT NULL,
@@ -109,13 +120,16 @@ CREATE TABLE `tbfuncionario` (
   `CIDADE` varchar(30) NOT NULL,
   `COMPLEMENTO` varchar(100) NOT NULL,
   `RG` varchar(9) NOT NULL,
-  `ESTADO` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `ESTADO` varchar(2) NOT NULL,
+  PRIMARY KEY (`COD_FUNCIONARIO`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbfuncionario`
 --
 
+INSERT INTO `tbfuncionario` (`COD_FUNCIONARIO`, `NOME_FUNCIONARIO`, `DATA_NASCIMENTO`, `TELEFONE`, `CELULAR`, `CPF`, `EMAIL`, `RUA`, `RUA_NUMERO`, `CEP`, `BAIRRO`, `CIDADE`, `COMPLEMENTO`, `RG`, `ESTADO`) VALUES
+(1, 'Gabriel Andrade Rocha', '1999-06-10', '1433441143', '14997418553', '46939682856', 'gaandrade76@hotmail.com', 'washington luiz', 2020, '18950000', 'centro', 'ipaussu', 'fundos', '525780543', 'SP');
 
 -- --------------------------------------------------------
 
@@ -123,12 +137,15 @@ CREATE TABLE `tbfuncionario` (
 -- Estrutura da tabela `tbgarantiafornecedor`
 --
 
-CREATE TABLE `tbgarantiafornecedor` (
-  `COD_GARANTIA_FORNECEDOR` int(5) NOT NULL,
+DROP TABLE IF EXISTS `tbgarantiafornecedor`;
+CREATE TABLE IF NOT EXISTS `tbgarantiafornecedor` (
+  `COD_GARANTIA_FORNECEDOR` int(5) NOT NULL AUTO_INCREMENT,
   `COD_MERCADORIA` int(5) DEFAULT NULL,
   `DATA` date NOT NULL,
   `VALOR_PAGO` float(7,2) NOT NULL,
-  `NOME` varchar(50) NOT NULL
+  `NOME` varchar(50) NOT NULL,
+  PRIMARY KEY (`COD_GARANTIA_FORNECEDOR`),
+  KEY `FK_GARANTIAFORNECEDOR_CODMERCADORIA` (`COD_MERCADORIA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -137,14 +154,18 @@ CREATE TABLE `tbgarantiafornecedor` (
 -- Estrutura da tabela `tbmercadoria`
 --
 
-CREATE TABLE `tbmercadoria` (
-  `COD_MERCADORIA` int(5) NOT NULL,
+DROP TABLE IF EXISTS `tbmercadoria`;
+CREATE TABLE IF NOT EXISTS `tbmercadoria` (
+  `COD_MERCADORIA` int(5) NOT NULL AUTO_INCREMENT,
   `COD_FABRICANTE` int(5) DEFAULT NULL,
   `COD_FORNECEDOR` int(5) DEFAULT NULL,
   `MARCA` varchar(50) NOT NULL,
   `MODELO` varchar(50) NOT NULL,
   `CUSTO` float(7,2) NOT NULL,
-  `NOME` varchar(50) NOT NULL
+  `NOME` varchar(50) NOT NULL,
+  PRIMARY KEY (`COD_MERCADORIA`),
+  KEY `FK_MERCADORIA_CODFABRICANTE` (`COD_FABRICANTE`),
+  KEY `FK_MERCADORIA_CODFORNECEDOR` (`COD_FORNECEDOR`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -153,9 +174,10 @@ CREATE TABLE `tbmercadoria` (
 -- Estrutura da tabela `tborcamento`
 --
 
-CREATE TABLE `tborcamento` (
-  `COD_ORCAMENTO` int(5) NOT NULL,
-  `COD_MERCADORIA` int(5)NOT NULL,
+DROP TABLE IF EXISTS `tborcamento`;
+CREATE TABLE IF NOT EXISTS `tborcamento` (
+  `COD_ORCAMENTO` int(5) NOT NULL AUTO_INCREMENT,
+  `COD_MERCADORIA` int(5) NOT NULL,
   `COD_CLIENTE` int(5) NOT NULL,
   `SERVICO_SOLICITADO` varchar(200) NOT NULL,
   `DESCRICAO` varchar(200) NOT NULL,
@@ -163,7 +185,10 @@ CREATE TABLE `tborcamento` (
   `VALOR_MERCADORIA` float(7,2) NOT NULL,
   `VALOR_MAO_OBRA` float(7,2) NOT NULL,
   `VALOR_TOTAL` float(7,2) NOT NULL,
-  `STATUS` varchar(50) NOT NULL
+  `STATUS` varchar(50) NOT NULL,
+  PRIMARY KEY (`COD_ORCAMENTO`),
+  KEY `FK_ORCAMENTO_CODCLIENTE` (`COD_CLIENTE`),
+  KEY `FK_ORCAMENTO_CODMERCADORIA` (`COD_MERCADORIA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -172,13 +197,16 @@ CREATE TABLE `tborcamento` (
 -- Estrutura da tabela `tbpagamento`
 --
 
-CREATE TABLE `tbpagamento` (
-  `COD_PAGAMENTO` int(5) NOT NULL,
+DROP TABLE IF EXISTS `tbpagamento`;
+CREATE TABLE IF NOT EXISTS `tbpagamento` (
+  `COD_PAGAMENTO` int(5) NOT NULL AUTO_INCREMENT,
   `COD_CLIENTE` int(5) NOT NULL,
   `FORMA_PAGAMENTO` varchar(50) NOT NULL,
   `DESCONTO` float(7,2) NOT NULL,
   `DATA_PAGAMENTO` datetime NOT NULL,
-  `TOTAL` float NOT NULL
+  `TOTAL` float NOT NULL,
+  PRIMARY KEY (`COD_PAGAMENTO`),
+  KEY `FK_PAGAMENTO_CODCLIENTE` (`COD_CLIENTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -187,12 +215,14 @@ CREATE TABLE `tbpagamento` (
 -- Estrutura da tabela `tbprestacaoservico`
 --
 
-CREATE TABLE `tbprestacaoservico` (
-  `COD_PRESTACAO_SERVICO` int(5) NOT NULL,
+DROP TABLE IF EXISTS `tbprestacaoservico`;
+CREATE TABLE IF NOT EXISTS `tbprestacaoservico` (
+  `COD_PRESTACAO_SERVICO` int(5) NOT NULL AUTO_INCREMENT,
   `NOME_PRESTACAO` varchar(100) NOT NULL,
   `DATA` date DEFAULT NULL,
   `VALOR_PAGO` float(7,2) NOT NULL,
-  `DESCRICAO` varchar(200) NOT NULL
+  `DESCRICAO` varchar(200) NOT NULL,
+  PRIMARY KEY (`COD_PRESTACAO_SERVICO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -201,12 +231,14 @@ CREATE TABLE `tbprestacaoservico` (
 -- Estrutura da tabela `tbsaidamercadoria`
 --
 
-CREATE TABLE `tbsaidamercadoria` (
-  `COD_SAIDA_MERCADORIA` int(5) NOT NULL,
-  `NOME_MERCADORIA` varchar(30) NOT NULL, 
+DROP TABLE IF EXISTS `tbsaidamercadoria`;
+CREATE TABLE IF NOT EXISTS `tbsaidamercadoria` (
+  `COD_SAIDA_MERCADORIA` int(5) NOT NULL AUTO_INCREMENT,
+  `NOME_MERCADORIA` varchar(30) NOT NULL,
   `MOTIVO_SAIDA` varchar(200) NOT NULL,
   `DATA_SAIDA` date NOT NULL,
-  `VALOR` float(7,2) NOT NULL
+  `VALOR` float(7,2) NOT NULL,
+  PRIMARY KEY (`COD_SAIDA_MERCADORIA`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -215,135 +247,17 @@ CREATE TABLE `tbsaidamercadoria` (
 -- Estrutura da tabela `tbusuario`
 --
 
-CREATE TABLE `tbusuario` (
+DROP TABLE IF EXISTS `tbusuario`;
+CREATE TABLE IF NOT EXISTS `tbusuario` (
   `COD_USUARIO` int(5) NOT NULL,
   `COD_FUNCIONARIO` int(5) NOT NULL,
   `LOGIN` varchar(50) NOT NULL,
   `SENHA` varchar(50) NOT NULL,
-  `PERFIL` varchar(25) NOT NULL
+  `PERFIL` varchar(25) NOT NULL,
+  PRIMARY KEY (`LOGIN`),
+  KEY `FK_USUARIO_CODFUNCIONARIO` (`COD_FUNCIONARIO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Extraindo dados da tabela `tbusuario`
---
-
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tbcliente`
---
-ALTER TABLE `tbcliente`
-  ADD PRIMARY KEY (`COD_CLIENTE`);
-
---
--- Indexes for table `tbfabricante`
---
-ALTER TABLE `tbfabricante`
-  ADD PRIMARY KEY (`COD_FABRICANTE`);
-
---
--- Indexes for table `tbfornecedor`
---
-ALTER TABLE `tbfornecedor`
-  ADD PRIMARY KEY (`COD_FORNECEDOR`);
-
---
--- Indexes for table `tbfuncionario`
---
-ALTER TABLE `tbfuncionario`
-  ADD PRIMARY KEY (`COD_FUNCIONARIO`);
-
---
--- Indexes for table `tbgarantiafornecedor`
---
-ALTER TABLE `tbgarantiafornecedor`
-  ADD PRIMARY KEY (`COD_GARANTIA_FORNECEDOR`),
-  ADD KEY `FK_GARANTIAFORNECEDOR_CODMERCADORIA` (`COD_MERCADORIA`);
-
---
--- Indexes for table `tbmercadoria`
---
-ALTER TABLE `tbmercadoria`
-  ADD PRIMARY KEY (`COD_MERCADORIA`),
-  ADD KEY `FK_MERCADORIA_CODFABRICANTE` (`COD_FABRICANTE`),
-  ADD KEY `FK_MERCADORIA_CODFORNECEDOR` (`COD_FORNECEDOR`);
-
---
--- Indexes for table `tborcamento`
---
-ALTER TABLE `tborcamento`
-  ADD PRIMARY KEY (`COD_ORCAMENTO`),
-  ADD KEY `FK_ORCAMENTO_CODCLIENTE` (`COD_CLIENTE`),
-  ADD KEY `FK_ORCAMENTO_CODMERCADORIA` (`COD_MERCADORIA`);
-
---
--- Indexes for table `tbpagamento`
---
-ALTER TABLE `tbpagamento`
-  ADD PRIMARY KEY (`COD_PAGAMENTO`),
-  ADD KEY `FK_PAGAMENTO_CODCLIENTE` (`COD_CLIENTE`);
-
---
--- Indexes for table `tbprestacaoservico`
---
-ALTER TABLE `tbprestacaoservico`
-  ADD PRIMARY KEY (`COD_PRESTACAO_SERVICO`);
-
---
--- Indexes for table `tbsaidamercadoria`
---
-ALTER TABLE `tbsaidamercadoria`
-  ADD PRIMARY KEY (`COD_SAIDA_MERCADORIA`);
-
---
--- Indexes for table `tbusuario`
---
-ALTER TABLE `tbusuario`
-  ADD PRIMARY KEY (`LOGIN`),
-  ADD KEY `FK_USUARIO_CODFUNCIONARIO` (`COD_FUNCIONARIO`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbfuncionario`
---
-ALTER TABLE `tbfuncionario`
-  MODIFY `COD_FUNCIONARIO` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbgarantiafornecedor`
---
-ALTER TABLE `tbgarantiafornecedor`
-  MODIFY `COD_GARANTIA_FORNECEDOR` int(5) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbmercadoria`
---
-ALTER TABLE `tbmercadoria`
-  MODIFY `COD_MERCADORIA` int(5) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tborcamento`
---
-ALTER TABLE `tborcamento`
-  MODIFY `COD_ORCAMENTO` int(5) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbpagamento`
---
-ALTER TABLE `tbpagamento`
-  MODIFY `COD_PAGAMENTO` int(5) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbprestacaoservico`
---
-ALTER TABLE `tbprestacaoservico`
-  MODIFY `COD_PRESTACAO_SERVICO` int(5) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbsaidamercadoria`
---
-ALTER TABLE `tbsaidamercadoria`
-  MODIFY `COD_SAIDA_MERCADORIA` int(5) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -379,6 +293,7 @@ ALTER TABLE `tbpagamento`
 --
 ALTER TABLE `tbusuario`
   ADD CONSTRAINT `FK_USUARIO_CODFUNCIONARIO` FOREIGN KEY (`COD_FUNCIONARIO`) REFERENCES `tbfuncionario` (`COD_FUNCIONARIO`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

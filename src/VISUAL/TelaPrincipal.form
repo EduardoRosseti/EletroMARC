@@ -383,6 +383,9 @@
       </Layout>
     </Container>
     <Container class="VISUAL.PainelImagemFundo" name="painelImagemFundo2">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">

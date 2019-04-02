@@ -15,9 +15,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.TableModel;
 import javax.swing.JDesktopPane;
 import javax.swing.JTable;
-import javax.swing.ImageIcon;
+\\import javax.swing.ImageIcon;
 
-public class TelaPrincipal extends javax.swing.JFrame {
+public class TelaPrincipal extends javax.swing.JInternalFrame  {
 
     /**
      * Creates new form TelaPrincipal
@@ -158,8 +158,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         desktopLayout.setVerticalGroup(
             desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 719, Short.MAX_VALUE)
+            .addGap(0, 720, Short.MAX_VALUE)
         );
+
+        painelImagemFundo2.setEnabled(false);
 
         javax.swing.GroupLayout painelImagemFundo2Layout = new javax.swing.GroupLayout(painelImagemFundo2);
         painelImagemFundo2.setLayout(painelImagemFundo2Layout);

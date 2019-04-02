@@ -18,7 +18,7 @@ public class PainelImagemFundo extends javax.swing.JPanel{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         
-        g.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+        //g.drawImage(img.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
         
     }
     
