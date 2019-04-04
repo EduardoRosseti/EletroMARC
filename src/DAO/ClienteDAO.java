@@ -29,12 +29,16 @@ public class ClienteDAO {
     public String gravar(Cliente cliente) {
         this.cliente = cliente;
         try {
-            bd.setSql("insert into tbcliente (COD_CLIENTE,NOME,DATA_NASCIMENTO,TELEFONE,CELUALR,CPF,RG,EMAIL,RUA,RUA_NUMERO,CEP,BAIRO,CIDADE,COMPLEMENTO) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            bd.setSql("insert into tbcliente (COD_CLIENTE,NOME,DATA_NASCIMENTO,TELEFONE,CELULAR,CPF,RG,EMAIL,RUA,RUA_NUMERO,CEP,BAIRRO,CIDADE,COMPLEMENTO,ESTADO) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, cliente.getCod());
             bd.getPst().setString(2, cliente.getNome());
+            String dia = cliente.getDataNasc().substring(0, 2);
+            String mes = cliente.getDataNasc().substring(3, 5);
+            String ano = cliente.getDataNasc().substring(6);
+            cliente.setDataNasc(ano+"-"+mes+"-"+dia);
             bd.getPst().setString(3, cliente.getDataNasc());
             bd.getPst().setString(4, cliente.getTelefone());
             bd.getPst().setString(5, cliente.getCelular());
@@ -47,6 +51,7 @@ public class ClienteDAO {
             bd.getPst().setString(12, cliente.getBairro());
             bd.getPst().setString(13, cliente.getCidade());
             bd.getPst().setString(14, cliente.getComplemento());
+            bd.getPst().setString(15, cliente.getEstado());
             JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
@@ -60,6 +65,50 @@ public class ClienteDAO {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
+    }
+    public boolean alterar(Cliente cliente) {
+        this.cliente = cliente;
+         JOptionPane.showMessageDialog(null, cliente.getDataNasc());
+        try {
+            bd.setSql("update tbcliente set NOME = ?,DATA_NASCIMENTO = ?,TELEFONE = ? ,CELULAR = ?,CPF = ?,RG = ?,EMAIL = ?,RUA = ?,RUA_NUMERO = ?,CEP = ?,BAIRRO = ?,CIDADE = ?,COMPLEMENTO = ?,ESTADO = ? WHERE COD_CLIENTE = ?");
+            System.out.println(bd.getSql());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+
+            bd.getPst().setString(1, cliente.getNome());
+            String dia = cliente.getDataNasc().substring(0, 2);
+            String mes = cliente.getDataNasc().substring(2, 4);
+            String ano = cliente.getDataNasc().substring(4,8);
+            cliente.setDataNasc(ano+"-"+mes+"-"+dia);
+           JOptionPane.showMessageDialog(null, cliente.getDataNasc());
+            bd.getPst().setString(2, cliente.getDataNasc());
+            bd.getPst().setString(3, cliente.getTelefone());
+            bd.getPst().setString(4, cliente.getCelular());
+            bd.getPst().setString(5, cliente.getCpf());
+            bd.getPst().setString(6, cliente.getRg());
+            bd.getPst().setString(7, cliente.getEmail());
+            bd.getPst().setString(8, cliente.getRua());
+            bd.getPst().setInt(9, cliente.getNumero());
+            bd.getPst().setString(10, cliente.getCep());
+            bd.getPst().setString(11, cliente.getBairro());
+            bd.getPst().setString(12, cliente.getCidade());
+            bd.getPst().setString(13, cliente.getComplemento());
+            bd.getPst().setString(14, cliente.getEstado());
+            bd.getPst().setInt(15, cliente.getCod());
+            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                return true;
+                //return msg = "Falha no cadastro";
+            } else {
+                bd.connection.close();
+               // return msg = "Cadastro realizado com sucesso";
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return false;
     }
 
     /**

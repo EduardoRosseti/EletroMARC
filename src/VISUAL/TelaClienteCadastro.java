@@ -10,6 +10,7 @@ import CONTROLE.CCliente;
 import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
+import MODELO.Validacao;
 import MODELO.WebServiceCep;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     /**
      * Creates new form Cadastro
      */
-    CValidacao cvalidacao;
+    Validacao validacao;
     CCliente ccliente;
     CTabela cTabela;
 
@@ -35,8 +36,8 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         initComponents();
         cTabela = new CTabela();
         ccliente = new CCliente();
-        
-       // preencherTabelaa();
+
+        // preencherTabelaa();
     }
 
     /**
@@ -535,15 +536,15 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         ccliente.cliente.setBairro(txtCadBairro.getText());
         ccliente.cliente.setCidade(txtCadCidade.getText());
         ccliente.cliente.setComplemento(txtCadComplem.getText());
-        JOptionPane.showMessageDialog(null,ccliente.cliente.getCpf());
+        ccliente.cliente.setEstado(cbCadUf.getItemAt(WIDTH));
 
         // ccliente.cliente.setObservacao(txtCadObs.getText());
-        if(cvalidacao.validaCpf(ccliente.cliente.getCpf())){
-            if(true){
+        if (Validacao.validaCpf(ccliente.cliente.getCpf())) {
+            if (true) {
                 JOptionPane.showMessageDialog(null, "teste");
                 msg = ccliente.gravar(ccliente.cliente);
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "cpf invalido");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -551,9 +552,9 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     private void txtCadCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadCpfActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, cvalidacao.validaCpf(txtCadCpf.getText()));
-        if(cvalidacao.validaCpf(txtCadCpf.getText())){
+        if (cvalidacao.validaCpf(txtCadCpf.getText())) {
             JOptionPane.showMessageDialog(null, "Valido");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Não valido");
         }
     }//GEN-LAST:event_txtCadCpfActionPerformed
@@ -564,14 +565,22 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
         cTabela.tabela.setCod(i);
         boolean result;
-        ccliente.cliente.setCod(cTabela.tabela.getCod());        
+        ccliente.cliente.setCod(cTabela.tabela.getCod());
         result = ccliente.buscar(ccliente.cliente);
         //JOptionPane.showMessageDialog(null, result);
-        if(result){
-          //  txtCadCod.setText(Integer.toString(ccliente.cliente.getCod()));
+        if (result) {
+            //  txtCadCod.setText(Integer.toString(ccliente.cliente.getCod()));
             txtCadNome.setText((ccliente.cliente.getNome()));
             txtCadTel.setText(ccliente.cliente.getTelefone());
             //JOptionPane.showMessageDialog(null,ccliente.cliente.getTelefone());
+
+            ccliente.cliente.getDataNasc();
+            String ano = ccliente.cliente.getDataNasc().substring(0, 4);
+            String mes = ccliente.cliente.getDataNasc().substring(5, 7);
+            String dia = ccliente.cliente.getDataNasc().substring(8);
+            ccliente.cliente.setDataNasc(dia + "" + mes + "" + ano);
+            JOptionPane.showMessageDialog(null, ccliente.cliente.getDataNasc());
+            txtCadDataNasc.setText(ccliente.cliente.getDataNasc());
             txtCadCel.setText(ccliente.cliente.getCelular());
             txtCadCpf.setText(ccliente.cliente.getCpf());
             txtCadRg.setText(ccliente.cliente.getRg());
@@ -597,7 +606,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
 
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbcliente",txtPesquisar.getText(),String.valueOf(cbPesquisar.getSelectedItem()))));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbcliente", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -669,6 +678,34 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        String msg = "";
+        ccliente.cliente.setNome(txtCadNome.getText());
+        ccliente.cliente.setDataNasc((txtCadDataNasc.getText()).replace("/", ""));
+        ccliente.cliente.setTelefone(ccliente.cliente.retiraCel(txtCadTel.getText()));
+        ccliente.cliente.setCelular(ccliente.cliente.retiraCel(txtCadCel.getText()));
+        ccliente.cliente.setCpf(ccliente.cliente.retira(txtCadCpf.getText()));
+        ccliente.cliente.setRg(ccliente.cliente.retira(txtCadRg.getText()));
+        ccliente.cliente.setEmail(txtCadEma.getText());
+        ccliente.cliente.setCep(ccliente.cliente.retira(txtCadCep.getText()));
+        ccliente.cliente.setRua(txtCadRua.getText());
+        ccliente.cliente.setNumero(Integer.parseInt(txtCadNum.getText()));
+        ccliente.cliente.setBairro(txtCadBairro.getText());
+        ccliente.cliente.setCidade(txtCadCidade.getText());
+        ccliente.cliente.setComplemento(txtCadComplem.getText());
+        ccliente.cliente.setEstado(cbCadUf.getItemAt(WIDTH));
+
+        // ccliente.cliente.setObservacao(txtCadObs.getText());
+        if (Validacao.validaCpf(ccliente.cliente.getCpf())) {
+                if (!ccliente.alterar(ccliente.cliente)) {
+                    JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não reliada a atualização");
+                }
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "cpf invalido");
+        }
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
 

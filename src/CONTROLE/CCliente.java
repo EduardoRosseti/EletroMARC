@@ -57,4 +57,8 @@ public class CCliente {
         String msg = clientedao.apagar(cliente.getCod());
         return msg;
     }
+    
+    public boolean alterar(Cliente cliente){
+        return clientedao.alterar(cliente);
+    }
 }
