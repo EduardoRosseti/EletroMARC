@@ -25,18 +25,22 @@ public class COrcamento {
         orcamento = new Orcamento();
         orcamentoDao = new OrcamentoDAO();
     }
-        public String gravar(Orcamento orcamento){
-        return orcamentoDao.gravar(orcamento);
-        
+    public String gravar(Orcamento orcamento){
+        return orcamentoDao.gravar(orcamento);    
     }
+    
+    public String alterar(Orcamento orcamento){
+        return orcamentoDao.alterar(orcamento);    
+    }
+    
     public boolean buscar(Orcamento orcamento){
         
         try {
            // JOptionPane.showMessageDialog(null,"antes DAO" + orcamento.getCod());
             rs = orcamentoDao.localizar((orcamento.getCod()));
             orcamento.setCod(rs.getInt(1));
-            orcamento.setCodCliente(rs.getInt(2));
-            orcamento.setCodMercadoria(rs.getInt(3));
+            orcamento.setCodMercadoria(rs.getInt(2));
+            orcamento.setCodCliente(rs.getInt(3));
             orcamento.setServicoSolicitado(rs.getString(4));
             orcamento.setDescricaoProblema(rs.getString(5));
             orcamento.setDataSolicitacao(rs.getString(6));
@@ -55,5 +59,6 @@ public class COrcamento {
         String msg = orcamentoDao.apagar(orcamento.getCod());
         return msg;
     }
+    
     
 }

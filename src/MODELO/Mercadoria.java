@@ -11,7 +11,6 @@ package MODELO;
  */
 public class Mercadoria {
     private int cod;
-    private int codMercadoria;
     private int codFabricante;
     private int codFornecedor;
     private String marca;
@@ -26,14 +25,6 @@ public class Mercadoria {
 
     public void setCod(int cod) {
         this.cod = cod;
-    }
-
-    public int getCodMercadoria() {
-        return codMercadoria;
-    }
-
-    public void setCodMercadoria(int codMercadoria) {
-        this.codMercadoria = codMercadoria;
     }
 
     public int getCodFornecedor() {

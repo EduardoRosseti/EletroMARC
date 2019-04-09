@@ -27,27 +27,62 @@ public class OrcamentoDAO {
     public String gravar(Orcamento orcamento) {
         this.orcamento = orcamento;
         try {
-            bd.setSql("insert into tborcamento (COD_ORCAMENTO,COD_MERCADORIA,COD_CLIENTE,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,VALOR_MAO_OBRA,VALOR_TOTAL,STATUS) values(?,?,?,?,?,?,?,?,?,?)");
+            bd.setSql("insert into tborcamento (COD_CLIENTE,COD_MERCADORIA,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,VALOR_MAO_OBRA,VALOR_TOTAL,STATUS) values(?,?,?,?,?,?,?,?,?)");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            bd.getPst().setInt(1, orcamento.getCod());
-            bd.getPst().setInt(2, orcamento.getCodCliente());
-            bd.getPst().setInt(3, orcamento.getCodMercadoria());
-            bd.getPst().setString(4, orcamento.getServicoSolicitado());
-            bd.getPst().setString(5, orcamento.getDescricaoProblema());
-            bd.getPst().setString(6, orcamento.getDataSolicitacao());
-            bd.getPst().setFloat(7, orcamento.getValorProdutoUtilizado());
-            bd.getPst().setFloat(8, orcamento.getValorMaoObra());
-            bd.getPst().setFloat(9, orcamento.getValorTotal());
-            bd.getPst().setString(10, orcamento.getStatus());
-            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
+            bd.getPst().setInt(1, orcamento.getCodCliente());
+            bd.getPst().setInt(2, orcamento.getCodMercadoria());
+            bd.getPst().setString(3, orcamento.getServicoSolicitado());
+            bd.getPst().setString(4, orcamento.getDescricaoProblema());
+            String dia = orcamento.getDataSolicitacao().substring(0, 2);
+            String mes = orcamento.getDataSolicitacao().substring(3, 5);
+            String ano = orcamento.getDataSolicitacao().substring(6);
+            orcamento.setDataSolicitacao(ano+"-"+mes+"-"+dia);
+            bd.getPst().setString(5, orcamento.getDataSolicitacao());
+            bd.getPst().setFloat(6, orcamento.getValorProdutoUtilizado());
+            bd.getPst().setFloat(7, orcamento.getValorMaoObra());
+            bd.getPst().setFloat(8, orcamento.getValorTotal());
+            bd.getPst().setString(9, orcamento.getStatus());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
-                //return msg = "Falha no cadastro";
+                return "Falha no cadastro";
             } else {
                 bd.connection.close();
-               // return msg = "Cadastro realizado com sucesso";
+               return "Cadastro realizado com sucesso";
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
+    public String alterar(Orcamento orcamento) {
+        this.orcamento = orcamento;
+        try {
+            bd.setSql("update tborcamento set COD_CLIENTE = ? ,COD_MERCADORIA = ?,SERVICO_SOLICITADO = ?,DESCRICAO = ? ,DATA = ?,VALOR_MERCADORIA = ?,VALOR_MAO_OBRA = ?,VALOR_TOTAL = ?,STATUS = ? WHERE COD_ORCAMENTO = "+ orcamento.getCod());
+            System.out.println(bd.getSql());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+            bd.getPst().setInt(1, orcamento.getCodCliente());
+            bd.getPst().setInt(2, orcamento.getCodMercadoria());
+            bd.getPst().setString(3, orcamento.getServicoSolicitado());
+            bd.getPst().setString(4, orcamento.getDescricaoProblema());
+            String dia = orcamento.getDataSolicitacao().substring(0, 2);
+            String mes = orcamento.getDataSolicitacao().substring(3, 5);
+            String ano = orcamento.getDataSolicitacao().substring(6);
+            orcamento.setDataSolicitacao(ano+"-"+mes+"-"+dia);
+            bd.getPst().setString(5, orcamento.getDataSolicitacao());
+            bd.getPst().setFloat(6, orcamento.getValorProdutoUtilizado());
+            bd.getPst().setFloat(7, orcamento.getValorMaoObra());
+            bd.getPst().setFloat(8, orcamento.getValorTotal());
+            bd.getPst().setString(9, orcamento.getStatus());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                return "Falha na alteração";
+            } else {
+                bd.connection.close();
+               return "Alteração realizada com sucesso";
 
             }
         } catch (Exception e) {

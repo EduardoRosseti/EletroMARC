@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 28-Mar-2019 √†s 02:11
--- Vers√£o do servidor: 10.1.38-MariaDB
--- vers√£o do PHP: 7.3.2
+-- Generation Time: 28-Mar-2019 ‡s 02:11
+-- Vers„o do servidor: 10.1.38-MariaDB
+-- vers„o do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,21 +32,21 @@ USE `eletromarc`;
 
 DROP TABLE IF EXISTS `tbcliente`;
 CREATE TABLE IF NOT EXISTS `tbcliente` (
-  `COD_CLIENTE` int(5) NOT NULL,
+  `COD_CLIENTE` int(5) NOT NULL AUTO_INCREMENT,
   `NOME` varchar(50) CHARACTER SET utf8 NOT NULL,
   `DATA_NASCIMENTO` date NOT NULL,
-  `TELEFONE` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `TELEFONE` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `CELULAR` varchar(11) CHARACTER SET utf8 NOT NULL,
-  `CPF` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
+  `CPF` varchar(11) CHARACTER SET utf8 NOT NULL,
   `RG` varchar(9) CHARACTER SET utf8 DEFAULT NULL,
   `EMAIL` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `RUA` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
-  `RUA_NUMERO` int(5) DEFAULT NULL,
+  `RUA` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `RUA_NUMERO` int(5)NOT NULL,
   `CEP` varchar(8) CHARACTER SET utf8 DEFAULT NULL,
-  `BAIRRO` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
-  `CIDADE` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `BAIRRO` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `CIDADE` varchar(50) CHARACTER SET utf8 NOT NULL,
   `COMPLEMENTO` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `ESTADO` varchar(2) CHARACTER SET utf8 DEFAULT NULL,
+  `ESTADO` varchar(2) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`COD_CLIENTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -58,21 +58,25 @@ CREATE TABLE IF NOT EXISTS `tbcliente` (
 
 DROP TABLE IF EXISTS `tbfabricante`;
 CREATE TABLE IF NOT EXISTS `tbfabricante` (
-  `COD_FABRICANTE` int(5) NOT NULL,
+  `COD_FABRICANTE` int(5) NOT NULL AUTO_INCREMENT,
   `NOME` varchar(50) NOT NULL,
-  `TELEFONE` varchar(10) NOT NULL,
+  `TELEFONE` varchar(20) DEFAULT NULL,
   `CELULAR` varchar(11) NOT NULL,
   `CNPJ` varchar(14) NOT NULL,
   `EMAIL` varchar(50) NOT NULL,
   `RUA` varchar(50) NOT NULL,
   `RUA_NUMERO` int(5) NOT NULL,
-  `CEP` varchar(8) NOT NULL,
+  `CEP` varchar(8) DEFAULT NULL,
   `BAIRRO` varchar(30) NOT NULL,
   `CIDADE` varchar(50) NOT NULL,
   `COMPLEMENTO` varchar(100) NOT NULL,
   `ESTADO` varchar(2) NOT NULL,
   PRIMARY KEY (`COD_FABRICANTE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tbfabricante` VALUES
+(1, 'LG', '1433441143', '14997418553', 'gaandrade76@hotmail.com', 'washington luiz', 2020, '18950000', 'centro', 'ipaussu', 'fundos', '525780543', 'SP');
+
 
 -- --------------------------------------------------------
 
@@ -82,21 +86,26 @@ CREATE TABLE IF NOT EXISTS `tbfabricante` (
 
 DROP TABLE IF EXISTS `tbfornecedor`;
 CREATE TABLE IF NOT EXISTS `tbfornecedor` (
-  `COD_FORNECEDOR` int(5) NOT NULL,
+  `COD_FORNECEDOR` int(5) NOT NULL AUTO_INCREMENT,
   `NOME` varchar(50) NOT NULL,
-  `TELEFONE` varchar(10) NOT NULL,
+  `TELEFONE` varchar(20) DEFAULT NULL,
   `CELULAR` varchar(11) NOT NULL,
-  `EMAIL` varchar(50) NOT NULL,
+  `EMAIL` varchar(50) DEFAULT NULL,
   `RUA` varchar(50) NOT NULL,
   `RUA_NUMERO` int(5) NOT NULL,
-  `CEP` varchar(8) NOT NULL,
+  `CEP` varchar(8) DEFAULT NULL,
   `BAIRRO` varchar(30) NOT NULL,
   `CIDADE` varchar(50) NOT NULL,
-  `COMPLEMENTO` varchar(100) NOT NULL,
+  `COMPLEMENTO` varchar(100) DEFAULT NULL,
   `ESTADO` varchar(2) NOT NULL,
   `CNPJ` varchar(14) NOT NULL,
   PRIMARY KEY (`COD_FORNECEDOR`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `tbfornecedor` VALUES
+(1, 'Raionix', '1433441143', '14997418553', 'gaandrade76@hotmail.com', 'washington luiz', 2020, '18950000', 'centro', 'ipaussu', 'fundos', '525780543', 'SP');
+
+
 
 -- --------------------------------------------------------
 
@@ -109,17 +118,17 @@ CREATE TABLE IF NOT EXISTS `tbfuncionario` (
   `COD_FUNCIONARIO` int(5) NOT NULL AUTO_INCREMENT,
   `NOME_FUNCIONARIO` varchar(50) NOT NULL,
   `DATA_NASCIMENTO` date NOT NULL,
-  `TELEFONE` varchar(10) NOT NULL,
-  `CELULAR` varchar(11) NOT NULL,
+  `TELEFONE` varchar(20) DEFAULT NULL,
+  `CELULAR` varchar(15) NOT NULL,
   `CPF` varchar(13) NOT NULL,
   `EMAIL` varchar(50) NOT NULL,
   `RUA` varchar(50) NOT NULL,
   `RUA_NUMERO` int(5) NOT NULL,
-  `CEP` varchar(10) NOT NULL,
+  `CEP` varchar(10) DEFAULT NULL,
   `BAIRRO` varchar(50) NOT NULL,
   `CIDADE` varchar(30) NOT NULL,
   `COMPLEMENTO` varchar(100) NOT NULL,
-  `RG` varchar(9) NOT NULL,
+  `RG` varchar(9) DEFAULT NULL,
   `ESTADO` varchar(2) NOT NULL,
   PRIMARY KEY (`COD_FUNCIONARIO`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -131,6 +140,11 @@ CREATE TABLE IF NOT EXISTS `tbfuncionario` (
 INSERT INTO `tbfuncionario` (`COD_FUNCIONARIO`, `NOME_FUNCIONARIO`, `DATA_NASCIMENTO`, `TELEFONE`, `CELULAR`, `CPF`, `EMAIL`, `RUA`, `RUA_NUMERO`, `CEP`, `BAIRRO`, `CIDADE`, `COMPLEMENTO`, `RG`, `ESTADO`) VALUES
 (1, 'Gabriel Andrade Rocha', '1999-06-10', '1433441143', '14997418553', '46939682856', 'gaandrade76@hotmail.com', 'washington luiz', 2020, '18950000', 'centro', 'ipaussu', 'fundos', '525780543', 'SP');
 
+INSERT INTO `tbcliente` VALUES
+(1, 'Gabriel Andrade Rocha', '1999-06-10', '1433441143', '14997418553', '46939682856', 'gaandrade76@hotmail.com', 'washington luiz', 2020, '18950000', 'centro', 'ipaussu', 'fundos', '525780543', 'SP');
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -140,7 +154,7 @@ INSERT INTO `tbfuncionario` (`COD_FUNCIONARIO`, `NOME_FUNCIONARIO`, `DATA_NASCIM
 DROP TABLE IF EXISTS `tbgarantiafornecedor`;
 CREATE TABLE IF NOT EXISTS `tbgarantiafornecedor` (
   `COD_GARANTIA_FORNECEDOR` int(5) NOT NULL AUTO_INCREMENT,
-  `COD_MERCADORIA` int(5) DEFAULT NULL,
+  `COD_MERCADORIA` int(5) NOT NULL,
   `DATA` date NOT NULL,
   `VALOR_PAGO` float(7,2) NOT NULL,
   `NOME` varchar(50) NOT NULL,
@@ -157,8 +171,8 @@ CREATE TABLE IF NOT EXISTS `tbgarantiafornecedor` (
 DROP TABLE IF EXISTS `tbmercadoria`;
 CREATE TABLE IF NOT EXISTS `tbmercadoria` (
   `COD_MERCADORIA` int(5) NOT NULL AUTO_INCREMENT,
-  `COD_FABRICANTE` int(5) DEFAULT NULL,
-  `COD_FORNECEDOR` int(5) DEFAULT NULL,
+  `COD_FABRICANTE` int(5) NOT NULL,
+  `COD_FORNECEDOR` int(5) NOT NULL,
   `MARCA` varchar(50) NOT NULL,
   `MODELO` varchar(50) NOT NULL,
   `CUSTO` float(7,2) NOT NULL,
@@ -167,6 +181,10 @@ CREATE TABLE IF NOT EXISTS `tbmercadoria` (
   KEY `FK_MERCADORIA_CODFABRICANTE` (`COD_FABRICANTE`),
   KEY `FK_MERCADORIA_CODFORNECEDOR` (`COD_FORNECEDOR`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `tbmercadoria` VALUES
+(1, 1, 1, 'Samsung', 'TV', '1299.00', 'Ultra4k');
 
 -- --------------------------------------------------------
 
@@ -280,6 +298,7 @@ ALTER TABLE `tbmercadoria`
 --
 ALTER TABLE `tborcamento`
   ADD CONSTRAINT `FK_ORCAMENTO_CODCLIENTE` FOREIGN KEY (`COD_CLIENTE`) REFERENCES `tbcliente` (`COD_CLIENTE`),
+
   ADD CONSTRAINT `FK_ORCAMENTO_CODMERCADORIA` FOREIGN KEY (`COD_MERCADORIA`) REFERENCES `tbmercadoria` (`COD_MERCADORIA`);
 
 --

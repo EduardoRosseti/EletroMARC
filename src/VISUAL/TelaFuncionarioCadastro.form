@@ -573,7 +573,7 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Codigo"/>
+            <StringItem index="0" value="COD_FUNCIONARIO"/>
             <StringItem index="1" value="Nome"/>
             <StringItem index="2" value="NascData"/>
             <StringItem index="3" value="Telefone"/>

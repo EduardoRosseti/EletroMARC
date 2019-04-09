@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //TELA PRONTA
 package VISUAL;
 
@@ -11,8 +10,10 @@ import CONTROLE.CFuncionario;
 import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
+import MODELO.Validacao;
 import MODELO.WebServiceCep;
-import static VISUAL.TelaClienteCadastro.tbBusca;
+import static VISUAL.TelaFuncionarioCadastro.tbBusca;
+import static java.awt.image.ImageObserver.WIDTH;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -33,16 +34,15 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
     CFuncionario cFuncionario;
     CTabela cTabela;
     private int cod;
-    private  int lin;
+    private int lin;
 
     public TelaFuncionarioCadastro() {
         initComponents();
         cTabela = new CTabela();
         cvalidacao = new CValidacao();
         cFuncionario = new CFuncionario();
-        preencherTabelaa();
     }
-    
+
     public int getCod() {
         return cod;
     }
@@ -57,54 +57,6 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     public void setLin(int lin) {
         this.lin = lin;
-    }
-    
-      public void preencherTabelaa() {
-        cTabela = new CTabela();
-        String []p = new String[5];
-        p[0] = "codigo";p[1]="nome";p[2]="nascData";p[3]="telefone";p[4]="tbfuncionario";
-        String[] colunas = new String[]{"Codigo", "Nome", "Data", "Telefone"};
-        ArrayList dados = cTabela.preencherCliente(p);
-        //JOptionPane.showMessageDialog(null, "preenche funcao" + dados);
-        
-        //JOptionPane.showMessageDialog(null, "CONSTRUTOR ");
-        tbBusca.setModel(cTabela.tabela.CTabela(dados, colunas));
-        //tbBusca.setModel((cTabela.tabela.Tabela(dados, colunas)));
-        //JOptionPane.showMessageDialog(null, "MOOODEL" + tbBusca.getModel());
-        tbBusca.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(70);
-        tbBusca.getColumnModel().getColumn(0).setResizable(false);
-        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(325);
-        tbBusca.getColumnModel().getColumn(1).setResizable(false);
-        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(160);
-        tbBusca.getColumnModel().getColumn(2).setResizable(false);
-        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(160);
-        tbBusca.getColumnModel().getColumn(3).setResizable(false);
-        tbBusca.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tbBusca.setAutoCreateRowSorter(true);
-      }
-      
-      public void pesquisar(){
-        boolean result;
-        cFuncionario.funcionario.setCod(getCod());        
-        result = cFuncionario.buscar(cFuncionario.funcionario);
-        //JOptionPane.showMessageDialog(null, result);
-        if(result){
-          //  txtCadFunFunCod.setText(Integer.toString(cFuncionario.funcionario.getCod()));
-            txtCadFunNom.setText((cFuncionario.funcionario.getNome()));
-            txtCadFunTel.setText(cFuncionario.funcionario.getTelefone());
-            //JOptionPane.showMessageDialog(null,cFuncionario.funcionario.getTelefone());
-            txtCadFunCel.setText(cFuncionario.funcionario.getCelular());
-            txtCadFunCpf.setText(cFuncionario.funcionario.getCpf());
-            txtCadFunRg.setText(cFuncionario.funcionario.getRg());
-            txtCadFunEma.setText(cFuncionario.funcionario.getEmail());
-            txtCadFunRua.setText(cFuncionario.funcionario.getRua());
-            txtCadFunNum.setText(Integer.toString(cFuncionario.funcionario.getNumero()));
-            txtCadFunCep.setText(cFuncionario.funcionario.getCep());
-            txtCadFunBai.setText(cFuncionario.funcionario.getBairro());
-            txtCadFunCid.setText(cFuncionario.funcionario.getCidade());
-            txtCadFunCom.setText(cFuncionario.funcionario.getComplemento());
-        }
     }
 
     /**
@@ -146,13 +98,13 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         txtCadFunCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadFunUf = new javax.swing.JComboBox<>();
+        cbCadFunUf = new javax.swing.JComboBox<String>();
         btnCadCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         btnDadExcluir = new javax.swing.JButton();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
         btnDadExcluir1 = new javax.swing.JButton();
@@ -328,7 +280,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("UF");
 
-        cbCadFunUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadFunUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadFunUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadFunUfActionPerformed(evt);
@@ -451,7 +403,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_FUNCIONARIO", "Nome", "NascData", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -603,7 +555,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        
+
         String msg = "";
         cFuncionario.funcionario.setNome(txtCadFunNom.getText());
         cFuncionario.funcionario.setDataNasc((txtCadFunDat.getText()).replace("/", "-"));
@@ -618,14 +570,11 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cFuncionario.funcionario.setBairro(txtCadFunBai.getText());
         cFuncionario.funcionario.setCidade(txtCadFunCid.getText());
         cFuncionario.funcionario.setComplemento(txtCadFunCom.getText());
-        JOptionPane.showMessageDialog(null,cFuncionario.funcionario.getCpf());
-
+        cFuncionario.funcionario.setEstado(cbCadFunUf.getItemAt(cbCadFunUf.getSelectedIndex()));
         // cFuncionario.funcionario.setObservacao(txtCadFunFunObs.getText());
-        if(cvalidacao.validaCpf(cFuncionario.funcionario.getCpf())){
-            if(true){
-                msg = cFuncionario.gravar(cFuncionario.funcionario);
-            }
-        }else{
+        if (Validacao.validaCpf(cFuncionario.funcionario.getCpf())) {
+            JOptionPane.showMessageDialog(null, cFuncionario.gravar(cFuncionario.funcionario));
+        } else {
             JOptionPane.showMessageDialog(null, "cpf invalido");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
@@ -633,19 +582,46 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void txtCadFunCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadFunCpfActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, cvalidacao.validaCpf(txtCadFunCpf.getText()));
-        if(cvalidacao.validaCpf(txtCadFunCpf.getText())){
+        if (cvalidacao.validaCpf(txtCadFunCpf.getText())) {
             JOptionPane.showMessageDialog(null, "Valido");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Não valido");
         }
     }//GEN-LAST:event_txtCadFunCpfActionPerformed
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        setLin(tbBusca.getSelectedRow());
-        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(getLin(), 0).toString());
-        setCod(i);
-        pesquisar();
+        cTabela.tabela.setLin(tbBusca.getSelectedRow());
+        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
+        cTabela.tabela.setCod(i);
+        boolean result;
+        cFuncionario.funcionario.setCod(cTabela.tabela.getCod());
+        result = cFuncionario.buscar(cFuncionario.funcionario);
+        //JOptionPane.showMessageDialog(null, result);
+        if (result) {
+            //  txtCadFunCod.setText(Integer.toString(cFuncionario.funcionario.getCod()));
+            txtCadFunNom.setText((cFuncionario.funcionario.getNome()));
+            txtCadFunTel.setText(cFuncionario.funcionario.getTelefone());
+            //JOptionPane.showMessageDialog(null,cFuncionario.funcionario.getTelefone());
+
+            cFuncionario.funcionario.getDataNasc();
+            String ano = cFuncionario.funcionario.getDataNasc().substring(0, 4);
+            String mes = cFuncionario.funcionario.getDataNasc().substring(5, 7);
+            String dia = cFuncionario.funcionario.getDataNasc().substring(8);
+            cFuncionario.funcionario.setDataNasc(dia + "" + mes + "" + ano);
+            JOptionPane.showMessageDialog(null, cFuncionario.funcionario.getDataNasc());
+            txtCadFunDat.setText(cFuncionario.funcionario.getDataNasc());
+            txtCadFunCel.setText(cFuncionario.funcionario.getCelular());
+            txtCadFunCpf.setText(cFuncionario.funcionario.getCpf());
+            txtCadFunRg.setText(cFuncionario.funcionario.getRg());
+            txtCadFunEma.setText(cFuncionario.funcionario.getEmail());
+            txtCadFunRua.setText(cFuncionario.funcionario.getRua());
+            txtCadFunNum.setText(Integer.toString(cFuncionario.funcionario.getNumero()));
+            txtCadFunCep.setText(cFuncionario.funcionario.getCep());
+            txtCadFunBai.setText(cFuncionario.funcionario.getBairro());
+            txtCadFunCid.setText(cFuncionario.funcionario.getCidade());
+            txtCadFunCom.setText(cFuncionario.funcionario.getComplemento());
+        }
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -660,10 +636,10 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
-        String pr = (String)(txtPesquisar.getText());
-        String op = (String)(cbPesquisar.getSelectedItem());
+        String pr = (String) (txtPesquisar.getText());
+        String op = (String) (cbPesquisar.getSelectedItem());
         String tb = "tbfuncionario";
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb,pr,op)));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb, pr, op)));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -684,7 +660,6 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-        preencherTabelaa();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void txtCadFunNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadFunNumActionPerformed
@@ -710,6 +685,8 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnDadExcluir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadExcluir1ActionPerformed
         // TODO add your handling code here:
+        String msg = cFuncionario.apagar(cFuncionario.funcionario);
+        JOptionPane.showMessageDialog(null, msg);
     }//GEN-LAST:event_btnDadExcluir1ActionPerformed
 
 

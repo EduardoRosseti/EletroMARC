@@ -7,6 +7,7 @@ package DAO;
 
 import DAO.BD;
 import MODELO.Funcionario;
+import MODELO.Funcionario;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -16,23 +17,27 @@ import javax.swing.JOptionPane;
  * @author jose
  */
 public class FuncionarioDAO {
+
     BD bd;
     Funcionario funcionario;
-    
+
     public FuncionarioDAO() {
         bd = new BD();
     }
-    
-    
+
     public String gravar(Funcionario funcionario) {
         this.funcionario = funcionario;
         try {
-            bd.setSql("insert into tbfuncionario (COD_FUNCIONARIO,NOME,DATA_NASCIMENTO,TELEFONE,CELUALR,CPF,RG,EMAIL,RUA,RUA_NUMERO,CEP,BAIRO,CIDADE,COMPLEMENTO) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            bd.setSql("insert into tbfuncionario (COD_FUNCIONARIO,NOME_FUNCIONARIO,DATA_NASCIMENTO,TELEFONE,CELULAR,CPF,RG,EMAIL,RUA,RUA_NUMERO,CEP,BAIRRO,CIDADE,COMPLEMENTO,ESTADO) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, funcionario.getCod());
             bd.getPst().setString(2, funcionario.getNome());
+            String dia = funcionario.getDataNasc().substring(0, 2);
+            String mes = funcionario.getDataNasc().substring(3, 5);
+            String ano = funcionario.getDataNasc().substring(6);
+            funcionario.setDataNasc(ano + "-" + mes + "-" + dia);
             bd.getPst().setString(3, funcionario.getDataNasc());
             bd.getPst().setString(4, funcionario.getTelefone());
             bd.getPst().setString(5, funcionario.getCelular());
@@ -45,19 +50,64 @@ public class FuncionarioDAO {
             bd.getPst().setString(12, funcionario.getBairro());
             bd.getPst().setString(13, funcionario.getCidade());
             bd.getPst().setString(14, funcionario.getComplemento());
-            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
+            bd.getPst().setString(15, funcionario.getEstado());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
-                //return msg = "Falha no cadastro";
+                return "Falha no cadastro";
             } else {
                 bd.connection.close();
-               // return msg = "Cadastro realizado com sucesso";
+                return "Cadastro realizado com sucesso";
 
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
         return null;
+    }
+
+    public boolean alterar(Funcionario funcionario) {
+        this.funcionario = funcionario;
+        JOptionPane.showMessageDialog(null, funcionario.getDataNasc());
+        try {
+            bd.setSql("update tbfuncionario set NOME_FUNCIONARIO = ?,DATA_NASCIMENTO = ?,TELEFONE = ? ,CELULAR = ?,CPF = ?,RG = ?,EMAIL = ?,RUA = ?,RUA_NUMERO = ?,CEP = ?,BAIRRO = ?,CIDADE = ?,COMPLEMENTO = ?,ESTADO = ? WHERE COD_CLIENTE = ?");
+            System.out.println(bd.getSql());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+
+            bd.getPst().setString(1, funcionario.getNome());
+            String dia = funcionario.getDataNasc().substring(0, 2);
+            String mes = funcionario.getDataNasc().substring(2, 4);
+            String ano = funcionario.getDataNasc().substring(4, 8);
+            funcionario.setDataNasc(ano + "-" + mes + "-" + dia);
+            JOptionPane.showMessageDialog(null, funcionario.getDataNasc());
+            bd.getPst().setString(2, funcionario.getDataNasc());
+            bd.getPst().setString(3, funcionario.getTelefone());
+            bd.getPst().setString(4, funcionario.getCelular());
+            bd.getPst().setString(5, funcionario.getCpf());
+            bd.getPst().setString(6, funcionario.getRg());
+            bd.getPst().setString(7, funcionario.getEmail());
+            bd.getPst().setString(8, funcionario.getRua());
+            bd.getPst().setInt(9, funcionario.getNumero());
+            bd.getPst().setString(10, funcionario.getCep());
+            bd.getPst().setString(11, funcionario.getBairro());
+            bd.getPst().setString(12, funcionario.getCidade());
+            bd.getPst().setString(13, funcionario.getComplemento());
+            bd.getPst().setString(14, funcionario.getEstado());
+            bd.getPst().setInt(15, funcionario.getCod());
+            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                return true;
+                //return msg = "Falha no cadastro";
+            } else {
+                bd.connection.close();
+                // return msg = "Cadastro realizado com sucesso";
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return false;
     }
 
     /**
@@ -71,7 +121,7 @@ public class FuncionarioDAO {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.setRs(bd.getPst().executeQuery());
-            JOptionPane.showMessageDialog(null, "dd: "+ bd.getRs());
+            JOptionPane.showMessageDialog(null, "dd: " + bd.getRs());
             bd.getRs().next();
             return bd.getRs();
         } catch (Exception e) {
@@ -100,5 +150,3 @@ public class FuncionarioDAO {
     }
 
 }
-    
-

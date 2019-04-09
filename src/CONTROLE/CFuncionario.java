@@ -60,4 +60,8 @@ public class CFuncionario{
         String msg = funcionarioDao.apagar(funcionario.getCod());
         return msg;
     }
+    
+    public boolean alterar(Funcionario funcionario){
+        return funcionarioDao.alterar(funcionario);
+    }
 }

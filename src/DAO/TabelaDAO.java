@@ -54,4 +54,19 @@ public class TabelaDAO {
         }
         return null;
     }
+        public ResultSet pesquisarOrc(String tb, String nome, String op){
+        bd.setSql("SELECT COD_ORCAMENTO,C.NOME AS 'NOME CLIENTE',M.NOME AS 'NOME MERCADORIA' ,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,VALOR_MAO_OBRA,VALOR_TOTAL,STATUS FROM "+tb+" AS O " +
+                "INNER JOIN TBCLIENTE AS C ON O.COD_CLIENTE = C.COD_CLIENTE " +
+                "INNER JOIN TBMERCADORIA AS M ON O.COD_MERCADORIA = M.COD_MERCADORIA where "+op+" like '" + nome +"%'");
+
+        try {
+            Connection conexao = bd.conectar();
+            bd.setPst(conexao.prepareStatement(bd.getSql()));
+            bd.setRs(bd.getPst().executeQuery());
+            return bd.getRs();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Falha ao efetuar leiura " + e);
+        }
+        return null;
+    }
 }

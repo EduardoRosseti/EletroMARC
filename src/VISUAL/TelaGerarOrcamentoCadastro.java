@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //TELA PRONTA
-
-
 package VISUAL;
 
 import CONTROLE.CCliente;
@@ -37,6 +34,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cCliente = new CCliente();
         cMercadoria = new CMercadoria();
         cOrcamento = new COrcamento();
+        txtCadValTot.setEnabled(false);
     }
 
     /**
@@ -51,12 +49,12 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnCadastrar1 = new javax.swing.JButton();
         btnCadastrar2 = new javax.swing.JButton();
-        btnCadastrar3 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtCadCli = new javax.swing.JTextField();
@@ -66,7 +64,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCadDes = new javax.swing.JTextField();
         txtCadVal = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbStatus = new javax.swing.JComboBox<String>();
         jLabel9 = new javax.swing.JLabel();
         txtCadValTot = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -74,7 +72,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         btnCadCliOrc = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtCadDat = new javax.swing.JFormattedTextField();
         btnCadMerOrc = new javax.swing.JButton();
         txtCadValMao = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -133,7 +131,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_ORCAMENTO", "NOME", "DATA", " " }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_ORCAMENTO", "NOME", "DATA", " " }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,10 +169,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrar3.setText("Alterar");
-        btnCadastrar3.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar3ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -210,8 +208,13 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 txtCadValActionPerformed(evt);
             }
         });
+        txtCadVal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCadValKeyReleased(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando aprovacao", "Aprovado", "Reprovado", "Concluido", " " }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aguardando aprovacao", "Aprovado", "Reprovado", "Concluido", " " }));
 
         jLabel9.setText("Status");
 
@@ -229,7 +232,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         jLabel4.setText("Data");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            txtCadDat.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -238,6 +241,12 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         btnCadMerOrc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCadMerOrcMouseClicked(evt);
+            }
+        });
+
+        txtCadValMao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCadValMaoKeyReleased(evt);
             }
         });
 
@@ -269,7 +278,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCadDat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -290,7 +299,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                         .addGap(56, 56, 56)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)))
                 .addContainerGap())
         );
@@ -303,7 +312,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(txtCadCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadCliOrc)
                     .addComponent(jLabel4)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCadDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -325,7 +334,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtCadDes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -350,7 +359,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addComponent(btnCadastrar3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76)
                 .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
@@ -362,7 +371,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -373,11 +382,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadastrar3)
+                    .addComponent(btnAlterar)
                     .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrar1)
-                    .addComponent(btnCadastrar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(btnCadastrar)))
         );
 
         pack();
@@ -385,47 +393,56 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        
+
         switch (cTabela.tabela.getTipo()) {
             case 1:
                 Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
                 Object d = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
                 txtCadCli.setText((String) t);
                 cCliente.cliente.setCod((int) d);
+                cCliente.buscar(cCliente.cliente);
                 break;
             case 2:
-
                 cTabela.tabela.setLin(tbBusca.getSelectedRow());
                 int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
                 cTabela.tabela.setCod(i);
                 boolean result;
                 cOrcamento.orcamento.setCod(cTabela.tabela.getCod());
                 result = cOrcamento.buscar(cOrcamento.orcamento);
+
                 //JOptionPane.showMessageDialog(null, result);
                 if (result) {
+                    cCliente.cliente.setCod(cOrcamento.orcamento.getCodCliente());
+                    cCliente.buscar(cCliente.cliente);
+                    cMercadoria.mercadoria.setCod(cOrcamento.orcamento.getCodMercadoria());
+                    cMercadoria.buscar(cMercadoria.mercadoria);
                     //  txtCadCod.setText(Integer.toString(cOrcamento.orcamento.getCod()));
-                    txtCadCli.setText(Float.toString(cOrcamento.orcamento.getCodCliente()));
-                    txtCadMer.setText(Float.toString(cOrcamento.orcamento.getCodMercadoria()));
+                    txtCadCli.setText(cCliente.cliente.getNome());
+                    txtCadMer.setText(cMercadoria.mercadoria.getNome());
                     //JOptionPane.showMessageDialog(null,cOrcamento.orcamento.getTelefone());
                     txtCadSer.setText(cOrcamento.orcamento.getServicoSolicitado());
                     txtCadDes.setText(cOrcamento.orcamento.getDescricaoProblema());
+                    String ano = cOrcamento.orcamento.getDataSolicitacao().substring(0, 4);
+                    String mes = cOrcamento.orcamento.getDataSolicitacao().substring(5, 7);
+                    String dia = cOrcamento.orcamento.getDataSolicitacao().substring(8);
+                    cOrcamento.orcamento.setDataSolicitacao(dia + "" + mes + "" + ano);
                     txtCadDat.setText(cOrcamento.orcamento.getDataSolicitacao());
-                    txtCadVal.setText((cOrcamento.orcamento.getValorProdutoUtilizado()));
-                    txtCadValMao.setText((cOrcamento.orcamento.getValorMaoObra()));
+                    txtCadVal.setText(Float.toString(cOrcamento.orcamento.getValorProdutoUtilizado()));
+                    txtCadValMao.setText(Float.toString(cOrcamento.orcamento.getValorMaoObra()));
                     txtCadValTot.setText(Float.toString(cOrcamento.orcamento.getValorTotal()));
                 }
                 break;
 
             case 3:
-                 Object a = tbBusca.getValueAt(tbBusca.getSelectedRow(), 6);
-                 Object b = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
+                Object a = tbBusca.getValueAt(tbBusca.getSelectedRow(), 6);
+                Object b = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
                 txtCadMer.setText((String) a);
                 cMercadoria.mercadoria.setCod((int) b);
                 break;
             default:
                 break;
         }
-        cTabela.tabela.setTipo(0);
+        //cTabela.tabela.setTipo(0);
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -440,8 +457,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
         cTabela.tabela.setTipo(2);
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tborcamento", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
-        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesqOrc("tborcamento", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
+        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(50);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
@@ -456,7 +473,9 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
+
         tbBusca.setAutoCreateRowSorter(true);
+
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -465,22 +484,17 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code         cOrçamento.orcamento.setInt
-here:
-        cOrcamento.orcamento.set(txtCadCli.getText());
-        cOrcamento.orcamento.setDataNasc((txtCadDataNasc.getText()).replace("/", "-"));
-        cOrcamento.orcamento.setTelefone(cOrcamento.orcamento.retiraCel(txtCadTel.getText()));
-        cOrcamento.orcamento.setCelular(cOrcamento.orcamento.;
-        cOrcamento.orcamento.setCpf(txt.getText()));
-        cOrcamento.orcamento.setRg(cOrcamento.orcamento.retira(txtCadRg.getText()));
-        cOrcamento.orcamento.setEmail(txtCadEma.getText());
-        cOrcamento.orcamento.setCep(cOrcamento.orcamento.retira(txtCadCep.getText()));
-        cOrcamento.orcamento.setRua(txtCadRua.getText());
-        cOrcamento.orcamento.setNumero(Integer.parseInt(txtCadNum.getText()));
-        cOrcamento.orcamento.setBairro(txtCadBairro.getText());
-        cOrcamento.orcamento.setCidade(txtCadCidade.getText());
-        cOrcamento.orcamento.setComplemento(txtCadComplem.getText());
 
+        cOrcamento.orcamento.setCodCliente(cCliente.cliente.getCod());
+        cOrcamento.orcamento.setDataSolicitacao((txtCadDat.getText()).replace("/", "-"));
+        cOrcamento.orcamento.setCodMercadoria(cMercadoria.mercadoria.getCod());
+        cOrcamento.orcamento.setServicoSolicitado(txtCadSer.getText());
+        cOrcamento.orcamento.setValorMaoObra(Float.parseFloat(txtCadValMao.getText()));
+        cOrcamento.orcamento.setValorProdutoUtilizado(Float.parseFloat(txtCadVal.getText()));
+        cOrcamento.orcamento.setValorTotal(Float.parseFloat(txtCadValTot.getText()));
+        cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
+        cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
+        JOptionPane.showMessageDialog(null, cOrcamento.gravar(cOrcamento.orcamento));
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtCadCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadCliKeyPressed
@@ -503,7 +517,6 @@ here:
         tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
-
     }//GEN-LAST:event_txtCadCliKeyPressed
 
     private void txtCadMerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadMerActionPerformed
@@ -513,7 +526,7 @@ here:
     private void txtCadMerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadMerKeyPressed
         // TODO add your handling code here:
         cTabela.tabela.setTipo(3);
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbmercadoria", txtCadMer.getText(),"NOME")));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbmercadoria", txtCadMer.getText(), "NOME")));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -529,7 +542,7 @@ here:
         TelaClienteCadastro t = new TelaClienteCadastro();
         TelaPrincipal.desktop.add(t);
         t.setVisible(true);
-        
+
     }//GEN-LAST:event_btnCadCliOrcMouseClicked
 
     private void btnCadMerOrcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCadMerOrcMouseClicked
@@ -551,22 +564,41 @@ here:
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastrar2ActionPerformed
 
-    private void btnCadastrar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar3ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrar3ActionPerformed
+        cOrcamento.orcamento.setCodCliente(cCliente.cliente.getCod());
+        cOrcamento.orcamento.setDataSolicitacao((txtCadDat.getText()).replace("/", "-"));
+        cOrcamento.orcamento.setCodMercadoria(cMercadoria.mercadoria.getCod());
+        cOrcamento.orcamento.setServicoSolicitado(txtCadSer.getText());
+        cOrcamento.orcamento.setValorMaoObra(Float.parseFloat(txtCadValMao.getText()));
+        cOrcamento.orcamento.setValorProdutoUtilizado(Float.parseFloat(txtCadVal.getText()));
+        cOrcamento.orcamento.setValorTotal(Float.parseFloat(txtCadValTot.getText()));
+        cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
+        cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
+        JOptionPane.showMessageDialog(null, cOrcamento.alterar(cOrcamento.orcamento));
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void txtCadValKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValKeyReleased
+        // TODO add your handling code here:
+        txtCadValTot.setText(Integer.toString((Integer.parseInt(txtCadValMao.getText())) + (Integer.parseInt(txtCadVal.getText()))));
+    }//GEN-LAST:event_txtCadValKeyReleased
+
+    private void txtCadValMaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValMaoKeyReleased
+        // TODO add your handling code here:
+        txtCadValTot.setText(Integer.toString((Integer.parseInt(txtCadValMao.getText())) + (Integer.parseInt(txtCadVal.getText()))));
+    }//GEN-LAST:event_txtCadValMaoKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadCliOrc;
     private javax.swing.JButton btnCadMerOrc;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnCadastrar2;
-    private javax.swing.JButton btnCadastrar3;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JComboBox<String> cbStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -580,6 +612,7 @@ here:
     private javax.swing.JScrollPane jScrollPane5;
     public static javax.swing.JTable tbBusca;
     private javax.swing.JTextField txtCadCli;
+    private javax.swing.JFormattedTextField txtCadDat;
     private javax.swing.JTextField txtCadDes;
     private javax.swing.JTextField txtCadMer;
     private javax.swing.JTextField txtCadSer;

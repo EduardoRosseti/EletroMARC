@@ -7,7 +7,6 @@ package CONTROLE;
 
 import DAO.FabricanteDAO;
 import MODELO.Fabricante;
-import MODELO.Fornecedor;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
@@ -28,7 +27,7 @@ public class CFabricante {
         return r;
     }
     
-     public boolean buscar(Fornecedor fabricante){
+     public boolean buscar(Fabricante fabricante){
         
         try {
             //JOptionPane.showMessageDialog(null,"antes DAO" + fabricante.getCod());
@@ -54,8 +53,12 @@ public class CFabricante {
     return false;
     }
      
-     public String apagar (Fornecedor fabricante){
+     public String apagar (Fabricante fabricante){
         String msg = daoFabricante.apagar(fabricante.getCod());
         return msg;
+    }
+     
+    public boolean alterar(Fabricante fabricante){
+        return daoFabricante.alterar(fabricante);
     }
 }

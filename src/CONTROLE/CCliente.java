@@ -46,6 +46,7 @@ public class CCliente {
             cliente.setBairro(rs.getString(12));
             cliente.setCidade(rs.getString(13));
             cliente.setComplemento(rs.getString(14));
+            cliente.setEstado(rs.getString(15));
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);
@@ -56,5 +57,9 @@ public class CCliente {
     public String apagar (Cliente cliente){
         String msg = clientedao.apagar(cliente.getCod());
         return msg;
+    }
+    
+    public boolean alterar(Cliente cliente){
+        return clientedao.alterar(cliente);
     }
 }

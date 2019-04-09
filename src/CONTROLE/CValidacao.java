@@ -6,6 +6,7 @@
 package CONTROLE;
 
 import MODELO.Validacao;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,6 +19,7 @@ public class CValidacao {
         validacao = new Validacao();
     }
     public boolean validaCpf(String cpf){
+        JOptionPane.showMessageDialog(null, cpf);
         return validacao.validaCpf(cpf);
     }
     public boolean validaCnpj(String cnpj){
