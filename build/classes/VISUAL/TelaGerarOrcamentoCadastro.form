@@ -286,7 +286,11 @@
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD
                           <Component id="cbStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+=======
+                          <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> af5ca593cd816ce9ac5c0f83d5b33091728374b2
                       </Group>
                       <Component id="txtCadDes" min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
