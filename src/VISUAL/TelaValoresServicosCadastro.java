@@ -4,23 +4,18 @@
  * and open the template in the editor.
  */
 package VISUAL;
-import CONTROLE.CValoresServicos;
-import static VISUAL.TelaClienteCadastro.tbBusca;
-import javax.swing.JOptionPane;
+
 /**
  *
- * @author jose
+ * @author eduar
  */
-public class TelaValoresServicosCadastro extends javax.swing.JFrame {
+public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form valores
+     * Creates new form TelaValoresServicosCadastro2
      */
-    CValoresServicos cValoresServicos;
-    
     public TelaValoresServicosCadastro() {
         initComponents();
-        cValoresServicos = new CValoresServicos();
     }
 
     /**
@@ -38,6 +33,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
         cbPesquisar = new javax.swing.JComboBox<>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar2 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -48,11 +44,8 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtCadValNom = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Cadastrar");
 
@@ -119,6 +112,13 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
         btnPesquisar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisar2ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Excluir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -193,13 +193,6 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
                 .addGap(93, 93, 93))
         );
 
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         jButton3.setText("Cancelar");
 
         jButton4.setText("Alterar");
@@ -233,7 +226,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,20 +246,11 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton1))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCadValNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValNomKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCadValNomKeyPressed
-
-    private void txtCadValNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValNomKeyReleased
-
-    }//GEN-LAST:event_txtCadValNomKeyReleased
 
     private void tbBusca2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBusca2MouseClicked
         // TODO add your handling code here:
@@ -318,41 +302,14 @@ public class TelaValoresServicosCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaValoresServicosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaValoresServicosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaValoresServicosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaValoresServicosCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void txtCadValNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValNomKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCadValNomKeyPressed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaValoresServicosCadastro().setVisible(true);
-            }
-        });
-    }
+    private void txtCadValNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValNomKeyReleased
+
+    }//GEN-LAST:event_txtCadValNomKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPesquisar2;
