@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //Tela pronta
 package VISUAL;
 
 import CONTROLE.CControleMercadoria;
+import CONTROLE.CMercadoria;
 import CONTROLE.CTabela;
-import static VISUAL.TelaClienteCadastro.tbBusca;
+
+import java.util.Date;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -20,9 +22,16 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     CTabela cTabela;
     CControleMercadoria cControleMercadoria;
+    CMercadoria cMercadoria;
+
     public TelaControleMercadoria() {
         initComponents();
         cControleMercadoria = new CControleMercadoria();
+        cMercadoria = new CMercadoria();
+        cTabela = new CTabela();
+        cTabela.tabela.setTipo(2);
+        lblDt.setEnabled(false);
+        lblDt.setVisible(false);
     }
 
     /**
@@ -40,23 +49,21 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCadConMer = new javax.swing.JButton();
         btnDadExcluir = new javax.swing.JButton();
         btnCadCancelar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField4 = new javax.swing.JFormattedTextField();
+        txtNomMer = new javax.swing.JTextField();
+        txtMotSai = new javax.swing.JTextField();
+        txtVal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblDt = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -118,7 +125,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_SAIDA_MERCADORIA", "Nome", "NascData", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +133,11 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
             }
         });
 
+        txtPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesquisarActionPerformed(evt);
+            }
+        });
         txtPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPesquisarKeyPressed(evt);
@@ -142,10 +154,10 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Cadastrar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCadConMer.setText("Cadastrar");
+        btnCadConMer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCadConMerActionPerformed(evt);
             }
         });
 
@@ -171,19 +183,13 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
         jPanel1.setForeground(new java.awt.Color(102, 102, 102));
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        txtNomMer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomMerKeyReleased(evt);
+            }
+        });
 
-        try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##:##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtVal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
 
         jLabel1.setText("Mercadoria:");
 
@@ -195,7 +201,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Data:");
 
-        jLabel6.setText("Hora");
+        lblDt.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -208,42 +214,37 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(txtNomMer, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                    .addComponent(txtMotSai))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(txtVal, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblDt)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomMer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel5)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDt))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMotSai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -274,7 +275,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
                                 .addGap(97, 97, 97)
                                 .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(93, 93, 93)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnCadConMer, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -295,8 +296,8 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
                     .addComponent(jButton1)
                     .addComponent(btnDadExcluir)
                     .addComponent(btnCadCancelar)
-                    .addComponent(jButton2))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btnCadConMer))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -304,9 +305,40 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        cTabela.tabela.setLin(tbBusca.getSelectedRow());
-        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
-        cTabela.tabela.setCod(i);
+
+        // TODO add your handling code here:
+        switch (cTabela.tabela.getTipo()) {
+            case 1:
+                Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
+                Object d = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
+                txtNomMer.setText((String) t);
+                cMercadoria.mercadoria.setCod((int) d);
+                cMercadoria.buscar(cMercadoria.mercadoria);
+                break;
+            case 2:
+                cTabela.tabela.setLin(tbBusca.getSelectedRow());
+                int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
+                cTabela.tabela.setCod(i);
+                boolean result;
+                cControleMercadoria.controleMercadoria.setCod(cTabela.tabela.getCod());
+                result = cControleMercadoria.buscar(cControleMercadoria.controleMercadoria);
+
+                //JOptionPane.showMessageDialog(null, result);
+                if (result) {
+                    cMercadoria.mercadoria.setCod(cControleMercadoria.controleMercadoria.getCodMercadoria());
+                    cMercadoria.buscar(cMercadoria.mercadoria);
+                    //  txtCadCod.setText(Integer.toString(cControleMercadoria.controleMercadoria.getCod()));
+                    txtNomMer.setText(cMercadoria.mercadoria.getNome());
+                    lblDt.setVisible(true);
+                    lblDt.setText((cControleMercadoria.controleMercadoria.getDate()));
+                    txtMotSai.setText(cControleMercadoria.controleMercadoria.getMotivoSaida());
+                    //JOptionPane.showMessageDialog(null,cControleMercadoria.controleMercadoria.getTelefone());
+                    txtVal.setText(Double.toString(cControleMercadoria.controleMercadoria.getValor()));
+                }
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -319,11 +351,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
-        String pr = (String)(txtPesquisar.getText());
-        String op = (String)(cbPesquisar.getSelectedItem());
-        String tb = "tbsaidamercadoria";
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb,pr,op)));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesqSaiMer("tbsaidamercadoria", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -331,15 +359,8 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(8).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(9).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(10).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(11).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(2);
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
@@ -355,6 +376,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     private void btnDadExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadExcluirActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, cControleMercadoria.apagar(cControleMercadoria.controleMercadoria));
     }//GEN-LAST:event_btnDadExcluirActionPerformed
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
@@ -365,34 +387,58 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCadConMerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadConMerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        if (cMercadoria.buscar(cMercadoria.mercadoria)) {
+            cControleMercadoria.controleMercadoria.setCodMercadoria(cMercadoria.mercadoria.getCod());
+            cControleMercadoria.controleMercadoria.setMotivoSaida(txtMotSai.getText());
+            cControleMercadoria.controleMercadoria.setValor(Double.parseDouble(txtVal.getText()));
+            JOptionPane.showMessageDialog(null, cControleMercadoria.gravar(cControleMercadoria.controleMercadoria));
+        } else {
+            
+        }
+    }//GEN-LAST:event_btnCadConMerActionPerformed
+
+    private void txtNomMerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomMerKeyReleased
+        // TODO add your handling code here:
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesqMer("tbmercadoria", txtNomMer.getText(), "NOME")));
+        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
+        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(1);
+    }//GEN-LAST:event_txtNomMerKeyReleased
+
+    private void txtPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesquisarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadCancelar;
+    private javax.swing.JButton btnCadConMer;
     private javax.swing.JButton btnDadExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
-    private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lblDt;
     public static javax.swing.JTable tbBusca;
+    private javax.swing.JTextField txtMotSai;
+    private javax.swing.JTextField txtNomMer;
     private javax.swing.JTextField txtPesquisar;
+    private javax.swing.JTextField txtVal;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class CControleMercadoria {
 
-           ControleMercadoria    controleMercadoria;
+    public ControleMercadoria    controleMercadoria;
     public ControleMercadoriaDAO controleMercadoriaDao;
     public CControleMercadoria   cControleMercadoria;
     ResultSet rs;

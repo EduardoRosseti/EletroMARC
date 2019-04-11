@@ -15,25 +15,31 @@ import javax.swing.JOptionPane;
  * @author jose
  */
 public class CMercadoria {
-    
-           CMercadoria cMercadoria;
+
+    CMercadoria cMercadoria;
     public Mercadoria mercadoria;
     public MercadoriaDAO mercadoriaDao;
     private ResultSet rs;
-    
-    public CMercadoria(){
+
+    public CMercadoria() {
         mercadoria = new Mercadoria();
         mercadoriaDao = new MercadoriaDAO();
     }
-public String gravar(Mercadoria mercadoria){
+
+    public String gravar(Mercadoria mercadoria) {
         return mercadoriaDao.gravar(mercadoria);
-        
+
     }
-    public boolean buscar(Mercadoria mercadoria){
-        
+
+    public String alterar(Mercadoria mercadoria) {
+        return mercadoriaDao.alterar(mercadoria);
+    }
+
+    public boolean buscar(Mercadoria mercadoria) {
+
         try {
-           // JOptionPane.showMessageDialog(null,"antes DAO" + mercadoria.getCod());
-            rs = mercadoriaDao.localizar((mercadoria.getCod()));
+            // JOptionPane.showMessageDialog(null,"antes DAO" + mercadoria.getCod());
+            rs = mercadoriaDao.localiza((mercadoria.getCod()));
             mercadoria.setCod(rs.getInt(1));
             mercadoria.setCodFabricante(rs.getInt(2));
             mercadoria.setCodFornecedor(rs.getInt(3));
@@ -45,10 +51,11 @@ public String gravar(Mercadoria mercadoria){
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);
         }
-    
-    return false;
+
+        return false;
     }
-    public String apagar (Mercadoria mercadoria){
+
+    public String apagar(Mercadoria mercadoria) {
         String msg = mercadoriaDao.apagar(mercadoria.getCod());
         return msg;
     }

@@ -69,4 +69,34 @@ public class TabelaDAO {
         }
         return null;
     }
+        public ResultSet pesquisarSaiMer(String tb, String nome, String op){
+        bd.setSql("SELECT SM.COD_SAIDA_MERCADORIA,M.NOME AS 'NOME MERCADORIA' ,SM.MOTIVO_SAIDA,SM.DATA_SAIDA,SM.VALOR FROM "+tb+" AS SM " +
+                "INNER JOIN TBMERCADORIA AS M ON M.COD_MERCADORIA = SM.COD_MERCADORIA where "+op+" like '" + nome +"%'");
+
+        try {
+            Connection conexao = bd.conectar();
+            bd.setPst(conexao.prepareStatement(bd.getSql()));
+            bd.setRs(bd.getPst().executeQuery());
+            return bd.getRs();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Falha ao efetuar leiura " + e);
+        }
+        return null;
+    }
+        
+        public ResultSet pesquisarMer(String tb, String nome, String op){
+        bd.setSql("SELECT M.COD_MERCADORIA,FO.NOME AS 'NOME FORNECEDOR',FA.NOME AS 'NOME FABRICANTE', M.MARCA, M.MODELO, M.CUSTO,M.NOME FROM "+tb+" AS M " +
+                "INNER JOIN TBFORNECEDOR AS FO ON FO.COD_FORNECEDOR = M.COD_FORNECEDOR " +
+                "INNER JOIN TBFABRICANTE AS FA ON FA.COD_FABRICANTE = M.COD_FABRICANTE where M."+op+" like '" + nome +"%'");
+
+        try {
+            Connection conexao = bd.conectar();
+            bd.setPst(conexao.prepareStatement(bd.getSql()));
+            bd.setRs(bd.getPst().executeQuery());
+            return bd.getRs();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Falha ao efetuar leiura " + e);
+        }
+        return null;
+    }
 }

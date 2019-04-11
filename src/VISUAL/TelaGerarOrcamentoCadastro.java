@@ -52,7 +52,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        btnCadastrar1 = new javax.swing.JButton();
+        btnOrcExc = new javax.swing.JButton();
         btnCadastrar2 = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -155,10 +155,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrar1.setText("Excluir");
-        btnCadastrar1.addActionListener(new java.awt.event.ActionListener() {
+        btnOrcExc.setText("Excluir");
+        btnOrcExc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar1ActionPerformed(evt);
+                btnOrcExcActionPerformed(evt);
             }
         });
 
@@ -241,6 +241,11 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         btnCadMerOrc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCadMerOrcMouseClicked(evt);
+            }
+        });
+        btnCadMerOrc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadMerOrcActionPerformed(evt);
             }
         });
 
@@ -363,7 +368,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addGap(76, 76, 76)
                 .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
-                .addComponent(btnCadastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOrcExc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -384,7 +389,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrar1)
+                    .addComponent(btnOrcExc)
                     .addComponent(btnCadastrar)))
         );
 
@@ -556,9 +561,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCadValActionPerformed
 
-    private void btnCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar1ActionPerformed
+    private void btnOrcExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrcExcActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrar1ActionPerformed
+        JOptionPane.showMessageDialog(null, cOrcamento.apagar(cOrcamento.orcamento));
+    }//GEN-LAST:event_btnOrcExcActionPerformed
 
     private void btnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar2ActionPerformed
         // TODO add your handling code here:
@@ -588,14 +594,18 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         txtCadValTot.setText(Integer.toString((Integer.parseInt(txtCadValMao.getText())) + (Integer.parseInt(txtCadVal.getText()))));
     }//GEN-LAST:event_txtCadValMaoKeyReleased
 
+    private void btnCadMerOrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMerOrcActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCadMerOrcActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadCliOrc;
     private javax.swing.JButton btnCadMerOrc;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCadastrar1;
     private javax.swing.JButton btnCadastrar2;
+    private javax.swing.JButton btnOrcExc;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;
     private javax.swing.JComboBox<String> cbStatus;

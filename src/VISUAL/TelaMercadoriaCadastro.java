@@ -3,16 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //TELA PRONTA
 package VISUAL;
 
 import CONTROLE.CFabricante;
-import CONTROLE.CValidacao;
-import CONTROLE.CWebServiceCep;
-import MODELO.WebServiceCep;
-import static VISUAL.TelaClienteCadastro.tbBusca;
+import CONTROLE.CFornecedor;
+import CONTROLE.CMercadoria;
+import CONTROLE.CTabela;
 import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
 
 /**
  *
@@ -23,8 +22,18 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaCadastroProduto
      */
+    CTabela cTabela;
+    CMercadoria cMercadoria;
+    CFornecedor cFornecedor;
+    CFabricante cFabricante;
+
     public TelaMercadoriaCadastro() {
         initComponents();
+        cTabela = new CTabela();
+        cTabela.tabela.setTipo(2);
+        cMercadoria = new CMercadoria();
+        cFornecedor = new CFornecedor();
+        cFabricante = new CFabricante();
     }
 
     /**
@@ -36,50 +45,56 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnCadCancelar = new javax.swing.JButton();
-        btnCadFor = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnCadMerc = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        txtCadForNome = new javax.swing.JTextField();
+        txtCadMerFab = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCadForEma = new javax.swing.JTextField();
+        txtCadMerVal = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        txtCadForNome1 = new javax.swing.JTextField();
-        txtCadForNome2 = new javax.swing.JTextField();
-        txtCadForNome3 = new javax.swing.JTextField();
+        txtCadMerMod = new javax.swing.JTextField();
+        txtCadMerFor = new javax.swing.JTextField();
+        txtCadMerMar = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNomMer = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        btnCadCancelar1 = new javax.swing.JButton();
-        btnCadCancelar2 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        btnCadCancelar.setText("Cancelar");
-        btnCadCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadCancelarActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
-        btnCadFor.setText("Confirmar");
-        btnCadFor.addActionListener(new java.awt.event.ActionListener() {
+        btnCadMerc.setText("Cadastrar");
+        btnCadMerc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadForActionPerformed(evt);
+                btnCadMercActionPerformed(evt);
             }
         });
 
         jPanel4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel4.setPreferredSize(new java.awt.Dimension(357, 300));
+
+        txtCadMerFab.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCadMerFabKeyReleased(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel8.setText("*Valor custo:");
@@ -87,10 +102,10 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel3.setText("*Modelo:");
 
-        txtCadForEma.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        txtCadForEma.addActionListener(new java.awt.event.ActionListener() {
+        txtCadMerVal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        txtCadMerVal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCadForEmaActionPerformed(evt);
+                txtCadMerValActionPerformed(evt);
             }
         });
 
@@ -101,6 +116,12 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
         jLabel5.setText("*Fornecedor:");
 
         jLabel1.setText("*Fabricante:");
+
+        txtCadMerFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCadMerForKeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("*Nome:");
 
@@ -124,16 +145,16 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCadForNome, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                            .addComponent(txtCadForNome2)
-                            .addComponent(txtCadForNome3)
-                            .addComponent(txtCadForNome1)
-                            .addComponent(jTextField1)))
+                            .addComponent(txtCadMerFab, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(txtCadMerFor)
+                            .addComponent(txtCadMerMar)
+                            .addComponent(txtCadMerMod)
+                            .addComponent(txtNomMer)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCadForEma, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
+                        .addComponent(txtCadMerVal, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -142,27 +163,27 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap(14, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomMer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCadForNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCadMerFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCadForNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCadMerFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCadForNome3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCadMerMar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtCadForNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCadMerMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(txtCadForEma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCadMerVal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -208,7 +229,7 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_MERCADORIA", "Nome", "NascData", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,17 +253,17 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadCancelar1.setText("Excluir");
-        btnCadCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadCancelar1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
-        btnCadCancelar2.setText("Alterar");
-        btnCadCancelar2.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadCancelar2ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -270,13 +291,13 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCadCancelar2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
-                        .addComponent(btnCadCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(63, 63, 63)
-                        .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(btnCadFor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCadMerc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(64, 64, 64))))
         );
         layout.setVerticalGroup(
@@ -293,56 +314,76 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCadFor)
-                    .addComponent(btnCadCancelar)
-                    .addComponent(btnCadCancelar1)
-                    .addComponent(btnCadCancelar2))
+                    .addComponent(btnCadMerc)
+                    .addComponent(btnCancelar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnAlterar))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
-    }//GEN-LAST:event_btnCadCancelarActionPerformed
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void btnCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForActionPerformed
+    private void btnCadMercActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMercActionPerformed
         // TODO add your handling code here:
-        CFabricante cfabricante = new CFabricante();
-        CValidacao cvalidacao = new CValidacao();
-        String msg = "";
-        cfabricante.fabricante.setNome(txtCadForNome.getText());
-        cfabricante.fabricante.setTelefone(cfabricante.fabricante.retiraCel(txtCadForTel.getText()));
-        cfabricante.fabricante.setCelular(cfabricante.fabricante.retiraCel(txtCadForCel.getText()));
-        cfabricante.fabricante.setCnpj(cfabricante.fabricante.retira(txtCadForCnp.getText()));
-        cfabricante.fabricante.setEmail(txtCadForEma.getText());
-        cfabricante.fabricante.setCep(cfabricante.fabricante.retira(txtCadFabCep.getText()));
-        cfabricante.fabricante.setRua(txtCadFabRua.getText());
-        cfabricante.fabricante.setNumero(Integer.parseInt(txtCadFabNum.getText()));
-        cfabricante.fabricante.setBairro(txtCadFabBai.getText());
-        cfabricante.fabricante.setCidade(txtCadFabCid.getText());
-        cfabricante.fabricante.setComplemento(txtCadFabCom.getText());
-        JOptionPane.showMessageDialog(null,cfabricante.fabricante.getCnpj());
-
-        // cfabricante.fabricante.setObservacao(txtCadObs.getText());
-        if(cvalidacao.validaCnpj(cfabricante.fabricante.getCnpj())){
-            if(true){
-                msg = cfabricante.gravar(cfabricante.fabricante);
-            }else{
-                msg = "RG invalido";
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "cpf invalido");
-        }
-    }//GEN-LAST:event_btnCadForActionPerformed
+        cMercadoria.mercadoria.setNome(txtNomMer.getText());
+        cMercadoria.mercadoria.setCodFabricante(cFabricante.fabricante.getCod());
+        cMercadoria.mercadoria.setCodFornecedor(cFornecedor.fornecedor.getCod());
+        cMercadoria.mercadoria.setMarca(txtCadMerMar.getText());
+        cMercadoria.mercadoria.setModelo(txtCadMerMod.getText());
+        cMercadoria.mercadoria.setValorCustoMercadoria(Float.parseFloat(txtCadMerVal.getText()));
+        JOptionPane.showMessageDialog(null, cMercadoria.gravar(cMercadoria.mercadoria));
+    }//GEN-LAST:event_btnCadMercActionPerformed
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        setLin(tbBusca.getSelectedRow());
-        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(getLin(), 0).toString());
-        setCod(i);
-        pesquisar();
+        switch (cTabela.tabela.getTipo()) {
+            case 1:
+                Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
+                Object d = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
+                txtCadMerFab.setText((String) t);
+                cFabricante.fabricante.setCod((int) d);
+                cFabricante.buscar(cFabricante.fabricante);
+                break;
+            case 2:
+                cTabela.tabela.setLin(tbBusca.getSelectedRow());
+                int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
+                cTabela.tabela.setCod(i);
+                boolean result;
+                cMercadoria.mercadoria.setCod(cTabela.tabela.getCod());
+                result = cMercadoria.buscar(cMercadoria.mercadoria);
+
+                //JOptionPane.showMessageDialog(null, result);
+                if (result) {
+                    cFabricante.fabricante.setCod(cMercadoria.mercadoria.getCodFabricante());
+                    cFabricante.buscar(cFabricante.fabricante);
+                    cFornecedor.fornecedor.setCod(cMercadoria.mercadoria.getCodFornecedor());
+                    cFornecedor.buscar(cFornecedor.fornecedor);
+                    //  txtCadCod.setText(Integer.toString(cMercadoria.mercadoria.getCod()));
+                    txtCadMerFab.setText(cFabricante.fabricante.getNome());
+                    txtCadMerFor.setText(cFornecedor.fornecedor.getNome());
+                    //JOptionPane.showMessageDialog(null,cMercadoria.mercadoria.getTelefone());
+                    txtCadMerMar.setText(cMercadoria.mercadoria.getMarca());
+                    txtCadMerMod.setText(cMercadoria.mercadoria.getModelo());
+                    txtNomMer.setText(cMercadoria.mercadoria.getNome());
+                    txtCadMerVal.setText(Float.toString(cMercadoria.mercadoria.getValorCustoMercadoria()));
+                }
+                break;
+
+            case 3:
+                Object a = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
+                Object b = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
+                txtCadMerFor.setText((String) a);
+                cFornecedor.fornecedor.setCod((int) b);
+                cFornecedor.buscar(cFornecedor.fornecedor);
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -355,11 +396,7 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
-        String pr = (String)(txtPesquisar.getText());
-        String op = (String)(cbPesquisar.getSelectedItem());
-        String tb = "tbcliente";
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb,pr,op)));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesqMer("tbmercadoria", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -367,40 +404,69 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(8).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(9).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(10).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(11).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(2);
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-        preencherTabelaa();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void txtCadForEmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadForEmaActionPerformed
+    private void txtCadMerValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadMerValActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCadForEmaActionPerformed
+    }//GEN-LAST:event_txtCadMerValActionPerformed
 
-    private void btnCadCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelar1ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadCancelar1ActionPerformed
+        JOptionPane.showMessageDialog(null, cMercadoria.apagar(cMercadoria.mercadoria));
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnCadCancelar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelar2ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadCancelar2ActionPerformed
+        cMercadoria.mercadoria.setNome(txtNomMer.getText());
+        cMercadoria.mercadoria.setCodFabricante(cFabricante.fabricante.getCod());
+        cMercadoria.mercadoria.setCodFornecedor(cFornecedor.fornecedor.getCod());
+        cMercadoria.mercadoria.setMarca(txtCadMerMar.getText());
+        cMercadoria.mercadoria.setModelo(txtCadMerMod.getText());
+        cMercadoria.mercadoria.setValorCustoMercadoria(Float.parseFloat(txtCadMerVal.getText()));
+        JOptionPane.showMessageDialog(null, cMercadoria.alterar(cMercadoria.mercadoria));
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void txtCadMerFabKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadMerFabKeyReleased
+        // TODO add your handling code here:
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbfabricante", txtCadMerFab.getText(), "NOME")));
+        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
+        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(1);
+    }//GEN-LAST:event_txtCadMerFabKeyReleased
+
+    private void txtCadMerForKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadMerForKeyReleased
+        // TODO add your handling code here:
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbfornecedor", txtCadMerFor.getText(), "NOME")));
+        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
+        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(3);
+
+    }//GEN-LAST:event_txtCadMerForKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadCancelar;
-    private javax.swing.JButton btnCadCancelar1;
-    private javax.swing.JButton btnCadCancelar2;
-    private javax.swing.JButton btnCadFor;
+    private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnCadMerc;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;
     private javax.swing.JLabel jLabel1;
@@ -411,13 +477,13 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
     public static javax.swing.JTable tbBusca;
-    private javax.swing.JTextField txtCadForEma;
-    private javax.swing.JTextField txtCadForNome;
-    private javax.swing.JTextField txtCadForNome1;
-    private javax.swing.JTextField txtCadForNome2;
-    private javax.swing.JTextField txtCadForNome3;
+    private javax.swing.JTextField txtCadMerFab;
+    private javax.swing.JTextField txtCadMerFor;
+    private javax.swing.JTextField txtCadMerMar;
+    private javax.swing.JTextField txtCadMerMod;
+    private javax.swing.JTextField txtCadMerVal;
+    private javax.swing.JTextField txtNomMer;
     private javax.swing.JTextField txtPesquisar;
     // End of variables declaration//GEN-END:variables
 }

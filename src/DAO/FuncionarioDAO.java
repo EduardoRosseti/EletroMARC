@@ -112,8 +112,10 @@ public class FuncionarioDAO {
 
     /**
      *
+     * @param cod
      * @return
      */
+    
     public ResultSet localizar(int cod) {
         bd.setSql("select * from tbfuncionario where COD_FUNCIONARIO = " + cod);
         //JOptionPane.showMessageDialog(null, "localizao"+cod);

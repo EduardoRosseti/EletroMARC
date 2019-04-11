@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package MODELO;
-import MODELO.Mercadoria;
+import java.util.Date;
 /**
  *
  * @author jose
