@@ -5,6 +5,11 @@
  */
 package VISUAL;
 
+import CONTROLE.CTabela;
+import CONTROLE.CValoresServicos;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author eduar
@@ -14,8 +19,16 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaValoresServicosCadastro2
      */
+    CTabela cTabela;
+    CValoresServicos cValoresServicos;
+
     public TelaValoresServicosCadastro() {
         initComponents();
+        cTabela = new CTabela();
+        cValoresServicos = new CValoresServicos();
+        lblDat.setEnabled(false);
+        lblDat.setVisible(false);
+
     }
 
     /**
@@ -27,30 +40,35 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        btnCad = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tbBusca2 = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        tbBusca = new javax.swing.JTable();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar2 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnExc = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDesc = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCadForEma1 = new javax.swing.JTextField();
-        txtCadForEma = new javax.swing.JTextField();
+        txtVal = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtCadValNom = new javax.swing.JTextField();
+        txtCadNom = new javax.swing.JTextField();
+        lblDat = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        jButton1.setText("Cadastrar");
+        btnCad.setText("Cadastrar");
+        btnCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadActionPerformed(evt);
+            }
+        });
 
-        tbBusca2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tbBusca2.setModel(new javax.swing.table.DefaultTableModel(
+        tbBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tbBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -82,16 +100,16 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbBusca2.setEditingColumn(0);
-        tbBusca2.setEditingRow(0);
-        tbBusca2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbBusca.setEditingColumn(0);
+        tbBusca.setEditingRow(0);
+        tbBusca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbBusca2MouseClicked(evt);
+                tbBuscaMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(tbBusca2);
+        jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_PRESTACAO_SERVICO", "Nome", "Data", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,24 +133,24 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("Excluir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExc.setText("Excluir");
+        btnExc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExcActionPerformed(evt);
             }
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtDesc.setColumns(20);
+        txtDesc.setRows(5);
+        jScrollPane1.setViewportView(txtDesc);
 
         jLabel4.setText("Descrição:");
 
         jLabel3.setText("*Data:");
 
-        txtCadForEma1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        txtVal.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("*Valor:");
@@ -140,14 +158,16 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jLabel2.setText("*Nome Prestação:");
 
-        txtCadValNom.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCadNom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtCadValNomKeyPressed(evt);
+                txtCadNomKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCadValNomKeyReleased(evt);
+                txtCadNomKeyReleased(evt);
             }
         });
+
+        lblDat.setText("jLabel5");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,15 +180,16 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtCadForEma, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCadForEma1))
-                    .addComponent(txtCadValNom, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtVal))
+                        .addComponent(txtCadNom, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblDat))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -177,16 +198,16 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCadValNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                    .addComponent(txtCadNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCadForEma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(lblDat))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel4)
-                    .addComponent(txtCadForEma1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(txtVal, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel1)))
@@ -196,6 +217,11 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         jButton3.setText("Cancelar");
 
         jButton4.setText("Alterar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,11 +231,11 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,22 +269,34 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4)
-                    .addComponent(jButton2)
+                    .addComponent(btnExc)
                     .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(btnCad))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tbBusca2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBusca2MouseClicked
+    private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        setLin(tbBusca.getSelectedRow());
-        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(getLin(), 0).toString());
-        setCod(i);
-        pesquisar();
-    }//GEN-LAST:event_tbBusca2MouseClicked
+        cTabela.tabela.setLin(tbBusca.getSelectedRow());
+        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
+        cTabela.tabela.setCod(i);
+        boolean result;
+        cValoresServicos.valoresServicos.setCod(cTabela.tabela.getCod());
+        result = cValoresServicos.buscar(cValoresServicos.valoresServicos);
+        //JOptionPane.showMessageDialog(null, result);
+        if (result) {
+            //  txtCadCod.setText(Integer.toString(cValoresServicos.valoresServicos.getCod()));
+            txtCadNom.setText((cValoresServicos.valoresServicos.getNome()));
+            lblDat.setVisible(true);
+            lblDat.setText(cValoresServicos.valoresServicos.getDataCadastro());
+            //JOptionPane.showMessageDialog(null,cValoresServicos.valoresServicos.getTelefone());
+            txtDesc.setText(cValoresServicos.valoresServicos.getDescricao());
+            txtVal.setText(Float.toString(cValoresServicos.valoresServicos.getValorPrestacaoServico()));
+        }
+    }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
         // TODO add your handling code here:
@@ -271,51 +309,57 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
         //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
-        String pr = (String)(txtPesquisar.getText());
-        String op = (String)(cbPesquisar.getSelectedItem());
-        String tb = "tbcliente";
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb,pr,op)));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbprestacaoservico", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(8).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(9).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(10).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(11).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisar2ActionPerformed
         // TODO add your handling code here:
-        preencherTabelaa();
     }//GEN-LAST:event_btnPesquisar2ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        JOptionPane.showMessageDialog(null, cValoresServicos.apagar(cValoresServicos.valoresServicos));
+    }//GEN-LAST:event_btnExcActionPerformed
 
-    private void txtCadValNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValNomKeyPressed
+    private void txtCadNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadNomKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCadValNomKeyPressed
+    }//GEN-LAST:event_txtCadNomKeyPressed
 
-    private void txtCadValNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValNomKeyReleased
+    private void txtCadNomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadNomKeyReleased
 
-    }//GEN-LAST:event_txtCadValNomKeyReleased
+    }//GEN-LAST:event_txtCadNomKeyReleased
+
+    private void btnCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadActionPerformed
+        // TODO add your handling code here:
+        cValoresServicos.valoresServicos.setNome(txtCadNom.getText());
+        //JOptionPane.showMessageDialog(null,cValoresServicos.valoresServicos.getTelefone());
+        cValoresServicos.valoresServicos.setDescricao(txtDesc.getText());
+        cValoresServicos.valoresServicos.setValorPrestacaoServico(Float.parseFloat(txtVal.getText()));
+        JOptionPane.showMessageDialog(null, cValoresServicos.gravar(cValoresServicos.valoresServicos));
+    }//GEN-LAST:event_btnCadActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        cValoresServicos.valoresServicos.setNome(txtCadNom.getText());
+        //JOptionPane.showMessageDialog(null,cValoresServicos.valoresServicos.getTelefone());
+        cValoresServicos.valoresServicos.setDescricao(txtDesc.getText());
+        cValoresServicos.valoresServicos.setValorPrestacaoServico(Float.parseFloat(txtVal.getText()));
+        JOptionPane.showMessageDialog(null, cValoresServicos.alterar(cValoresServicos.valoresServicos));
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCad;
+    private javax.swing.JButton btnExc;
     private javax.swing.JButton btnPesquisar2;
     private javax.swing.JComboBox<String> cbPesquisar;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -325,11 +369,11 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextArea jTextArea1;
-    public static javax.swing.JTable tbBusca2;
-    private javax.swing.JTextField txtCadForEma;
-    private javax.swing.JTextField txtCadForEma1;
-    private javax.swing.JTextField txtCadValNom;
+    private javax.swing.JLabel lblDat;
+    public static javax.swing.JTable tbBusca;
+    private javax.swing.JTextField txtCadNom;
+    private javax.swing.JTextArea txtDesc;
     private javax.swing.JTextField txtPesquisar;
+    private javax.swing.JTextField txtVal;
     // End of variables declaration//GEN-END:variables
 }

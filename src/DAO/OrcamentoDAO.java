@@ -27,7 +27,7 @@ public class OrcamentoDAO {
     public String gravar(Orcamento orcamento) {
         this.orcamento = orcamento;
         try {
-            bd.setSql("insert into tborcamento (COD_CLIENTE,COD_MERCADORIA,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,VALOR_MAO_OBRA,VALOR_TOTAL,STATUS) values(?,?,?,?,?,?,?,?,?)");
+            bd.setSql("insert into tborcamento (COD_CLIENTE,COD_MERCADORIA,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,COD_PRESTACAO_SERVICO,VALOR_TOTAL,STATUS) values(?,?,?,?,?,?,?,?,?)");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
@@ -41,7 +41,7 @@ public class OrcamentoDAO {
             orcamento.setDataSolicitacao(ano+"-"+mes+"-"+dia);
             bd.getPst().setString(5, orcamento.getDataSolicitacao());
             bd.getPst().setFloat(6, orcamento.getValorProdutoUtilizado());
-            bd.getPst().setFloat(7, orcamento.getValorMaoObra());
+            bd.getPst().setInt(7, orcamento.getcodPrestacaoServicos());
             bd.getPst().setFloat(8, orcamento.getValorTotal());
             bd.getPst().setString(9, orcamento.getStatus());
             if (bd.getPst().executeUpdate() == 0) {
@@ -60,7 +60,7 @@ public class OrcamentoDAO {
     public String alterar(Orcamento orcamento) {
         this.orcamento = orcamento;
         try {
-            bd.setSql("update tborcamento set COD_CLIENTE = ? ,COD_MERCADORIA = ?,SERVICO_SOLICITADO = ?,DESCRICAO = ? ,DATA = ?,VALOR_MERCADORIA = ?,VALOR_MAO_OBRA = ?,VALOR_TOTAL = ?,STATUS = ? WHERE COD_ORCAMENTO = "+ orcamento.getCod());
+            bd.setSql("update tborcamento set COD_CLIENTE = ? ,COD_MERCADORIA = ?,SERVICO_SOLICITADO = ?,DESCRICAO = ? ,DATA = ?,VALOR_MERCADORIA = ?,COD_PRESTACAO_SERVICO = ?,VALOR_TOTAL = ?,STATUS = ? WHERE COD_ORCAMENTO = "+ orcamento.getCod());
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
@@ -74,7 +74,7 @@ public class OrcamentoDAO {
             orcamento.setDataSolicitacao(ano+"-"+mes+"-"+dia);
             bd.getPst().setString(5, orcamento.getDataSolicitacao());
             bd.getPst().setFloat(6, orcamento.getValorProdutoUtilizado());
-            bd.getPst().setFloat(7, orcamento.getValorMaoObra());
+            bd.getPst().setInt(7, orcamento.getcodPrestacaoServicos());
             bd.getPst().setFloat(8, orcamento.getValorTotal());
             bd.getPst().setString(9, orcamento.getStatus());
             if (bd.getPst().executeUpdate() == 0) {

@@ -5,16 +5,7 @@
  */
 package VISUAL;
 
-import CONTROLE.CCliente;
 import CONTROLE.CTabela;
-import MODELO.GarantiaFornecedor;
-import MODELO.Tabela;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.ListSelectionModel;
-import javax.swing.table.TableModel;
-import javax.swing.JDesktopPane;
-import javax.swing.JTable;
 
 
 public class TelaPrincipal extends javax.swing.JFrame  {
@@ -329,6 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
     private void cadValActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadValActionPerformed
         // TODO add your handling code here:
        TelaValoresServicosCadastro busca = new TelaValoresServicosCadastro();
+       desktop.add(busca);
        busca.setVisible(true);
     }//GEN-LAST:event_cadValActionPerformed
 
@@ -360,7 +352,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
     private void cadUsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadUsuActionPerformed
         // TODO add your handling code here:
         TelaUsuarioCadastro usu = new TelaUsuarioCadastro();
-        usu.add(usu);
+        desktop.add(usu);
         usu.setVisible(true);
     }//GEN-LAST:event_cadUsuActionPerformed
 

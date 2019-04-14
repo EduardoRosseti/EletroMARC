@@ -17,20 +17,12 @@ public class ValoresServicos {
     private String nome;
     private float valorPrestacaoServico;
     private String dataCadastro;
-    
-    private DefaultListModel model;
+    private String descricao;
+
 
     public ValoresServicos(){
-        model = new DefaultListModel();
-    }
-    public DefaultListModel getModel() {
-        return model;
-    }
-
-    public void setModel(DefaultListModel model) {
-        this.model = model;
-    }
-    
+        
+    }    
     
     public String getNome() {
         return nome;
@@ -74,6 +66,14 @@ public class ValoresServicos {
 
     public void setCod(int cod) {
         this.cod = cod;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
     

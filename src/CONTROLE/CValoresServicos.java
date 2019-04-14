@@ -19,15 +19,42 @@ import javax.swing.JOptionPane;
 public class CValoresServicos {
 
     public ValoresServicos valoresServicos;
-    public ValoresServicosDAO daoValoresServicos;
+    public ValoresServicosDAO valoresServicosDao;
 
     public CValoresServicos() {
-        daoValoresServicos = new ValoresServicosDAO();
+        valoresServicosDao = new ValoresServicosDAO();
         valoresServicos = new ValoresServicos();
     }
 
-    public void pesq(String nome) {
-        ResultSet rs = daoValoresServicos.pesquisar(nome);
-        valoresServicos.getModel().removeAllElements();
+    public String gravar(ValoresServicos valoresServicos){
+        String r = valoresServicosDao.gravar(valoresServicos);
+        return r;
+    }
+    
+     public boolean buscar(ValoresServicos valoresServico){
+        
+        try {
+            //JOptionPane.showMessageDialog(null,"antes DAO" + valoresServicos.getCod());
+            ResultSet rs = valoresServicosDao.localizar((valoresServico.getCod()));
+            valoresServicos.setCod(rs.getInt(1));
+            valoresServicos.setNome(rs.getString(2));
+            valoresServicos.setDataCadastro(rs.getString(3));
+            valoresServicos.setValorPrestacaoServico(rs.getFloat(4));
+            valoresServicos.setDescricao(rs.getString(5));
+    
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "erro " + e);
+        }
+    return false;
+    }
+     
+     public String apagar (ValoresServicos valoresServicos){
+        String msg = valoresServicosDao.apagar(valoresServicos.getCod());
+        return msg;
+    }
+     
+    public String alterar(ValoresServicos valoresServicos){
+        return valoresServicosDao.alterar(valoresServicos);
     }
 }

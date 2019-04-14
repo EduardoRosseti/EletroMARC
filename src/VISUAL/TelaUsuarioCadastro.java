@@ -5,6 +5,13 @@
  */
 package VISUAL;
 
+import CONTROLE.CFuncionario;
+import CONTROLE.CTabela;
+import CONTROLE.CUsuario;
+import static VISUAL.TelaControleMercadoria.tbBusca;
+import javax.swing.JOptionPane;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author eduar
@@ -14,8 +21,15 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
     /**
      * Creates new form TelaUsuarioCadastro2
      */
+    CTabela cTabela;
+    CUsuario cUsuario;
+    CFuncionario cFuncionario;
+
     public TelaUsuarioCadastro() {
         initComponents();
+        cTabela = new CTabela();
+        cUsuario = new CUsuario();
+        cFuncionario = new CFuncionario();
     }
 
     /**
@@ -29,20 +43,20 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtFunCadNome = new javax.swing.JTextField();
-        txtFunCadCpf = new javax.swing.JFormattedTextField();
+        txtNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cbFunCadPer = new javax.swing.JComboBox<>();
+        cbPerfil = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
-        txtFunCadLog = new javax.swing.JTextField();
-        txtFunCadSen = new javax.swing.JTextField();
+        txtLogin = new javax.swing.JTextField();
+        txtSenha = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
+        lblCpf = new javax.swing.JLabel();
         btnExcluir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -90,7 +104,7 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_FUNCIONARIO", "NOME_FUNCIONARIO", "LOGIN", " " }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,26 +132,28 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
         jLabel1.setText("*Nome do Funcionario:");
 
-        try {
-            txtFunCadCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txtNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomeKeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("*CPF:");
 
         jLabel3.setText("*Perfil:");
 
-        cbFunCadPer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comum", "Administrativo", "Gerencial" }));
-        cbFunCadPer.addActionListener(new java.awt.event.ActionListener() {
+        cbPerfil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Comum", "Administrativo", "Gerencial" }));
+        cbPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbFunCadPerActionPerformed(evt);
+                cbPerfilActionPerformed(evt);
             }
         });
 
         jLabel4.setText("*Login:");
 
         jLabel5.setText("Senha");
+
+        lblCpf.setText("jLabel6");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,46 +163,46 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFunCadNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFunCadCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCpf)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cbFunCadPer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtFunCadLog, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtFunCadSen, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFunCadNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2)
-                    .addComponent(txtFunCadCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbFunCadPer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(cbPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(lblCpf))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(txtFunCadSen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(txtFunCadLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -271,10 +287,38 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        setLin(tbBusca.getSelectedRow());
-        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(getLin(), 0).toString());
-        setCod(i);
-        pesquisar();
+        switch (cTabela.tabela.getTipo()) {
+            case 1:
+                Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
+                Object d = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
+                txtNome.setText((String) t);
+                cFuncionario.funcionario.setCod((int) d);
+                cFuncionario.buscar(cFuncionario.funcionario);
+                lblCpf.setText(cFuncionario.funcionario.getCpf());
+                break;
+            case 2:
+                cTabela.tabela.setLin(tbBusca.getSelectedRow());
+                int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
+                cTabela.tabela.setCod(i);
+                boolean result;
+                cUsuario.usuario.setCod(cTabela.tabela.getCod());
+                result = cUsuario.buscar(cUsuario.usuario);
+
+                //JOptionPane.showMessageDialog(null, result);
+                if (result) {
+                    cFuncionario.funcionario.setCod(cUsuario.usuario.getFuncionario());
+                    cFuncionario.buscar(cFuncionario.funcionario);
+                    //  txtCadCod.setText(Integer.toString(cUsuario.usuario.getCod()));
+                    lblCpf.setText(cFuncionario.funcionario.getCpf());
+                    txtNome.setText(cFuncionario.funcionario.getNome());
+                    txtLogin.setText(cUsuario.usuario.getLogin());
+                    //JOptionPane.showMessageDialog(null,cUsuario.usuario.getTelefone());
+                    txtSenha.setText((cUsuario.usuario.getSenha()));
+                }
+                break;
+            default:
+                break;
+        }
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -287,11 +331,7 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
-        String pr = (String)(txtPesquisar.getText());
-        String op = (String)(cbPesquisar.getSelectedItem());
-        String tb = "tbcliente";
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb,pr,op)));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbusuario", txtPesquisar.getText(), String.valueOf(cbPesquisar.getSelectedItem()))));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -299,28 +339,21 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(8).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(9).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(10).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(11).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(2);
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-        preencherTabelaa();
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
-    private void cbFunCadPerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFunCadPerActionPerformed
+    private void cbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPerfilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbFunCadPerActionPerformed
+    }//GEN-LAST:event_cbPerfilActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, cUsuario.apagar(cUsuario.usuario));
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
@@ -329,7 +362,26 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
+            cUsuario.usuario.setFuncionario(cFuncionario.funcionario.getCod());
+            cUsuario.usuario.setLogin(txtLogin.getText());
+            cUsuario.usuario.setSenha(txtSenha.getText());
+            cUsuario.usuario.setPerfil(cbPerfil.getItemAt(cbPerfil.getSelectedIndex()));
+            JOptionPane.showMessageDialog(null, cUsuario.gravar(cUsuario.usuario));
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased
+        // TODO add your handling code here:
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbfuncionario", txtNome.getText(), "NOME_FUNCIONARIO")));
+        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
+        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tbBusca.setAutoCreateRowSorter(true);
+        cTabela.tabela.setTipo(1);
+    }//GEN-LAST:event_txtNomeKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -338,7 +390,7 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JComboBox<String> cbFunCadPer;
+    private javax.swing.JComboBox<String> cbPerfil;
     private javax.swing.JComboBox<String> cbPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -347,11 +399,11 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel lblCpf;
     public static javax.swing.JTable tbBusca;
-    private javax.swing.JFormattedTextField txtFunCadCpf;
-    private javax.swing.JTextField txtFunCadLog;
-    private javax.swing.JTextField txtFunCadNome;
-    private javax.swing.JTextField txtFunCadSen;
+    private javax.swing.JTextField txtLogin;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisar;
+    private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables
 }

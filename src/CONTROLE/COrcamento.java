@@ -45,7 +45,7 @@ public class COrcamento {
             orcamento.setDescricaoProblema(rs.getString(5));
             orcamento.setDataSolicitacao(rs.getString(6));
             orcamento.setValorProdutoUtilizado(rs.getFloat(7));
-            orcamento.setValorMaoObra(rs.getFloat(8));
+            orcamento.setcodPrestacaoServicos(rs.getInt(8));
             orcamento.setValorTotal(rs.getFloat(9));
             orcamento.setStatus(rs.getString(10));
             return true;

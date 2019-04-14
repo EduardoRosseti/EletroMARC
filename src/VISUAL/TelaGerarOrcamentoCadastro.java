@@ -10,6 +10,7 @@ import CONTROLE.CCliente;
 import CONTROLE.CMercadoria;
 import CONTROLE.CTabela;
 import CONTROLE.COrcamento;
+import CONTROLE.CValoresServicos;
 import static VISUAL.TelaClienteCadastro.tbBusca;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
@@ -27,6 +28,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
     CMercadoria cMercadoria;
     CTabela cTabela;
     COrcamento cOrcamento;
+    CValoresServicos cValoresServicos;
 
     public TelaGerarOrcamentoCadastro() {
         initComponents();
@@ -35,6 +37,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cMercadoria = new CMercadoria();
         cOrcamento = new COrcamento();
         txtCadValTot.setEnabled(false);
+        cValoresServicos = new CValoresServicos();
     }
 
     /**
@@ -421,9 +424,12 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                     cCliente.buscar(cCliente.cliente);
                     cMercadoria.mercadoria.setCod(cOrcamento.orcamento.getCodMercadoria());
                     cMercadoria.buscar(cMercadoria.mercadoria);
+                    cValoresServicos.valoresServicos.setCod(cOrcamento.orcamento.getcodPrestacaoServicos());
+                    cValoresServicos.buscar(cValoresServicos.valoresServicos);
                     //  txtCadCod.setText(Integer.toString(cOrcamento.orcamento.getCod()));
                     txtCadCli.setText(cCliente.cliente.getNome());
                     txtCadMer.setText(cMercadoria.mercadoria.getNome());
+                    txtCadValMao.setText(cValoresServicos.valoresServicos.getNome());
                     //JOptionPane.showMessageDialog(null,cOrcamento.orcamento.getTelefone());
                     txtCadSer.setText(cOrcamento.orcamento.getServicoSolicitado());
                     txtCadDes.setText(cOrcamento.orcamento.getDescricaoProblema());
@@ -433,8 +439,9 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                     cOrcamento.orcamento.setDataSolicitacao(dia + "" + mes + "" + ano);
                     txtCadDat.setText(cOrcamento.orcamento.getDataSolicitacao());
                     txtCadVal.setText(Float.toString(cOrcamento.orcamento.getValorProdutoUtilizado()));
-                    txtCadValMao.setText(Float.toString(cOrcamento.orcamento.getValorMaoObra()));
+                    txtCadValMao.setText(Float.toString(cOrcamento.orcamento.getcodPrestacaoServicos()));
                     txtCadValTot.setText(Float.toString(cOrcamento.orcamento.getValorTotal()));
+                    txtCadValTot.setText(Float.toString(((cValoresServicos.valoresServicos.getValorPrestacaoServico())) + (Float.parseFloat(txtCadVal.getText()))));
                 }
                 break;
 
@@ -443,6 +450,12 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 Object b = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
                 txtCadMer.setText((String) a);
                 cMercadoria.mercadoria.setCod((int) b);
+                break;
+            case 4:
+                Object a1 = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
+                Object b1 = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
+                txtCadValMao.setText((String) a1);
+                cValoresServicos.valoresServicos.setCod((int) b1);
                 break;
             default:
                 break;
@@ -494,7 +507,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cOrcamento.orcamento.setDataSolicitacao((txtCadDat.getText()).replace("/", "-"));
         cOrcamento.orcamento.setCodMercadoria(cMercadoria.mercadoria.getCod());
         cOrcamento.orcamento.setServicoSolicitado(txtCadSer.getText());
-        cOrcamento.orcamento.setValorMaoObra(Float.parseFloat(txtCadValMao.getText()));
+        cOrcamento.orcamento.setcodPrestacaoServicos(cValoresServicos.valoresServicos.getCod());
         cOrcamento.orcamento.setValorProdutoUtilizado(Float.parseFloat(txtCadVal.getText()));
         cOrcamento.orcamento.setValorTotal(Float.parseFloat(txtCadValTot.getText()));
         cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
@@ -576,7 +589,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cOrcamento.orcamento.setDataSolicitacao((txtCadDat.getText()).replace("/", "-"));
         cOrcamento.orcamento.setCodMercadoria(cMercadoria.mercadoria.getCod());
         cOrcamento.orcamento.setServicoSolicitado(txtCadSer.getText());
-        cOrcamento.orcamento.setValorMaoObra(Float.parseFloat(txtCadValMao.getText()));
+        cOrcamento.orcamento.setcodPrestacaoServicos(Integer.parseInt(txtCadValMao.getText()));
         cOrcamento.orcamento.setValorProdutoUtilizado(Float.parseFloat(txtCadVal.getText()));
         cOrcamento.orcamento.setValorTotal(Float.parseFloat(txtCadValTot.getText()));
         cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
@@ -586,12 +599,30 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void txtCadValKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValKeyReleased
         // TODO add your handling code here:
-        txtCadValTot.setText(Integer.toString((Integer.parseInt(txtCadValMao.getText())) + (Integer.parseInt(txtCadVal.getText()))));
+        txtCadValTot.setText(Float.toString(((cValoresServicos.valoresServicos.getValorPrestacaoServico())) + (Float.parseFloat(txtCadVal.getText()))));
     }//GEN-LAST:event_txtCadValKeyReleased
 
     private void txtCadValMaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValMaoKeyReleased
         // TODO add your handling code here:
-        txtCadValTot.setText(Integer.toString((Integer.parseInt(txtCadValMao.getText())) + (Integer.parseInt(txtCadVal.getText()))));
+        cTabela.tabela.setTipo(4);
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbprestacaoservico", txtCadValMao.getText(), "NOME")));
+        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
+        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(7).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(8).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(9).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(10).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(11).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
+        tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
+        tbBusca.setAutoCreateRowSorter(true);
+        txtCadValTot.setText(Float.toString(((cValoresServicos.valoresServicos.getValorPrestacaoServico())) + (Float.parseFloat(txtCadVal.getText()))));
     }//GEN-LAST:event_txtCadValMaoKeyReleased
 
     private void btnCadMerOrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMerOrcActionPerformed

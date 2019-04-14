@@ -33,7 +33,6 @@ public class CFuncionario{
     public boolean buscar(Funcionario funcionario){
         
         try {
-            JOptionPane.showMessageDialog(null,"antes DAO" + funcionario.getCod());
             ResultSet rs = funcionarioDao.localizar((funcionario.getCod()));
             funcionario.setCod(rs.getInt(1));
             funcionario.setNome(rs.getString(2));

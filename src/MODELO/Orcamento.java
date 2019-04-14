@@ -17,7 +17,7 @@ public class Orcamento {
     private String dataSolicitacao;
     private String descricaoProblema;
     private float valorProdutoUtilizado;
-    private float valorMaoObra;
+    private int codPrestacaoServico;
     private float valorTotal;
     private String status;
     private int cod;
@@ -73,12 +73,12 @@ public class Orcamento {
         this.valorProdutoUtilizado = valorProdutoUtilizado;
     }
 
-    public float getValorMaoObra() {
-        return valorMaoObra;
+    public int getcodPrestacaoServicos() {
+        return codPrestacaoServico;
     }
 
-    public void setValorMaoObra(float valorMaoObra) {
-        this.valorMaoObra = valorMaoObra;
+    public void setcodPrestacaoServicos(int codPrestacaoServico) {
+        this.codPrestacaoServico = codPrestacaoServico;
     }
 
     public float getValorTotal() {

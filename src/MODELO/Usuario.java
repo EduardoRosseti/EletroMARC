@@ -12,17 +12,27 @@ import CONTROLE.CUsuario;
  */
 public class Usuario {
     
-    private String funcionario;
+    private int cod;
+    private int codFuncionario;
     private String login;
     private String senha;
     private String perfil;
 
-    public String getFuncionario() {
-        return funcionario;
+    
+        public int getCod() {
+       return cod;
     }
 
-    public void setFuncionario(String funcionario) {
-        this.funcionario = funcionario;
+    public void setCod(int cod) {
+        this.cod = cod;
+    }
+    
+    public int getFuncionario() {
+        return codFuncionario;
+    }
+
+    public void setFuncionario(int codFuncionario) {
+        this.codFuncionario = codFuncionario;
     }
 
     public String getLogin() {
