@@ -8,15 +8,9 @@ package VISUAL;
 
 import CONTROLE.CCliente;
 import CONTROLE.CTabela;
-import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
 import MODELO.Validacao;
-import MODELO.WebServiceCep;
-
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -36,8 +30,15 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         initComponents();
         cTabela = new CTabela();
         ccliente = new CCliente();
+        //JOptionPane.showMessageDialog(null, TelaLogin.getTipoUsuario());
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
 
-        // preencherTabelaa();
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     /**
@@ -537,11 +538,11 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         ccliente.cliente.setCidade(txtCadCidade.getText());
         ccliente.cliente.setComplemento(txtCadComplem.getText());
         ccliente.cliente.setEstado(cbCadUf.getItemAt(cbCadUf.getSelectedIndex()));
-        
+
         // ccliente.cliente.setObservacao(txtCadObs.getText());
         if (Validacao.validaCpf(ccliente.cliente.getCpf())) {
-                JOptionPane.showMessageDialog(null, ccliente.gravar(ccliente.cliente));
-            
+            JOptionPane.showMessageDialog(null, ccliente.gravar(ccliente.cliente));
+
         } else {
             JOptionPane.showMessageDialog(null, "cpf invalido");
         }
@@ -624,14 +625,15 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
     private void btnDadExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluirMouseClicked
         // TODO add your handling code here:
-        String msg = ccliente.apagar(ccliente.cliente);
-        JOptionPane.showMessageDialog(null, msg);
+
         //abela.tabela.deletarLinha(TelaPrincipal.getCod());
         //JOptionPane.showMessageDialog(null,TelaPrincipal.getLin());
     }//GEN-LAST:event_btnDadExcluirMouseClicked
 
     private void btnDadExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadExcluirActionPerformed
         // TODO add your handling code here:
+        String msg = ccliente.apagar(ccliente.cliente);
+        JOptionPane.showMessageDialog(null, msg);
     }//GEN-LAST:event_btnDadExcluirActionPerformed
 
     private void txtCadTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadTelActionPerformed
@@ -689,12 +691,12 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
         // ccliente.cliente.setObservacao(txtCadObs.getText());
         if (Validacao.validaCpf(ccliente.cliente.getCpf())) {
-                if (!ccliente.alterar(ccliente.cliente)) {
-                    JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Não reliada a atualização");
-                }
-            
+            if (!ccliente.alterar(ccliente.cliente)) {
+                JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");
+            } else {
+                JOptionPane.showMessageDialog(null, "Não reliada a atualização");
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "cpf invalido");
         }

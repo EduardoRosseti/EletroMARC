@@ -11,7 +11,7 @@ package MODELO;
  */
 public class Pagamento {
     private String formaPagamento;
-    private int codNome;
+    private int codOrcamento;
     private float valor;
     private float desconto;
     private String dataPagamento;
@@ -25,12 +25,12 @@ public class Pagamento {
         this.formaPagamento = formaPagamento;
     }
 
-    public int getCodNome() {
-        return codNome;
+    public int getCodOrcamento() {
+        return codOrcamento;
     }
 
-    public void setCodNome(int codNome) {
-        this.codNome = codNome;
+    public void setCodOrcamento(int codOrcamento) {
+        this.codOrcamento = codOrcamento;
     }
 
     public float getValor() {

@@ -20,6 +20,7 @@ public class Orcamento {
     private int codPrestacaoServico;
     private float valorTotal;
     private String status;
+    private String statusPagamento;
     private int cod;
 
     public int getCodCliente() {
@@ -104,6 +105,16 @@ public class Orcamento {
     public void setCod(int cod) {
         this.cod = cod;
     }
+
+    public String getStatusPagamento() {
+        return statusPagamento;
+    }
+
+    public void setStatusPagamento(String statusPagamento) {
+        this.statusPagamento = statusPagamento;
+    }
+    
+    
     
     
 }

@@ -11,7 +11,6 @@ import CONTROLE.CMercadoria;
 import CONTROLE.CTabela;
 import CONTROLE.COrcamento;
 import CONTROLE.CValoresServicos;
-import static VISUAL.TelaClienteCadastro.tbBusca;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -37,7 +36,17 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cMercadoria = new CMercadoria();
         cOrcamento = new COrcamento();
         txtCadValTot.setEnabled(false);
+        lblValMao.setEnabled(false);
+        lblValMao.setVisible(false);
         cValoresServicos = new CValoresServicos();
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     /**
@@ -55,7 +64,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        btnOrcExc = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnCadastrar2 = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -79,6 +88,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         btnCadMerOrc = new javax.swing.JButton();
         txtCadValMao = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        lblValMao = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -158,10 +168,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnOrcExc.setText("Excluir");
-        btnOrcExc.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOrcExcActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -260,6 +270,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Valor mao de obra");
 
+        lblValMao.setText("jLabel10");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -294,8 +306,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(lblValMao)
+                        .addGap(55, 55, 55)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCadValTot, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,7 +350,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8)
                         .addComponent(txtCadValTot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7)
-                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblValMao)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
@@ -371,7 +386,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addGap(76, 76, 76)
                 .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
-                .addComponent(btnOrcExc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -392,7 +407,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOrcExc)
+                    .addComponent(btnExcluir)
                     .addComponent(btnCadastrar)))
         );
 
@@ -401,7 +416,6 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-
         switch (cTabela.tabela.getTipo()) {
             case 1:
                 Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
@@ -439,9 +453,9 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                     cOrcamento.orcamento.setDataSolicitacao(dia + "" + mes + "" + ano);
                     txtCadDat.setText(cOrcamento.orcamento.getDataSolicitacao());
                     txtCadVal.setText(Float.toString(cOrcamento.orcamento.getValorProdutoUtilizado()));
-                    txtCadValMao.setText(Float.toString(cOrcamento.orcamento.getcodPrestacaoServicos()));
                     txtCadValTot.setText(Float.toString(cOrcamento.orcamento.getValorTotal()));
                     txtCadValTot.setText(Float.toString(((cValoresServicos.valoresServicos.getValorPrestacaoServico())) + (Float.parseFloat(txtCadVal.getText()))));
+                    cbStatus.getModel().setSelectedItem(cOrcamento.orcamento.getStatus());
                 }
                 break;
 
@@ -450,12 +464,21 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 Object b = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
                 txtCadMer.setText((String) a);
                 cMercadoria.mercadoria.setCod((int) b);
+                cMercadoria.buscar(cMercadoria.mercadoria);
                 break;
             case 4:
                 Object a1 = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
                 Object b1 = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
                 txtCadValMao.setText((String) a1);
                 cValoresServicos.valoresServicos.setCod((int) b1);
+                cValoresServicos.buscar(cValoresServicos.valoresServicos);
+                JOptionPane.showMessageDialog(null, "" + ((cValoresServicos.valoresServicos.getValorPrestacaoServico()) + (Float.parseFloat(txtCadVal.getText()))));
+                Float k = cValoresServicos.valoresServicos.getValorPrestacaoServico();
+                Float e = Float.parseFloat(txtCadVal.getText());
+                k += e;
+                txtCadValTot.setText(Float.toString(k));
+                lblValMao.setText(Float.toString(cValoresServicos.valoresServicos.getValorPrestacaoServico()));
+                lblValMao.setVisible(true);
                 break;
             default:
                 break;
@@ -491,7 +514,6 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
-
         tbBusca.setAutoCreateRowSorter(true);
 
     }//GEN-LAST:event_txtPesquisarKeyReleased
@@ -544,7 +566,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
     private void txtCadMerKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadMerKeyPressed
         // TODO add your handling code here:
         cTabela.tabela.setTipo(3);
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbmercadoria", txtCadMer.getText(), "NOME")));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesqMer("tbmercadoria", txtCadMer.getText(), "NOME")));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -574,10 +596,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCadValActionPerformed
 
-    private void btnOrcExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrcExcActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, cOrcamento.apagar(cOrcamento.orcamento));
-    }//GEN-LAST:event_btnOrcExcActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar2ActionPerformed
         // TODO add your handling code here:
@@ -599,7 +621,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void txtCadValKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValKeyReleased
         // TODO add your handling code here:
-        txtCadValTot.setText(Float.toString(((cValoresServicos.valoresServicos.getValorPrestacaoServico())) + (Float.parseFloat(txtCadVal.getText()))));
+        Float a = cValoresServicos.valoresServicos.getValorPrestacaoServico();
+        Float b = Float.parseFloat(txtCadVal.getText());
+        a += b;
+        txtCadValTot.setText(Float.toString(a));
     }//GEN-LAST:event_txtCadValKeyReleased
 
     private void txtCadValMaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValMaoKeyReleased
@@ -622,7 +647,6 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
-        txtCadValTot.setText(Float.toString(((cValoresServicos.valoresServicos.getValorPrestacaoServico())) + (Float.parseFloat(txtCadVal.getText()))));
     }//GEN-LAST:event_txtCadValMaoKeyReleased
 
     private void btnCadMerOrcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadMerOrcActionPerformed
@@ -636,7 +660,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCadMerOrc;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCadastrar2;
-    private javax.swing.JButton btnOrcExc;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;
     private javax.swing.JComboBox<String> cbStatus;
@@ -651,6 +675,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JLabel lblValMao;
     public static javax.swing.JTable tbBusca;
     private javax.swing.JTextField txtCadCli;
     private javax.swing.JFormattedTextField txtCadDat;

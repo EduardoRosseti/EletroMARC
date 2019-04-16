@@ -176,6 +176,14 @@
                 <Property name="text" type="java.lang.String" value="Or&#xe7;amento e Ordem de Servi&#xe7;o"/>
               </Properties>
               <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Pagamentos"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+                  </Events>
+                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="cadOrc">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Or&#xe7;amento &amp; Ordem de Servi&#xe7;o"/>

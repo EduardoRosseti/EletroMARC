@@ -27,6 +27,7 @@ public class UsuarioDAO {
 
     public boolean consultar(String login, String senha) {
         bd.setSql("select LOGIN,SENHA from tbusuario where LOGIN = '" + login + "' and SENHA = '" + senha + "'");
+        System.out.println(bd.getSql());
         try {
             Connection conex = bd.conectar();
             //JOptionPane.showMessageDialog(null, bd.connection);
@@ -97,18 +98,18 @@ public class UsuarioDAO {
      *
      * @return
      */
-    public ResultSet localizar(int cod) {
-        bd.setSql("select * from tbusuario where COD_FUNCIONARIO = " + cod);
+    public ResultSet localizar(String cod) {
+        bd.setSql("select * from tbusuario where login = '" + cod +"'");
         //JOptionPane.showMessageDialog(null, "localizao"+cod);
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.setRs(bd.getPst().executeQuery());
             //JOptionPane.showMessageDialog(null, "dd: "+ bd.getRs());
-            bd.getRs().next();
-            return bd.getRs();
+            if(bd.getRs().next());
+                return bd.getRs();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Falha " + e);
         }
         return null;
     }

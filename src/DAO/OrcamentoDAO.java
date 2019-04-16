@@ -27,7 +27,7 @@ public class OrcamentoDAO {
     public String gravar(Orcamento orcamento) {
         this.orcamento = orcamento;
         try {
-            bd.setSql("insert into tborcamento (COD_CLIENTE,COD_MERCADORIA,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,COD_PRESTACAO_SERVICO,VALOR_TOTAL,STATUS) values(?,?,?,?,?,?,?,?,?)");
+            bd.setSql("insert into tborcamento (COD_CLIENTE,COD_MERCADORIA,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,COD_PRESTACAO_SERVICO,VALOR_TOTAL,STATUS,STATUS_PAG) values(?,?,?,?,?,?,?,?,?,?)");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
@@ -44,6 +44,7 @@ public class OrcamentoDAO {
             bd.getPst().setInt(7, orcamento.getcodPrestacaoServicos());
             bd.getPst().setFloat(8, orcamento.getValorTotal());
             bd.getPst().setString(9, orcamento.getStatus());
+            bd.getPst().setString(10, "Nao Pago");
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
                 return "Falha no cadastro";
@@ -77,6 +78,27 @@ public class OrcamentoDAO {
             bd.getPst().setInt(7, orcamento.getcodPrestacaoServicos());
             bd.getPst().setFloat(8, orcamento.getValorTotal());
             bd.getPst().setString(9, orcamento.getStatus());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                return "Falha na alteração";
+            } else {
+                bd.connection.close();
+               return "Alteração realizada com sucesso";
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
+    public String alterar(Orcamento orcamento,String pago) {
+        this.orcamento = orcamento;
+        try {
+            bd.setSql("update tborcamento set STATUS_PAG = ? WHERE COD_ORCAMENTO = "+ orcamento.getCod());
+            System.out.println(bd.getSql());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+            bd.getPst().setString(1, "Pago");
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
                 return "Falha na alteração";

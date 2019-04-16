@@ -34,16 +34,16 @@ public class CUsuario {
         return usuarioDao.gravar(usuario);
     }
     
-    public boolean buscar(Usuario usuario){
-        
+    public boolean buscar(Usuario usuarioo){
         try {
            // JOptionPane.showMessageDialog(null,"antes DAO" + usuario.getCod());
-            rs = usuarioDao.localizar((usuario.getCod()));
+            rs = usuarioDao.localizar((usuarioo.getLogin()));
             usuario.setCod(rs.getInt(1));
             usuario.setFuncionario(rs.getInt(2));
             usuario.setLogin(rs.getString(3));
             usuario.setSenha(rs.getString(4));
             usuario.setPerfil(rs.getString(5));
+           // JOptionPane.showMessageDialog(null, usuario.getPerfil());
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);

@@ -32,6 +32,14 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         cTabela.tabela.setTipo(2);
         lblDt.setEnabled(false);
         lblDt.setVisible(false);
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     /**
@@ -46,7 +54,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jFormattedTextField3 = new javax.swing.JFormattedTextField();
-        jButton1 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
         cbPesquisar = new javax.swing.JComboBox<String>();
@@ -76,10 +84,10 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jButton1.setText("Alterar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -269,7 +277,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
                                     .addComponent(btnPesquisar)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(75, 75, 75)
                                 .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(97, 97, 97)
@@ -293,7 +301,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnAlterar)
                     .addComponent(btnDadExcluir)
                     .addComponent(btnCadCancelar)
                     .addComponent(btnCadConMer))
@@ -383,9 +391,9 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnCadConMerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadConMerActionPerformed
         // TODO add your handling code here:
@@ -395,7 +403,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
             cControleMercadoria.controleMercadoria.setValor(Double.parseDouble(txtVal.getText()));
             JOptionPane.showMessageDialog(null, cControleMercadoria.gravar(cControleMercadoria.controleMercadoria));
         } else {
-            
+
         }
     }//GEN-LAST:event_btnCadConMerActionPerformed
 
@@ -419,12 +427,12 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadCancelar;
     private javax.swing.JButton btnCadConMer;
     private javax.swing.JButton btnDadExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;

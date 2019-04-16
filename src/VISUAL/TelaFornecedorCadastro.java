@@ -31,13 +31,20 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
     CTabela cTabela;
     private int cod;
     private int lin;
-            
+
     public TelaFornecedorCadastro() {
         initComponents();
         cFornecedor = new CFornecedor();
         cValidacao = new CValidacao();
         cTabela = new CTabela();
-        preencherTabela();
+        if("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     public int getCod() {
@@ -55,15 +62,19 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
     public void setLin(int lin) {
         this.lin = lin;
     }
-    
-         public void preencherTabela(){
+
+    public void preencherTabela() {
         cTabela = new CTabela();
-        String []p = new String[5];
-        p[0] = "codigo";p[1]="nome";p[2]="cnpj";p[3]="telefone";p[4]="tbfornecedor";
+        String[] p = new String[5];
+        p[0] = "codigo";
+        p[1] = "nome";
+        p[2] = "cnpj";
+        p[3] = "telefone";
+        p[4] = "tbfornecedor";
         String[] colunas = new String[]{"Codigo", "Nome", "CNPJ", "Telefone"};
         ArrayList dados = cTabela.preencherFornecedor(p);
         //JOptionPane.showMessageDialog(null, "preenche funcao" + dados);
-        
+
         //JOptionPane.showMessageDialog(null, "CONSTRUTOR ");
         tbBusca.setModel(cTabela.tabela.CTabela(dados, colunas));
         //tbBusca.setModel((cTabela.tabela.Tabela(dados, colunas)));
@@ -79,7 +90,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(3).setResizable(false);
         tbBusca.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         tbBusca.setAutoCreateRowSorter(true);
-          }
+    }
 
     public void pesquisar() {
 
@@ -143,16 +154,16 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         txtCadForCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadForUf = new javax.swing.JComboBox<>();
+        cbCadForUf = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnCadFor = new javax.swing.JButton();
         btnDadExcluir = new javax.swing.JButton();
         btnCadCancelar = new javax.swing.JButton();
-        btnCadCancelar1 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -282,7 +293,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("*UF:");
 
-        cbCadForUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadForUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadForUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadForUfActionPerformed(evt);
@@ -436,7 +447,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
         );
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Codigo", "Nome", "Cnpj", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome", "Cnpj", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -486,10 +497,10 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadCancelar1.setText("Alterar");
-        btnCadCancelar1.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadCancelar1ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -512,7 +523,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCadCancelar1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59)
                         .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72)
@@ -536,7 +547,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                     .addComponent(btnDadExcluir)
                     .addComponent(btnCadFor)
                     .addComponent(btnCadCancelar)
-                    .addComponent(btnCadCancelar1))
+                    .addComponent(btnAlterar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -552,7 +563,6 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
         String msg = "";
         cFornecedor.fornecedor.setNome(txtCadForNome.getText());
-
         cFornecedor.fornecedor.setTelefone(cFornecedor.fornecedor.retiraCel(txtCadForTel.getText()));
         cFornecedor.fornecedor.setCelular(cFornecedor.fornecedor.retiraCel(txtCadForCel.getText()));
         cFornecedor.fornecedor.setCnpj(cFornecedor.fornecedor.retira(txtCadForCnpj.getText()));
@@ -661,14 +671,14 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDadExcluirActionPerformed
 
-    private void btnCadCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelar1ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadCancelar1ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadCancelar;
-    private javax.swing.JButton btnCadCancelar1;
     private javax.swing.JButton btnCadFor;
     private javax.swing.JButton btnDadExcluir;
     private javax.swing.JButton btnPesquisar;

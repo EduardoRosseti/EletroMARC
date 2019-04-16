@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 //TELA PRONTA
 package VISUAL;
 
@@ -36,16 +35,24 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
     CValidacao cValidacao;
     private int cod;
     private int lin;
-    
+
     public TelaFabricanteCadastro() {
         initComponents();
         cTabela = new CTabela();
         cFabricante = new CFabricante();
         cValidacao = new CValidacao();
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
+        } else {
+
+        }
 
     }
-    
-        public int getCod() {
+
+    public int getCod() {
         return cod;
     }
 
@@ -60,8 +67,6 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
     public void setLin(int lin) {
         this.lin = lin;
     }
-    
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -510,7 +515,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setCidade(txtCadFabCid.getText());
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(WIDTH));
-        JOptionPane.showMessageDialog(null,cFabricante.fabricante.getCnpj());
+        JOptionPane.showMessageDialog(null, cFabricante.fabricante.getCnpj());
         msg = cFabricante.gravar(cFabricante.fabricante);
 
     }//GEN-LAST:event_btnCadForActionPerformed
@@ -582,12 +587,12 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
-       // tbBusca.setAutoCreateRowSorter(true);
+        // tbBusca.setAutoCreateRowSorter(true);
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-    
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnDadExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluirMouseClicked
@@ -617,7 +622,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setCidade(txtCadFabCid.getText());
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(WIDTH));
-        
+
         JOptionPane.showMessageDialog(null, "Teste" + cFabricante.fabricante.getEstado());
         if (!cFabricante.alterar(cFabricante.fabricante)) {
             JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");

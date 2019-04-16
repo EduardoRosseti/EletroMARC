@@ -32,6 +32,9 @@ public class COrcamento {
     public String alterar(Orcamento orcamento){
         return orcamentoDao.alterar(orcamento);    
     }
+    public String alterar(Orcamento orcamento,String pago){
+        return orcamentoDao.alterar(orcamento,pago);    
+    }
     
     public boolean buscar(Orcamento orcamento){
         

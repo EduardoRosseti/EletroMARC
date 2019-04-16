@@ -28,6 +28,14 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         cValoresServicos = new CValoresServicos();
         lblDat.setEnabled(false);
         lblDat.setVisible(false);
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        } else {
+
+        }
 
     }
 
@@ -46,7 +54,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar2 = new javax.swing.JButton();
-        btnExc = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextArea();
@@ -58,7 +66,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         txtCadNom = new javax.swing.JTextField();
         lblDat = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
 
         btnCad.setText("Cadastrar");
         btnCad.addActionListener(new java.awt.event.ActionListener() {
@@ -133,10 +141,10 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnExc.setText("Excluir");
-        btnExc.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -216,10 +224,10 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
 
         jButton3.setText("Cancelar");
 
-        jButton4.setText("Alterar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -229,9 +237,9 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(61, 61, 61)
-                .addComponent(btnExc, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
@@ -268,8 +276,8 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(btnExc)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir)
                     .addComponent(jButton3)
                     .addComponent(btnCad))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -323,10 +331,10 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPesquisar2ActionPerformed
 
-    private void btnExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, cValoresServicos.apagar(cValoresServicos.valoresServicos));
-    }//GEN-LAST:event_btnExcActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtCadNomKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadNomKeyPressed
         // TODO add your handling code here:
@@ -345,23 +353,23 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, cValoresServicos.gravar(cValoresServicos.valoresServicos));
     }//GEN-LAST:event_btnCadActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         cValoresServicos.valoresServicos.setNome(txtCadNom.getText());
         //JOptionPane.showMessageDialog(null,cValoresServicos.valoresServicos.getTelefone());
         cValoresServicos.valoresServicos.setDescricao(txtDesc.getText());
         cValoresServicos.valoresServicos.setValorPrestacaoServico(Float.parseFloat(txtVal.getText()));
         JOptionPane.showMessageDialog(null, cValoresServicos.alterar(cValoresServicos.valoresServicos));
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCad;
-    private javax.swing.JButton btnExc;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar2;
     private javax.swing.JComboBox<String> cbPesquisar;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

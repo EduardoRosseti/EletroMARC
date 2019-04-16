@@ -34,6 +34,14 @@ public class TelaMercadoriaCadastro extends javax.swing.JInternalFrame {
         cMercadoria = new CMercadoria();
         cFornecedor = new CFornecedor();
         cFabricante = new CFabricante();
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     /**

@@ -58,6 +58,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         jMenu10 = new javax.swing.JMenu();
         cadMer = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
         cadOrc = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         CadCon = new javax.swing.JMenuItem();
@@ -205,6 +206,14 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         cadastro.add(jMenu10);
 
         jMenu7.setText("Orçamento e Ordem de Serviço");
+
+        jMenuItem5.setText("Pagamentos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem5);
 
         cadOrc.setText("Orçamento & Ordem de Serviço");
         cadOrc.addActionListener(new java.awt.event.ActionListener() {
@@ -375,6 +384,13 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         // TODO add your handling code here:
     }//GEN-LAST:event_CadConMouseClicked
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        TelaControlePagamento con = new TelaControlePagamento();
+        desktop.add(con);
+        con.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -452,6 +468,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

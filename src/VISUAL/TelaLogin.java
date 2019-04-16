@@ -21,10 +21,21 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     
     CUsuario cusuario;
+    public static String tipoUsuario;
     public TelaLogin() {
         initComponents();
         cusuario = new CUsuario();
     }
+
+    public static String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public static void setTipoUsuario(String tipoUsuario) {
+        TelaLogin.tipoUsuario = tipoUsuario;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -154,14 +165,13 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
-        
         cusuario.usuario.setLogin(txtLogin.getText());
         cusuario.usuario.setSenha(txtPassword.getText());
-         //if(cusuario.consulta(cusuario.usuario)){
-         if(true){
-            System.out.println("CHEGOOOOO TELA PRINCIPAL");
+        cusuario.buscar(cusuario.usuario);
+        //JOptionPane.showMessageDialog(null, cusuario.usuario.getPerfil());
+         if(cusuario.consultar(cusuario.usuario.getLogin(),cusuario.usuario.getSenha())){
+            TelaLogin.setTipoUsuario(cusuario.usuario.getPerfil());
             TelaPrincipal principal = new TelaPrincipal();
-             System.out.println("teste");
             this.dispose();
             principal.setVisible(true);
          }else{

@@ -30,6 +30,14 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         cTabela = new CTabela();
         cUsuario = new CUsuario();
         cFuncionario = new CFuncionario();
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     /**
@@ -362,11 +370,11 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-            cUsuario.usuario.setFuncionario(cFuncionario.funcionario.getCod());
-            cUsuario.usuario.setLogin(txtLogin.getText());
-            cUsuario.usuario.setSenha(txtSenha.getText());
-            cUsuario.usuario.setPerfil(cbPerfil.getItemAt(cbPerfil.getSelectedIndex()));
-            JOptionPane.showMessageDialog(null, cUsuario.gravar(cUsuario.usuario));
+        cUsuario.usuario.setFuncionario(cFuncionario.funcionario.getCod());
+        cUsuario.usuario.setLogin(txtLogin.getText());
+        cUsuario.usuario.setSenha(txtSenha.getText());
+        cUsuario.usuario.setPerfil(cbPerfil.getItemAt(cbPerfil.getSelectedIndex()));
+        JOptionPane.showMessageDialog(null, cUsuario.gravar(cUsuario.usuario));
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomeKeyReleased

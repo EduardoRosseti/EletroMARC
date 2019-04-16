@@ -52,6 +52,11 @@ public class CTabela {
         //JOptionPane.showMessageDialog(null," " + result);
         return result;
     }
+    public ResultSet pesqOrc(String tb, String nome,String op,String op2){
+        ResultSet result = tabeladao.pesquisarOrc(tb,nome,op,op2);
+        //JOptionPane.showMessageDialog(null," " + result);
+        return result;
+    }
     public ResultSet pesqSaiMer(String tb, String nome,String op){
         ResultSet result = tabeladao.pesquisarSaiMer(tb,nome,op);
         //JOptionPane.showMessageDialog(null," " + result);
