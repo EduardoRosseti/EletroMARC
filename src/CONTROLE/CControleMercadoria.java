@@ -30,6 +30,10 @@ public class CControleMercadoria {
         return controleMercadoriaDao.gravar(controleMercadoria);
         
     }
+    public String alterar(ControleMercadoria controleMercadoria){
+        return controleMercadoriaDao.alterar(controleMercadoria);
+        
+    }
     public boolean buscar(ControleMercadoria controleMercadoria){
         
         try {

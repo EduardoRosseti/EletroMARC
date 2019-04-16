@@ -56,7 +56,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar2 = new javax.swing.JComboBox<String>();
+        cbPesquisar2 = new javax.swing.JComboBox<>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -67,11 +67,11 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         txtDes = new javax.swing.JTextField();
         txtValTot = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtDat = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
-        cbFor = new javax.swing.JComboBox<String>();
+        cbFor = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
+        txtDat = new javax.swing.JLabel();
         btnCadastrar = new javax.swing.JButton();
 
         setClosable(true);
@@ -142,7 +142,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbBusca);
 
-        cbPesquisar2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_PAGAMENTO", "NOME_CLIENTE" }));
+        cbPesquisar2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_PAGAMENTO", "NOME_CLIENTE" }));
         cbPesquisar2.setToolTipText("");
         cbPesquisar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,15 +211,9 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Valor Total à Pagar:");
 
-        try {
-            txtDat.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         jLabel4.setText("Data Do Pagamento:");
 
-        cbFor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dinheiro", "Cartao", "Cheque" }));
+        cbFor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartao", "Cheque" }));
 
         jLabel2.setText("Forma de pagamento:");
 
@@ -228,6 +222,8 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
                 txtNomeKeyReleased(evt);
             }
         });
+
+        txtDat.setText("Data Automatica");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -256,9 +252,9 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtDat, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtDat)
+                .addGap(78, 78, 78)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbFor, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +280,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(cbFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(txtDat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDat))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -461,8 +457,8 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tbBusca;
-    private javax.swing.JFormattedTextField txtDat;
+    public static javax.swing.JTable tbBusca;
+    private javax.swing.JLabel txtDat;
     private javax.swing.JTextField txtDes;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisar;

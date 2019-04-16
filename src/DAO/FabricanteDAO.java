@@ -45,7 +45,6 @@ public class FabricanteDAO {
     
     
     public String gravar(Fabricante fabricante) {
-        JOptionPane.showMessageDialog(null, "Esta chegando no fabricante dao");
         this.fabricante = fabricante;
         try {
             bd.setSql("insert into tbfabricante (COD_FABRICANTE, NOME,TELEFONE,CELULAR,CNPJ,EMAIL,RUA,RUA_NUMERO,CEP,BAIRRO,CIDADE,COMPLEMENTO,ESTADO) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -84,9 +83,7 @@ public class FabricanteDAO {
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            JOptionPane.showMessageDialog(null, "Apagar " + bd.getPst());
             int i = bd.getPst().executeUpdate();
-            JOptionPane.showMessageDialog(null, "Apagar " + i);
             if (i > 0) {
                 msg = "Fabricante apagado com sucesso";
                 return msg;
@@ -97,14 +94,13 @@ public class FabricanteDAO {
             return null;
         }
     }
-        public boolean alterar(Fabricante fabricante) {
+        public String alterar(Fabricante fabricante) {
         this.fabricante = fabricante;
         try {
             bd.setSql("update tbfabricante set NOME = ?,TELEFONE = ? ,CELULAR = ?,CNPJ = ?,EMAIL = ?,RUA = ?,RUA_NUMERO = ?,CEP = ?,BAIRRO = ?,CIDADE = ?,COMPLEMENTO = ?,ESTADO = ? WHERE COD_FABRICANTE = ?");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-
             bd.getPst().setString(1, fabricante.getNome());
             bd.getPst().setString(2, fabricante.getTelefone());
             bd.getPst().setString(3, fabricante.getCelular());
@@ -118,19 +114,17 @@ public class FabricanteDAO {
             bd.getPst().setString(11, fabricante.getComplemento());
             bd.getPst().setString(12, fabricante.getEstado());
             bd.getPst().setInt(13, fabricante.getCod());
-            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
             if (bd.getPst().executeUpdate() == 0) {
-                bd.connection.close();
-                return true;
-                //return msg = "Falha no cadastro";
+
+                return "Falha no na Atualização";
             } else {
                 bd.connection.close();
-               // return msg = "Cadastro realizado com sucesso";
+                return "Atualizado com sucesso";
 
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        return false;
+        return null;
     }
 }

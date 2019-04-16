@@ -238,7 +238,7 @@
             <Component class="javax.swing.JFormattedTextField" name="txtCadForCnpj">
               <Properties>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="###.###.###-##" subtype="-1" type="5"/>
+                  <Format format="##.###.###/####-##" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
@@ -543,11 +543,9 @@
     <Component class="javax.swing.JComboBox" name="cbPesquisar">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Codigo"/>
-            <StringItem index="1" value="Nome"/>
-            <StringItem index="2" value="Cnpj"/>
-            <StringItem index="3" value="Telefone"/>
+          <StringArray count="2">
+            <StringItem index="0" value="COD_FORNECEDOR&#x9;"/>
+            <StringItem index="1" value="NOME"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -575,7 +573,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnCadFor">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Confirmar"/>
+        <Property name="text" type="java.lang.String" value="Cadastrar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadForActionPerformed"/>

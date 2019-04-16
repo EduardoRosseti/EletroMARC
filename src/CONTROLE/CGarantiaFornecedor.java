@@ -31,16 +31,19 @@ public class CGarantiaFornecedor {
         return garantiaFornecedorDao.gravar(garantiaFornecedor);
         
     }
-    public boolean buscar(GarantiaFornecedor garantiaFornecedor){
+    public String alterar(GarantiaFornecedor garantiaFornecedor){
+        return garantiaFornecedorDao.alterar(garantiaFornecedor);
         
+    }
+    public boolean buscar(GarantiaFornecedor garantiaFornecedor){
         try {
-           // JOptionPane.showMessageDialog(null,"antes DAO" + cliente.getCod());
             rs = garantiaFornecedorDao.localizar((garantiaFornecedor.getCod()));
             garantiaFornecedor.setCod(rs.getInt(1));
-            //Corrigir a FK
-          //  garantiaFornecedor.setcod(rs.getInt(2));
-            garantiaFornecedor.setValorPagoFornecedor(rs.getFloat(2));
+            garantiaFornecedor.setCodMercadoria(rs.getInt(2));
             garantiaFornecedor.setDataCadastro(rs.getString(3));
+            garantiaFornecedor.setValorPagoFornecedor(rs.getFloat(4));
+            
+            
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);

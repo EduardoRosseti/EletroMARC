@@ -23,8 +23,8 @@ public class CFabricante {
     }
     
     public String gravar(Fabricante fabricante){
-        String r = daoFabricante.gravar(fabricante);
-        return r;
+        return daoFabricante.gravar(fabricante);
+        
     }
     
      public boolean buscar(Fabricante fabricante){
@@ -58,7 +58,7 @@ public class CFabricante {
         return msg;
     }
      
-    public boolean alterar(Fabricante fabricante){
+    public String alterar(Fabricante fabricante){
         return daoFabricante.alterar(fabricante);
     }
 }

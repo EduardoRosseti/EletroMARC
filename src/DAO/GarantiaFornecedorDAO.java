@@ -28,21 +28,38 @@ public class GarantiaFornecedorDAO {
     public String gravar(GarantiaFornecedor garantiaFornecedor) {
         this.garantiaFornecedor = garantiaFornecedor;
         try {
-            bd.setSql("insert into tbgarantiafornecedor (COD_GARANTIA_FORNECEDOR,COD_MERCADORIA,DATA,VALOR_PAGO) values(?,?,?,?)");
-            System.out.println(bd.getSql());
+            bd.setSql("insert into tbgarantiafornecedor (COD_MERCADORIA,DATA,VALOR_PAGO) values(?,now(),?)");
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            bd.getPst().setInt(1, garantiaFornecedor.getCod());
-            bd.getPst().setInt(2, garantiaFornecedor.getMercadoria().getCod());
-            bd.getPst().setString(3, garantiaFornecedor.getDataCadastro());
-            bd.getPst().setDouble(4, garantiaFornecedor.getValorPagoFornecedor());
-            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
+            bd.getPst().setInt(1, garantiaFornecedor.getCodMercadoria());
+            bd.getPst().setDouble(2, garantiaFornecedor.getValorPagoFornecedor());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
-                //return msg = "Falha no cadastro";
+                return "Falha no cadastro";
             } else {
                 bd.connection.close();
-               // return msg = "Cadastro realizado com sucesso";
+               return "Cadastro realizado com sucesso";
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
+    public String alterar(GarantiaFornecedor garantiaFornecedor) {
+        this.garantiaFornecedor = garantiaFornecedor;
+        try {
+            bd.setSql("Update tbgarantiafornecedor SET COD_MERCADORIA = ?, DATA = now(),VALOR_PAGO = ?  WHERE COD_GARANTIA_FORNECEDOR = " + garantiaFornecedor.getCod());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+            bd.getPst().setInt(1, garantiaFornecedor.getCodMercadoria());
+            bd.getPst().setDouble(2, garantiaFornecedor.getValorPagoFornecedor());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                return "Falha na atualização";
+            } else {
+                bd.connection.close();
+               return "Alteracao realizada com sucesso";
 
             }
         } catch (Exception e) {
@@ -56,13 +73,12 @@ public class GarantiaFornecedorDAO {
      * @return
      */
     public ResultSet localizar(int cod) {
-        bd.setSql("select * from tbgarantiaFornecedor where COD_FUNCIONARIO = " + cod);
+        bd.setSql("select * from tbgarantiafornecedor where COD_GARANTIA_FORNECEDOR = " + cod);
         //JOptionPane.showMessageDialog(null, "localizao"+cod);
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.setRs(bd.getPst().executeQuery());
-            JOptionPane.showMessageDialog(null, "dd: "+ bd.getRs());
             bd.getRs().next();
             return bd.getRs();
         } catch (Exception e) {
@@ -76,9 +92,7 @@ public class GarantiaFornecedorDAO {
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            JOptionPane.showMessageDialog(null, "Apagar " + bd.getPst());
             int i = bd.getPst().executeUpdate();
-            JOptionPane.showMessageDialog(null, "Apagar " + i);
             if (i > 0) {
                 String msg = "GarantiaFornecedor apagado com sucesso";
                 return msg;

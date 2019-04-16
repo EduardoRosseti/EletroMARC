@@ -67,5 +67,10 @@ public class CTabela {
         //JOptionPane.showMessageDialog(null," " + result);
         return result;
     }
+    public ResultSet pesqGan(String tb, String nome,String op){
+        ResultSet result = tabeladao.pesquisarGan(tb,nome,op);
+        //JOptionPane.showMessageDialog(null," " + result);
+        return result;
+    }
    
 }

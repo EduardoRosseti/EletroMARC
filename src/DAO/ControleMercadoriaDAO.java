@@ -30,7 +30,6 @@ public class ControleMercadoriaDAO {
         this.controleMercadoria = controleMercadoria;
         try {
             bd.setSql("insert into tbsaidamercadoria (COD_MERCADORIA,MOTIVO_SAIDA,DATA_SAIDA,VALOR) values(?,?,now(),?)");
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, controleMercadoria.getCodMercadoria());
@@ -42,6 +41,28 @@ public class ControleMercadoriaDAO {
             } else {
                 bd.connection.close();
                 return "Cadastro realizado com sucesso";
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return null;
+    }
+        public String alterar(ControleMercadoria controleMercadoria) {
+        this.controleMercadoria = controleMercadoria;
+        try {
+            bd.setSql("update tbsaidamercadoria set COD_MERCADORIA = ? ,MOTIVO_SAIDA = ?,DATA_SAIDA = now(),VALOR = ? where cod_saida_mercadoria = " + controleMercadoria.getCod());
+            Connection conex = bd.conectar();
+            bd.setPst(conex.prepareStatement(bd.getSql()));
+            bd.getPst().setInt(1, controleMercadoria.getCodMercadoria());
+            bd.getPst().setString(2, controleMercadoria.getMotivoSaida());
+            bd.getPst().setDouble(3, controleMercadoria.getValor());
+            if (bd.getPst().executeUpdate() == 0) {
+                bd.connection.close();
+                return "Falha AO atualizar";
+            } else {
+                bd.connection.close();
+                return "Atualizado com sucesso";
 
             }
         } catch (Exception e) {

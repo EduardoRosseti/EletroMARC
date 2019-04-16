@@ -306,15 +306,16 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
                 break;
             case 2:
                 cTabela.tabela.setLin(tbBusca.getSelectedRow());
-                int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
-                cTabela.tabela.setCod(i);
+                String i = ((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 2).toString());
                 boolean result;
-                cUsuario.usuario.setCod(cTabela.tabela.getCod());
+                cUsuario.usuario.setLogin(i);
                 result = cUsuario.buscar(cUsuario.usuario);
-
                 //JOptionPane.showMessageDialog(null, result);
                 if (result) {
+                                                            System.out.println("teste");
+
                     cFuncionario.funcionario.setCod(cUsuario.usuario.getFuncionario());
+
                     cFuncionario.buscar(cFuncionario.funcionario);
                     //  txtCadCod.setText(Integer.toString(cUsuario.usuario.getCod()));
                     lblCpf.setText(cFuncionario.funcionario.getCpf());
@@ -345,8 +346,6 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(3).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(4).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
         cTabela.tabela.setTipo(2);
     }//GEN-LAST:event_txtPesquisarKeyReleased
@@ -366,6 +365,11 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        cUsuario.usuario.setFuncionario(cFuncionario.funcionario.getCod());
+        cUsuario.usuario.setLogin(txtLogin.getText());
+        cUsuario.usuario.setSenha(txtSenha.getText());
+        cUsuario.usuario.setPerfil(cbPerfil.getItemAt(cbPerfil.getSelectedIndex()));
+        JOptionPane.showMessageDialog(null, cUsuario.alterar(cUsuario.usuario));
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed

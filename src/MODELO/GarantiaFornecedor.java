@@ -12,7 +12,7 @@ package MODELO;
 public class GarantiaFornecedor {
     
     private int cod;
-    Mercadoria mercadoria;
+    private int codMercadoria;
     private float valorPagoFornecedor;
     private String dataCadastro;
 
@@ -24,13 +24,15 @@ public class GarantiaFornecedor {
         this.cod = cod;
     }
 
-    public Mercadoria getMercadoria() {
-        return mercadoria;
+    public int getCodMercadoria() {
+        return codMercadoria;
     }
 
-    public void setMercadoria(Mercadoria mercadoria) {
-        this.mercadoria = mercadoria;
+    public void setCodMercadoria(int codMercadoria) {
+        this.codMercadoria = codMercadoria;
     }
+    
+    
 
     public float getValorPagoFornecedor() {
         return valorPagoFornecedor;

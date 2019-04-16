@@ -23,6 +23,6 @@ public class CValidacao {
         return validacao.validaCpf(cpf);
     }
     public boolean validaCnpj(String cnpj){
-        return true;
+        return validacao.validaCnpj(cnpj);
     }
 }

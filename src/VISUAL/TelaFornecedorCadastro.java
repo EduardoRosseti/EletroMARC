@@ -29,15 +29,13 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
     CFornecedor cFornecedor;
     CValidacao cValidacao;
     CTabela cTabela;
-    private int cod;
-    private int lin;
 
     public TelaFornecedorCadastro() {
         initComponents();
         cFornecedor = new CFornecedor();
         cValidacao = new CValidacao();
         cTabela = new CTabela();
-        if("Administrativo".equals(TelaLogin.tipoUsuario)) {
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
 
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
@@ -45,77 +43,6 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         } else {
 
         }
-    }
-
-    public int getCod() {
-        return cod;
-    }
-
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
-
-    public int getLin() {
-        return lin;
-    }
-
-    public void setLin(int lin) {
-        this.lin = lin;
-    }
-
-    public void preencherTabela() {
-        cTabela = new CTabela();
-        String[] p = new String[5];
-        p[0] = "codigo";
-        p[1] = "nome";
-        p[2] = "cnpj";
-        p[3] = "telefone";
-        p[4] = "tbfornecedor";
-        String[] colunas = new String[]{"Codigo", "Nome", "CNPJ", "Telefone"};
-        ArrayList dados = cTabela.preencherFornecedor(p);
-        //JOptionPane.showMessageDialog(null, "preenche funcao" + dados);
-
-        //JOptionPane.showMessageDialog(null, "CONSTRUTOR ");
-        tbBusca.setModel(cTabela.tabela.CTabela(dados, colunas));
-        //tbBusca.setModel((cTabela.tabela.Tabela(dados, colunas)));
-        //JOptionPane.showMessageDialog(null, "MOOODEL" + tbBusca.getModel());
-        tbBusca.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tbBusca.getColumnModel().getColumn(0).setPreferredWidth(70);
-        tbBusca.getColumnModel().getColumn(0).setResizable(false);
-        tbBusca.getColumnModel().getColumn(1).setPreferredWidth(325);
-        tbBusca.getColumnModel().getColumn(1).setResizable(false);
-        tbBusca.getColumnModel().getColumn(2).setPreferredWidth(160);
-        tbBusca.getColumnModel().getColumn(2).setResizable(false);
-        tbBusca.getColumnModel().getColumn(3).setPreferredWidth(160);
-        tbBusca.getColumnModel().getColumn(3).setResizable(false);
-        tbBusca.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        tbBusca.setAutoCreateRowSorter(true);
-    }
-
-    public void pesquisar() {
-
-        boolean result;
-        //JOptionPane.showMessageDialog(null,"dentro pesquisar "+cFornecedor.fornecedor.getCod());
-        cFornecedor.fornecedor.setCod(getCod());
-        result = cFornecedor.buscar(cFornecedor.fornecedor);
-        //JOptionPane.showMessageDialog(null, result);
-        if (result) {
-            //txtCadForCod.setText(Integer.toString(cFornecedor.fornecedor.getCod()));
-            txtCadForNome.setText((cFornecedor.fornecedor.getNome()));
-
-            txtCadForTel.setText(cFornecedor.fornecedor.getTelefone());
-            //JOptionPane.showMessageDialog(null,cFornecedor.fornecedor.getTelefone());
-            txtCadForCel.setText(cFornecedor.fornecedor.getCelular());
-            txtCadForCnpj.setText(cFornecedor.fornecedor.getCnpj());
-            txtCadForEma.setText(cFornecedor.fornecedor.getEmail());
-            txtCadForRua.setText(cFornecedor.fornecedor.getRua());
-            txtCadForNum.setText(Integer.toString(cFornecedor.fornecedor.getNumero()));
-            txtCadForCep.setText(cFornecedor.fornecedor.getCep());
-            txtCadForBai.setText(cFornecedor.fornecedor.getBairro());
-            txtCadForCid.setText(cFornecedor.fornecedor.getCidade());
-            txtCadForCom.setText(cFornecedor.fornecedor.getComplemento());
-        }
-
     }
 
     /**
@@ -154,10 +81,10 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         txtCadForCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadForUf = new javax.swing.JComboBox<String>();
+        cbCadForUf = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<String>();
+        cbPesquisar = new javax.swing.JComboBox<>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnCadFor = new javax.swing.JButton();
@@ -189,7 +116,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         jLabel2.setText("*Nome:");
 
         try {
-            txtCadForCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCadForCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -293,7 +220,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("*UF:");
 
-        cbCadForUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadForUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadForUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadForUfActionPerformed(evt);
@@ -447,7 +374,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
         );
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Codigo", "Nome", "Cnpj", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_FORNECEDOR\t", "NOME" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -471,7 +398,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadFor.setText("Confirmar");
+        btnCadFor.setText("Cadastrar");
         btnCadFor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadForActionPerformed(evt);
@@ -559,9 +486,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void btnCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForActionPerformed
-        // TODO add your handling code here:
 
-        String msg = "";
         cFornecedor.fornecedor.setNome(txtCadForNome.getText());
         cFornecedor.fornecedor.setTelefone(cFornecedor.fornecedor.retiraCel(txtCadForTel.getText()));
         cFornecedor.fornecedor.setCelular(cFornecedor.fornecedor.retiraCel(txtCadForCel.getText()));
@@ -573,17 +498,16 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setBairro(txtCadForBai.getText());
         cFornecedor.fornecedor.setCidade(txtCadForCid.getText());
         cFornecedor.fornecedor.setComplemento(txtCadForCom.getText());
-        JOptionPane.showMessageDialog(null, cFornecedor.fornecedor.getCnpj());
-
+        cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
             if (true) {
-                msg = cFornecedor.gravar(cFornecedor.fornecedor);
+                JOptionPane.showMessageDialog(null, cFornecedor.gravar(cFornecedor.fornecedor));
             } else {
-                msg = "RG invalido";
+
             }
         } else {
-            JOptionPane.showMessageDialog(null, "cpf invalido");
+            JOptionPane.showMessageDialog(null, "CNPJ invalido");
         }
     }//GEN-LAST:event_btnCadForActionPerformed
 
@@ -611,12 +535,29 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
-        setLin(tbBusca.getSelectedRow());
-        //JOptionPane.showMessageDialog(null, getLin());
-        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(getLin(), 0).toString());
-        JOptionPane.showMessageDialog(null, i);
-        setCod(i);
-        pesquisar();
+        cTabela.tabela.setLin(tbBusca.getSelectedRow());
+        int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
+        cTabela.tabela.setCod(i);
+        boolean result;
+        cFornecedor.fornecedor.setCod(cTabela.tabela.getCod());
+        result = cFornecedor.buscar(cFornecedor.fornecedor);
+        //JOptionPane.showMessageDialog(null, result);
+        if (result) {
+            txtCadForNome.setText(cFornecedor.fornecedor.getNome());
+            txtCadForTel.setText(cFornecedor.fornecedor.getTelefone());
+            txtCadForCnpj.setText(cFornecedor.fornecedor.getCnpj());
+            txtCadForCel.setText(cFornecedor.fornecedor.getCelular());
+            txtCadForTel.setText(cFornecedor.fornecedor.getTelefone());
+            txtCadForEma.setText(cFornecedor.fornecedor.getEmail());
+            txtCadForCep.setText(cFornecedor.fornecedor.getCep());
+            txtCadForNum.setText(Integer.toString(cFornecedor.fornecedor.getNumero()));
+            txtCadForRua.setText(cFornecedor.fornecedor.getRua());
+            txtCadForBai.setText(cFornecedor.fornecedor.getBairro());
+            txtCadForCid.setText(cFornecedor.fornecedor.getCidade());
+            txtCadForCom.setText(cFornecedor.fornecedor.getComplemento());
+            cbCadForUf.getModel().setSelectedItem(cFornecedor.fornecedor.getEstado());
+        }
+
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -630,11 +571,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
     private void txtPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesquisarKeyReleased
         // TODO add your handling code here:
-        //JOptionPane.showMessageDialog(null, txtPesquisar.getText());
-        String pr = (String) (txtPesquisar.getText());
-        String op = (String) (cbPesquisar.getSelectedItem());
-        String tb = "tbfornecedor";
-        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq(tb, pr, op)));
+        tbBusca.setModel(DbUtils.resultSetToTableModel(cTabela.pesq("tbfornecedor", txtPesquisar.getText(), cbPesquisar.getItemAt(cbPesquisar.getSelectedIndex()))));
         tbBusca.getColumnModel().getColumn(0).setPreferredWidth(75);
         tbBusca.getColumnModel().getColumn(1).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -643,36 +580,48 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         tbBusca.getColumnModel().getColumn(5).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(6).setPreferredWidth(150);
         tbBusca.getColumnModel().getColumn(7).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(8).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(9).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(10).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(11).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(12).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(13).setPreferredWidth(150);
-        tbBusca.getColumnModel().getColumn(14).setPreferredWidth(150);
         tbBusca.setAutoCreateRowSorter(true);
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-        preencherTabela();
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnDadExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluirMouseClicked
-        // TODO add your handling code here:
 
-        String msg = cFornecedor.apagar(cFornecedor.fornecedor);
-        JOptionPane.showMessageDialog(null, msg);
-        //abela.tabela.deletarLinha(TelaPrincipal.getCod());
-        //JOptionPane.showMessageDialog(null,TelaPrincipal.getLin());
     }//GEN-LAST:event_btnDadExcluirMouseClicked
 
     private void btnDadExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadExcluirActionPerformed
         // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, cFornecedor.apagar(cFornecedor.fornecedor));
     }//GEN-LAST:event_btnDadExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+
+        cFornecedor.fornecedor.setNome(txtCadForNome.getText());
+        cFornecedor.fornecedor.setTelefone(cFornecedor.fornecedor.retiraCel(txtCadForTel.getText()));
+        cFornecedor.fornecedor.setCelular(cFornecedor.fornecedor.retiraCel(txtCadForCel.getText()));
+        cFornecedor.fornecedor.setCnpj(cFornecedor.fornecedor.retira(txtCadForCnpj.getText()));
+        cFornecedor.fornecedor.setEmail(txtCadForEma.getText());
+        cFornecedor.fornecedor.setCep(cFornecedor.fornecedor.retira(txtCadForCep.getText()));
+        cFornecedor.fornecedor.setRua(txtCadForRua.getText());
+        cFornecedor.fornecedor.setNumero(Integer.parseInt(txtCadForNum.getText()));
+        cFornecedor.fornecedor.setBairro(txtCadForBai.getText());
+        cFornecedor.fornecedor.setCidade(txtCadForCid.getText());
+        cFornecedor.fornecedor.setComplemento(txtCadForCom.getText());
+        cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
+        // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
+        if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
+            if (true) {
+                JOptionPane.showMessageDialog(null, cFornecedor.alterar(cFornecedor.fornecedor));
+            } else {
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "CNPJ invalido");
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
 

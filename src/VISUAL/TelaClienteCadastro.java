@@ -523,7 +523,6 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-        String msg = "";
         ccliente.cliente.setNome(txtCadNome.getText());
         ccliente.cliente.setDataNasc((txtCadDataNasc.getText()).replace("/", "-"));
         ccliente.cliente.setTelefone(ccliente.cliente.retiraCel(txtCadTel.getText()));
@@ -572,7 +571,6 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             String mes = ccliente.cliente.getDataNasc().substring(5, 7);
             String dia = ccliente.cliente.getDataNasc().substring(8);
             ccliente.cliente.setDataNasc(dia + "" + mes + "" + ano);
-            JOptionPane.showMessageDialog(null, ccliente.cliente.getDataNasc());
             txtCadDataNasc.setText(ccliente.cliente.getDataNasc());
             txtCadCel.setText(ccliente.cliente.getCelular());
             txtCadCpf.setText(ccliente.cliente.getCpf());
@@ -673,7 +671,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        String msg = "";
+
         ccliente.cliente.setNome(txtCadNome.getText());
         ccliente.cliente.setDataNasc((txtCadDataNasc.getText()).replace("/", ""));
         ccliente.cliente.setTelefone(ccliente.cliente.retiraCel(txtCadTel.getText()));

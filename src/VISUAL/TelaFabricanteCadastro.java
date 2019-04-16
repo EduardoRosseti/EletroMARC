@@ -10,15 +10,8 @@ import CONTROLE.CFabricante;
 import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
-import MODELO.Fabricante;
-import MODELO.Validacao;
-import MODELO.WebServiceCep;
-import static VISUAL.TelaClienteCadastro.tbBusca;
 import static java.awt.image.ImageObserver.WIDTH;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -139,7 +132,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         jLabel2.setText("*Nome Fabricante");
 
         try {
-            txtCadFabCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+            txtCadFabCnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -502,7 +495,6 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
 
     private void btnCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForActionPerformed
         // TODO add your handling code here:
-        String msg = "";
         cFabricante.fabricante.setNome(txtCadFabNome.getText());
         cFabricante.fabricante.setTelefone(cFabricante.fabricante.retiraCel(txtCadFabTel.getText()));
         cFabricante.fabricante.setCelular(cFabricante.fabricante.retiraCel(txtCadFabCel.getText()));
@@ -515,8 +507,11 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setCidade(txtCadFabCid.getText());
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(WIDTH));
-        JOptionPane.showMessageDialog(null, cFabricante.fabricante.getCnpj());
-        msg = cFabricante.gravar(cFabricante.fabricante);
+        if (cValidacao.validaCnpj(cFabricante.fabricante.getCnpj())) {
+            JOptionPane.showMessageDialog(null, cFabricante.gravar(cFabricante.fabricante));
+        } else {
+            JOptionPane.showMessageDialog(null, "Falha ao cadastrar");
+        }
 
     }//GEN-LAST:event_btnCadForActionPerformed
 
@@ -609,11 +604,10 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-        String msg = "";
         cFabricante.fabricante.setNome(txtCadFabNome.getText());
         cFabricante.fabricante.setTelefone(txtCadFabTel.getText());
         cFabricante.fabricante.setCelular(txtCadFabCel.getText());
-        cFabricante.fabricante.setCnpj(txtCadFabCnpj.getText());
+        cFabricante.fabricante.setCnpj(cFabricante.fabricante.retira(txtCadFabCnpj.getText()));
         cFabricante.fabricante.setEmail(txtCadFabEma.getText());
         cFabricante.fabricante.setCep(cFabricante.fabricante.retira(txtCadFabCep.getText()));
         cFabricante.fabricante.setRua(txtCadFabRua.getText());
@@ -621,13 +615,11 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setBairro(txtCadFabBai.getText());
         cFabricante.fabricante.setCidade(txtCadFabCid.getText());
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
-        cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(WIDTH));
-
-        JOptionPane.showMessageDialog(null, "Teste" + cFabricante.fabricante.getEstado());
-        if (!cFabricante.alterar(cFabricante.fabricante)) {
-            JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");
+        cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(cbCadFabUf.getSelectedIndex()));
+        if (cValidacao.validaCnpj(cFabricante.fabricante.getCnpj())) {
+            JOptionPane.showMessageDialog(null, cFabricante.alterar(cFabricante.fabricante));
         } else {
-            JOptionPane.showMessageDialog(null, "Não reliada a atualização");
+            JOptionPane.showMessageDialog(null, "Falha ao atualizar");
         }
 
     }//GEN-LAST:event_btnAlterarActionPerformed

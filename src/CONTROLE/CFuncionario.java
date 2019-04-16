@@ -30,24 +30,26 @@ public class CFuncionario{
         return funcionarioDao.gravar(funcionario);
         
     }
-    public boolean buscar(Funcionario funcionario){
+    public boolean buscar(Funcionario funcionarioo){
         
         try {
-            ResultSet rs = funcionarioDao.localizar((funcionario.getCod()));
+            ResultSet rs = funcionarioDao.localizar((funcionarioo.getCod()));
             funcionario.setCod(rs.getInt(1));
             funcionario.setNome(rs.getString(2));
             funcionario.setDataNasc(rs.getString(3));
             funcionario.setTelefone(rs.getString(4));
             funcionario.setCelular(rs.getString(5));
-            funcionario.setCpf(rs.getString(6));
-            funcionario.setRg(rs.getString(7));
-            funcionario.setEmail(rs.getString(8));
-            funcionario.setRua(rs.getString(9));
-            funcionario.setNumero(rs.getInt(10));
-            funcionario.setCep(rs.getString(11));
-            funcionario.setBairro(rs.getString(12));
-            funcionario.setCidade(rs.getString(13));
-            funcionario.setComplemento(rs.getString(14));
+            funcionario.setCpf(rs.getString(6));            
+            funcionario.setEmail(rs.getString(7));
+            funcionario.setRua(rs.getString(8));
+            funcionario.setNumero(rs.getInt(9));
+            funcionario.setCep(rs.getString(10));
+            funcionario.setBairro(rs.getString(11));
+            funcionario.setCidade(rs.getString(12));
+            funcionario.setComplemento(rs.getString(13));
+            funcionario.setRg(rs.getString(14));
+            funcionario.setEstado(rs.getString(15));
+            
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "erro " + e);
@@ -60,7 +62,7 @@ public class CFuncionario{
         return msg;
     }
     
-    public boolean alterar(Funcionario funcionario){
+    public String alterar(Funcionario funcionario){
         return funcionarioDao.alterar(funcionario);
     }
 }

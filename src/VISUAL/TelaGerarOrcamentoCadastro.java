@@ -61,7 +61,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<String>();
+        cbPesquisar = new javax.swing.JComboBox<>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
@@ -76,7 +76,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCadDes = new javax.swing.JTextField();
         txtCadVal = new javax.swing.JTextField();
-        cbStatus = new javax.swing.JComboBox<String>();
+        cbStatus = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         txtCadValTot = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -144,7 +144,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_ORCAMENTO", "NOME", "DATA", " " }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_ORCAMENTO", "NOME", "DATA", " " }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,7 +227,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aguardando aprovacao", "Aprovado", "Reprovado", "Concluido", " " }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando aprovacao", "Aprovado", "Reprovado", "Concluido", " " }));
 
         jLabel9.setText("Status");
 
@@ -268,7 +268,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel7.setText("Valor mao de obra");
+        jLabel7.setText("Mao de obra");
 
         lblValMao.setText("jLabel10");
 
@@ -434,6 +434,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
                 //JOptionPane.showMessageDialog(null, result);
                 if (result) {
+                    lblValMao.setVisible(true);
                     cCliente.cliente.setCod(cOrcamento.orcamento.getCodCliente());
                     cCliente.buscar(cCliente.cliente);
                     cMercadoria.mercadoria.setCod(cOrcamento.orcamento.getCodMercadoria());
@@ -444,6 +445,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                     txtCadCli.setText(cCliente.cliente.getNome());
                     txtCadMer.setText(cMercadoria.mercadoria.getNome());
                     txtCadValMao.setText(cValoresServicos.valoresServicos.getNome());
+                    lblValMao.setText(Float.toString(cValoresServicos.valoresServicos.getValorPrestacaoServico()));
                     //JOptionPane.showMessageDialog(null,cOrcamento.orcamento.getTelefone());
                     txtCadSer.setText(cOrcamento.orcamento.getServicoSolicitado());
                     txtCadDes.setText(cOrcamento.orcamento.getDescricaoProblema());
@@ -472,7 +474,6 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 txtCadValMao.setText((String) a1);
                 cValoresServicos.valoresServicos.setCod((int) b1);
                 cValoresServicos.buscar(cValoresServicos.valoresServicos);
-                JOptionPane.showMessageDialog(null, "" + ((cValoresServicos.valoresServicos.getValorPrestacaoServico()) + (Float.parseFloat(txtCadVal.getText()))));
                 Float k = cValoresServicos.valoresServicos.getValorPrestacaoServico();
                 Float e = Float.parseFloat(txtCadVal.getText());
                 k += e;

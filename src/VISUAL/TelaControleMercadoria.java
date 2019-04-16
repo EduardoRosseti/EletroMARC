@@ -393,6 +393,11 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        cControleMercadoria.controleMercadoria.setCodMercadoria(cMercadoria.mercadoria.getCod());
+        cControleMercadoria.controleMercadoria.setMotivoSaida(txtMotSai.getText());
+        cControleMercadoria.controleMercadoria.setValor(Double.parseDouble(txtVal.getText()));
+        JOptionPane.showMessageDialog(null, cControleMercadoria.alterar(cControleMercadoria.controleMercadoria));
+
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnCadConMerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadConMerActionPerformed

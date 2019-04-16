@@ -46,7 +46,6 @@ public class PagamentoDAO {
         this.pagamento = pagamento;
         try {
             bd.setSql("insert into tbpagamento (COD_ORCAMENTO,FORMA_PAGAMENTO,DESCONTO,DATA_PAGAMENTO,TOTAL) values (?,?,?,now(),?)");
-            JOptionPane.showMessageDialog(null,bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, pagamento.getCodOrcamento());
@@ -72,7 +71,6 @@ public class PagamentoDAO {
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            JOptionPane.showMessageDialog(null, "Apagar " + bd.getPst());
             int i = bd.getPst().executeUpdate();
             if (i > 0) {
                 return "Pagamento apagado com sucesso";

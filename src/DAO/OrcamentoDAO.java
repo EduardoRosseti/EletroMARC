@@ -28,7 +28,6 @@ public class OrcamentoDAO {
         this.orcamento = orcamento;
         try {
             bd.setSql("insert into tborcamento (COD_CLIENTE,COD_MERCADORIA,SERVICO_SOLICITADO,DESCRICAO,DATA,VALOR_MERCADORIA,COD_PRESTACAO_SERVICO,VALOR_TOTAL,STATUS,STATUS_PAG) values(?,?,?,?,?,?,?,?,?,?)");
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, orcamento.getCodCliente());
@@ -62,7 +61,6 @@ public class OrcamentoDAO {
         this.orcamento = orcamento;
         try {
             bd.setSql("update tborcamento set COD_CLIENTE = ? ,COD_MERCADORIA = ?,SERVICO_SOLICITADO = ?,DESCRICAO = ? ,DATA = ?,VALOR_MERCADORIA = ?,COD_PRESTACAO_SERVICO = ?,VALOR_TOTAL = ?,STATUS = ? WHERE COD_ORCAMENTO = "+ orcamento.getCod());
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, orcamento.getCodCliente());
@@ -138,9 +136,7 @@ public class OrcamentoDAO {
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            JOptionPane.showMessageDialog(null, "Apagar " + bd.getPst());
             int i = bd.getPst().executeUpdate();
-            JOptionPane.showMessageDialog(null, "Apagar " + i);
             if (i > 0) {
                 String msg = "Orcamento apagado com sucesso";
                 return msg;

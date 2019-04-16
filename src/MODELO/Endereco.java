@@ -25,6 +25,7 @@ public class Endereco {
         public String retira(String c){
         c = c.replace(".","");
         c = c.replace("-","");
+        c = c.replace("/", "");
         return c;
     }
     public String retiraCel(String c){

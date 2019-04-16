@@ -44,6 +44,7 @@ public class TabelaDAO {
     
     public ResultSet pesquisar(String tb, String nome, String op){
         bd.setSql("select * from  "+tb+" where "+op+" like '" + nome +"%'");
+        System.out.println(bd.getSql());
         try {
             Connection conexao = bd.conectar();
             bd.setPst(conexao.prepareStatement(bd.getSql()));
@@ -105,6 +106,22 @@ public class TabelaDAO {
         bd.setSql("SELECT M.COD_MERCADORIA,FO.NOME AS 'NOME FORNECEDOR',FA.NOME AS 'NOME FABRICANTE', M.MARCA, M.MODELO, M.CUSTO,M.NOME FROM "+tb+" AS M " +
                 "INNER JOIN TBFORNECEDOR AS FO ON FO.COD_FORNECEDOR = M.COD_FORNECEDOR " +
                 "INNER JOIN TBFABRICANTE AS FA ON FA.COD_FABRICANTE = M.COD_FABRICANTE where M."+op+" like '" + nome + "%'");
+
+        try {
+            Connection conexao = bd.conectar();
+            bd.setPst(conexao.prepareStatement(bd.getSql()));
+            bd.setRs(bd.getPst().executeQuery());
+            return bd.getRs();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Falha ao efetuar leiura " + e);
+        }
+        return null;
+    }
+        public ResultSet pesquisarGan(String tb, String nome, String op){
+        bd.setSql("SELECT G.COD_GARANTIA_FORNECEDOR,M.NOME AS 'NOME MERCADORIA',FO.NOME AS 'NOME FORNECEDOR',FA.NOME AS 'NOME FABRICANTE',G.DATA, G.VALOR_PAGO FROM "+tb+" AS G " +
+                "INNER JOIN TBMERCADORIA AS M ON G.COD_MERCADORIA = M.COD_MERCADORIA " +
+                "INNER JOIN TBFORNECEDOR AS FO ON FO.COD_FORNECEDOR = M.COD_FORNECEDOR " +
+                "INNER JOIN TBFABRICANTE AS FA ON FA.COD_FABRICANTE = M.COD_FABRICANTE where G."+op+" like '" + nome + "%'");
 
         try {
             Connection conexao = bd.conectar();

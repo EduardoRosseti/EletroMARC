@@ -26,7 +26,6 @@ public class MercadoriaDAO {
         this.mercadoria = mercadoria;
         try {
             bd.setSql("insert into tbmercadoria (COD_FABRICANTE,COD_FORNECEDOR,MARCA,MODELO,CUSTO,NOME) values(?,?,?,?,?,?)");
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, mercadoria.getCodFabricante());
@@ -56,7 +55,6 @@ public class MercadoriaDAO {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.setRs(bd.getPst().executeQuery());
-            //JOptionPane.showMessageDialog(null, "dd: "+ bd.getRs());
             bd.getRs().next();
             return bd.getRs();
         } catch (Exception e) {
@@ -68,7 +66,6 @@ public class MercadoriaDAO {
         this.mercadoria = mercadoria;
         try {
             bd.setSql("update tbmercadoria set COD_FABRICANTE = ?,COD_FORNECEDOR = ?,MARCA = ?,MODELO = ?,CUSTO = ?,NOME = ? WHERE COD_MERCADORIA = " + mercadoria.getCod());
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, mercadoria.getCodFabricante());
@@ -79,10 +76,10 @@ public class MercadoriaDAO {
             bd.getPst().setString(6, mercadoria.getNome());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
-                return "Falha no cadastro";
+                return "Falha ao atualizar";
             } else {
                 bd.connection.close();
-               return "Cadastro realizado com sucesso";
+               return "Atualizado com sucesso";
 
             }
         } catch (Exception e) {
@@ -114,7 +111,7 @@ public class MercadoriaDAO {
             bd.setPst(conex.prepareStatement(bd.getSql()));
             int i = bd.getPst().executeUpdate();
             if (i > 0) {
-                String msg = "Mercadoria apagado com sucesso";
+                return "Mercadoria apagado com sucesso";
             }
             return null;
         } catch (Exception e) {

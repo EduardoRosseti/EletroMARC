@@ -409,7 +409,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Valor mao de obra"/>
+            <Property name="text" type="java.lang.String" value="Mao de obra"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblValMao">

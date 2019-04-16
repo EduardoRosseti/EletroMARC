@@ -30,7 +30,6 @@ public class ClienteDAO {
         this.cliente = cliente;
         try {
             bd.setSql("insert into tbcliente (COD_CLIENTE,NOME,DATA_NASCIMENTO,TELEFONE,CELULAR,CPF,RG,EMAIL,RUA,RUA_NUMERO,CEP,BAIRRO,CIDADE,COMPLEMENTO,ESTADO) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, cliente.getCod());
@@ -67,19 +66,16 @@ public class ClienteDAO {
     }
     public boolean alterar(Cliente cliente) {
         this.cliente = cliente;
-         JOptionPane.showMessageDialog(null, cliente.getDataNasc());
         try {
             bd.setSql("update tbcliente set NOME = ?,DATA_NASCIMENTO = ?,TELEFONE = ? ,CELULAR = ?,CPF = ?,RG = ?,EMAIL = ?,RUA = ?,RUA_NUMERO = ?,CEP = ?,BAIRRO = ?,CIDADE = ?,COMPLEMENTO = ?,ESTADO = ? WHERE COD_CLIENTE = ?");
             System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-
             bd.getPst().setString(1, cliente.getNome());
             String dia = cliente.getDataNasc().substring(0, 2);
             String mes = cliente.getDataNasc().substring(2, 4);
             String ano = cliente.getDataNasc().substring(4,8);
             cliente.setDataNasc(ano+"-"+mes+"-"+dia);
-           JOptionPane.showMessageDialog(null, cliente.getDataNasc());
             bd.getPst().setString(2, cliente.getDataNasc());
             bd.getPst().setString(3, cliente.getTelefone());
             bd.getPst().setString(4, cliente.getCelular());
@@ -94,7 +90,6 @@ public class ClienteDAO {
             bd.getPst().setString(13, cliente.getComplemento());
             bd.getPst().setString(14, cliente.getEstado());
             bd.getPst().setInt(15, cliente.getCod());
-            JOptionPane.showMessageDialog(null, bd.getPst().executeUpdate());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
                 return true;
@@ -135,9 +130,7 @@ public class ClienteDAO {
         try {
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
-            JOptionPane.showMessageDialog(null, "Apagar " + bd.getPst());
             int i = bd.getPst().executeUpdate();
-            JOptionPane.showMessageDialog(null, "Apagar " + i);
             if (i > 0) {
                 String msg = "Cliente apagado com sucesso";
                 return msg;

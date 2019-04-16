@@ -11,14 +11,8 @@ import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
 import MODELO.Validacao;
-import MODELO.WebServiceCep;
 import static VISUAL.TelaFuncionarioCadastro.tbBusca;
-import static java.awt.image.ImageObserver.WIDTH;
-
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -43,21 +37,6 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cFuncionario = new CFuncionario();
     }
 
-    public int getCod() {
-        return cod;
-    }
-
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
-
-    public int getLin() {
-        return lin;
-    }
-
-    public void setLin(int lin) {
-        this.lin = lin;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -98,13 +77,13 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         txtCadFunCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadFunUf = new javax.swing.JComboBox<String>();
+        cbCadFunUf = new javax.swing.JComboBox<>();
         btnCadCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        btnDadExcluir = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        cbPesquisar = new javax.swing.JComboBox<String>();
+        cbPesquisar = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
         btnDadExcluir1 = new javax.swing.JButton();
@@ -280,7 +259,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("UF");
 
-        cbCadFunUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadFunUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadFunUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadFunUfActionPerformed(evt);
@@ -375,15 +354,15 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnDadExcluir.setText("Excluir");
-        btnDadExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAlterar.setText("Alterar");
+        btnAlterar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDadExcluirMouseClicked(evt);
+                btnAlterarMouseClicked(evt);
             }
         });
-        btnDadExcluir.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDadExcluirActionPerformed(evt);
+                btnAlterarActionPerformed(evt);
             }
         });
 
@@ -403,7 +382,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_FUNCIONARIO", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_FUNCIONARIO", "Nome", "NascData", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -453,7 +432,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbBusca);
 
-        btnDadExcluir1.setText("Alterar");
+        btnDadExcluir1.setText("Excluir");
         btnDadExcluir1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnDadExcluir1MouseClicked(evt);
@@ -470,34 +449,33 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(cbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnPesquisar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnDadExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(137, 137, 137)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(btnDadExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(131, 131, 131)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(cbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnPesquisar)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -509,7 +487,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
                     .addComponent(btnPesquisar))
                 .addGap(7, 7, 7)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -518,8 +496,8 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
                     .addComponent(btnCadastrar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnCadCancelar)
-                        .addComponent(btnDadExcluir)
-                        .addComponent(btnDadExcluir1)))
+                        .addComponent(btnAlterar))
+                    .addComponent(btnDadExcluir1))
                 .addGap(25, 25, 25))
         );
 
@@ -556,7 +534,6 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
 
-        String msg = "";
         cFuncionario.funcionario.setNome(txtCadFunNom.getText());
         cFuncionario.funcionario.setDataNasc((txtCadFunDat.getText()).replace("/", "-"));
         cFuncionario.funcionario.setTelefone(cFuncionario.funcionario.retiraCel(txtCadFunTel.getText()));
@@ -609,7 +586,6 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             String mes = cFuncionario.funcionario.getDataNasc().substring(5, 7);
             String dia = cFuncionario.funcionario.getDataNasc().substring(8);
             cFuncionario.funcionario.setDataNasc(dia + "" + mes + "" + ano);
-            JOptionPane.showMessageDialog(null, cFuncionario.funcionario.getDataNasc());
             txtCadFunDat.setText(cFuncionario.funcionario.getDataNasc());
             txtCadFunCel.setText(cFuncionario.funcionario.getCelular());
             txtCadFunCpf.setText(cFuncionario.funcionario.getCpf());
@@ -666,18 +642,33 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCadFunNumActionPerformed
 
-    private void btnDadExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluirMouseClicked
-        // TODO add your handling code here:
-        CTabela tabela = new CTabela();
-        String msg = cFuncionario.apagar(cFuncionario.funcionario);
-        JOptionPane.showMessageDialog(null, msg);
-        //abela.tabela.deletarLinha(TelaPrincipal.getCod());
-        //JOptionPane.showMessageDialog(null,TelaPrincipal.getLin());
-    }//GEN-LAST:event_btnDadExcluirMouseClicked
+    private void btnAlterarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlterarMouseClicked
 
-    private void btnDadExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadExcluirActionPerformed
+    }//GEN-LAST:event_btnAlterarMouseClicked
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDadExcluirActionPerformed
+        cFuncionario.funcionario.setNome(txtCadFunNom.getText());
+        cFuncionario.funcionario.setDataNasc((txtCadFunDat.getText()).replace("/",""));
+        cFuncionario.funcionario.setTelefone(cFuncionario.funcionario.retiraCel(txtCadFunTel.getText()));
+        cFuncionario.funcionario.setCelular(cFuncionario.funcionario.retiraCel(txtCadFunCel.getText()));
+        cFuncionario.funcionario.setCpf(cFuncionario.funcionario.retira(txtCadFunCpf.getText()));
+        cFuncionario.funcionario.setRg(cFuncionario.funcionario.retira(txtCadFunRg.getText()));
+        cFuncionario.funcionario.setEmail(txtCadFunEma.getText());
+        cFuncionario.funcionario.setCep(cFuncionario.funcionario.retira(txtCadFunCep.getText()));
+        cFuncionario.funcionario.setRua(txtCadFunRua.getText());
+        cFuncionario.funcionario.setNumero(Integer.parseInt(txtCadFunNum.getText()));
+        cFuncionario.funcionario.setBairro(txtCadFunBai.getText());
+        cFuncionario.funcionario.setCidade(txtCadFunCid.getText());
+        cFuncionario.funcionario.setComplemento(txtCadFunCom.getText());
+        cFuncionario.funcionario.setEstado(cbCadFunUf.getItemAt(cbCadFunUf.getSelectedIndex()));
+        // cFuncionario.funcionario.setObservacao(txtCadFunFunObs.getText());
+        if (Validacao.validaCpf(cFuncionario.funcionario.getCpf())) {
+            JOptionPane.showMessageDialog(null, cFuncionario.alterar(cFuncionario.funcionario));
+        } else {
+            JOptionPane.showMessageDialog(null, "cpf invalido");
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnDadExcluir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluir1MouseClicked
         // TODO add your handling code here:
@@ -691,9 +682,9 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCadCancelar;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnDadExcluir;
     private javax.swing.JButton btnDadExcluir1;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbCadFunUf;

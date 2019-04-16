@@ -49,7 +49,6 @@ public class UsuarioDAO {
         this.usuario = usuario;
         try {
             bd.setSql("insert into tbusuario (COD_FUNCIONARIO,LOGIN,SENHA,PERFIL) values(?,?,?,?)");
-            System.out.println(bd.getSql());
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, usuario.getFuncionario());
@@ -72,14 +71,12 @@ public class UsuarioDAO {
     public String alterar(Usuario usuario) {
         this.usuario = usuario;
         try {
-            bd.setSql("update tbusuario set COD_FUNCIONARIO = ?,LOGIN = ?,SENHA = ?, PERFIL = ?, WHERE COD_FUNCIONARIO = " + usuario.getCod());
-            System.out.println(bd.getSql());
+            bd.setSql("update tbusuario set COD_FUNCIONARIO = ?,SENHA = ?, PERFIL = ? WHERE login = '"+usuario.getLogin()+"'");
             Connection conex = bd.conectar();
             bd.setPst(conex.prepareStatement(bd.getSql()));
             bd.getPst().setInt(1, usuario.getFuncionario());
-            bd.getPst().setString(2, usuario.getLogin());
-            bd.getPst().setString(3, usuario.getSenha());
-            bd.getPst().setString(4, usuario.getPerfil());
+            bd.getPst().setString(2, usuario.getSenha());
+            bd.getPst().setString(3, usuario.getPerfil());
             if (bd.getPst().executeUpdate() == 0) {
                 bd.connection.close();
                 return "Falha na atualização";
@@ -99,7 +96,7 @@ public class UsuarioDAO {
      * @return
      */
     public ResultSet localizar(String cod) {
-        bd.setSql("select * from tbusuario where login = '" + cod +"'");
+        bd.setSql("select * from tbusuario where LOGIN = '" + cod +"'");
         //JOptionPane.showMessageDialog(null, "localizao"+cod);
         try {
             Connection conex = bd.conectar();
