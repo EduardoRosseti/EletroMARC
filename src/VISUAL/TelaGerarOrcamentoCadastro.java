@@ -607,15 +607,15 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
+        cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
         cOrcamento.orcamento.setCodCliente(cCliente.cliente.getCod());
         cOrcamento.orcamento.setDataSolicitacao((txtCadDat.getText()).replace("/", "-"));
         cOrcamento.orcamento.setCodMercadoria(cMercadoria.mercadoria.getCod());
         cOrcamento.orcamento.setServicoSolicitado(txtCadSer.getText());
-        cOrcamento.orcamento.setcodPrestacaoServicos(Integer.parseInt(txtCadValMao.getText()));
+        cOrcamento.orcamento.setcodPrestacaoServicos(cValoresServicos.valoresServicos.getCod());
         cOrcamento.orcamento.setValorProdutoUtilizado(Float.parseFloat(txtCadVal.getText()));
         cOrcamento.orcamento.setValorTotal(Float.parseFloat(txtCadValTot.getText()));
         cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
-        cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
         JOptionPane.showMessageDialog(null, cOrcamento.alterar(cOrcamento.orcamento));
     }//GEN-LAST:event_btnAlterarActionPerformed
 
