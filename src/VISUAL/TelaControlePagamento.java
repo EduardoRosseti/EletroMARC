@@ -342,7 +342,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDadExcluirActionPerformed
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void cbPesquisar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisar2ActionPerformed

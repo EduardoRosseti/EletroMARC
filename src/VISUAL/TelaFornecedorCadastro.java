@@ -9,12 +9,8 @@ import CONTROLE.CFornecedor;
 import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
-import MODELO.WebServiceCep;
-import static VISUAL.TelaClienteCadastro.tbBusca;
-import java.util.ArrayList;
+import MODELO.Validacao;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
 
 /**
@@ -482,7 +478,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void btnCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForActionPerformed
@@ -501,13 +497,13 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
-            if (true) {
+            if(Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0){
                 JOptionPane.showMessageDialog(null, cFornecedor.gravar(cFornecedor.fornecedor));
-            } else {
-
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "CNPJ invalido");
+            JOptionPane.showMessageDialog(null, "CNPJ não valido");
         }
     }//GEN-LAST:event_btnCadForActionPerformed
 
@@ -614,13 +610,13 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
-            if (true) {
+            if(Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0){
                 JOptionPane.showMessageDialog(null, cFornecedor.alterar(cFornecedor.fornecedor));
-            } else {
-
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "CNPJ invalido");
+            JOptionPane.showMessageDialog(null, "CNPJ não valido");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

@@ -10,6 +10,7 @@ import CONTROLE.CFabricante;
 import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
+import MODELO.Validacao;
 import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
@@ -45,21 +46,6 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
 
     }
 
-    public int getCod() {
-        return cod;
-    }
-
-    public void setCod(int cod) {
-        this.cod = cod;
-    }
-
-    public int getLin() {
-        return lin;
-    }
-
-    public void setLin(int lin) {
-        this.lin = lin;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -508,9 +494,13 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(WIDTH));
         if (cValidacao.validaCnpj(cFabricante.fabricante.getCnpj())) {
-            JOptionPane.showMessageDialog(null, cFabricante.gravar(cFabricante.fabricante));
+            if(Validacao.validarEmail(cFabricante.fabricante.getEmail()) > 0){
+                JOptionPane.showMessageDialog(null, cFabricante.gravar(cFabricante.fabricante));
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Falha ao cadastrar");
+            JOptionPane.showMessageDialog(null, "CNPJ não valido");
         }
 
     }//GEN-LAST:event_btnCadForActionPerformed
@@ -617,9 +607,13 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(cbCadFabUf.getSelectedIndex()));
         if (cValidacao.validaCnpj(cFabricante.fabricante.getCnpj())) {
-            JOptionPane.showMessageDialog(null, cFabricante.alterar(cFabricante.fabricante));
+            if(Validacao.validarEmail(cFabricante.fabricante.getEmail()) > 0){
+                JOptionPane.showMessageDialog(null, cFabricante.alterar(cFabricante.fabricante));
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Falha ao atualizar");
+            JOptionPane.showMessageDialog(null, "CNPJ não valido");
         }
 
     }//GEN-LAST:event_btnAlterarActionPerformed

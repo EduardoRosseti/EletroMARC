@@ -65,7 +65,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         txtCadNom = new javax.swing.JTextField();
         lblDat = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
 
         btnCad.setText("Cadastrar");
@@ -222,7 +222,12 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addGap(93, 93, 93))
         );
 
-        jButton3.setText("Cancelar");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -241,7 +246,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addGap(61, 61, 61)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
                 .addComponent(btnCad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
@@ -278,7 +283,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(jButton3)
+                    .addComponent(btnCancelar)
                     .addComponent(btnCad))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -362,14 +367,19 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, cValoresServicos.alterar(cValoresServicos.valoresServicos));
     }//GEN-LAST:event_btnAlterarActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCad;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar2;
     private javax.swing.JComboBox<String> cbPesquisar;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -142,4 +142,11 @@ public class Validacao {
         }
 
     }
+
+public static int validarEmail(String email){
+    //Verifica a posicao do @ no emal.
+    return email.indexOf("@");
+    
+
+}
 }

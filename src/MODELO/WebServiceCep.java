@@ -233,8 +233,7 @@ public final class WebServiceCep {
 	 * @return {@link WebServiceCep} contendo as informa��es da pesquisa.
 	 */
 	public static WebServiceCep searchCep(String cep) {
-		cep = cep.replaceAll( "\\D*", "" ); //To numeric digits only
-		          JOptionPane.showMessageDialog(null, cep);
+		cep = cep.replaceAll( "\\D*", "" ); //To numeric digits 
                 if (cep.length() > 8)
 			cep = cep.substring(0, 8);
 		WebServiceCep loadCep = new WebServiceCep(cep);
@@ -261,7 +260,7 @@ public final class WebServiceCep {
 			loadCep.setResultText("Erro inesperado.");
 			loadCep.setResulCode(-17);
 		}
-                JOptionPane.showMessageDialog(null, " " + loadCep);
+                //JOptionPane.showMessageDialog(null, " " + loadCep);
 		return loadCep;
 	}
 	

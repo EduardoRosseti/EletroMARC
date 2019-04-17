@@ -86,10 +86,8 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnCadastrar" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="btnCadCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnAlterar" alignment="0" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnAlterar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCadCancelar" min="-2" max="-2" attributes="0"/>
                   <Component id="btnDadExcluir1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>

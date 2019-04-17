@@ -388,7 +388,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnDadExcluirActionPerformed
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed

@@ -27,7 +27,6 @@ public class UsuarioDAO {
 
     public boolean consultar(String login, String senha) {
         bd.setSql("select LOGIN,SENHA from tbusuario where LOGIN = '" + login + "' and SENHA = '" + senha + "'");
-        System.out.println(bd.getSql());
         try {
             Connection conex = bd.conectar();
             //JOptionPane.showMessageDialog(null, bd.connection);

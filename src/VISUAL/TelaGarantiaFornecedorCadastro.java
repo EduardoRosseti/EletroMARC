@@ -8,7 +8,6 @@ package VISUAL;
 import CONTROLE.CGarantiaFornecedor;
 import CONTROLE.CMercadoria;
 import CONTROLE.CTabela;
-import static VISUAL.TelaControleMercadoria.tbBusca;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -44,10 +43,10 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
         btnCad = new javax.swing.JButton();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         btnExcluir = new javax.swing.JButton();
         txtPesquisar = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        bntCancelar = new javax.swing.JButton();
         btnPesquisar2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtValor = new javax.swing.JTextField();
@@ -107,7 +106,7 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_GARANTIA_FORNECEDOR" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_GARANTIA_FORNECEDOR" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,7 +130,12 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton3.setText("Cancelar");
+        bntCancelar.setText("Cancelar");
+        bntCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntCancelarActionPerformed(evt);
+            }
+        });
 
         btnPesquisar2.setText("Pesquisar");
         btnPesquisar2.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +220,7 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
                 .addGap(145, 145, 145)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(147, 147, 147)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bntCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(btnCad, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(72, 72, 72))
@@ -251,7 +255,7 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(jButton3)
+                    .addComponent(bntCancelar)
                     .addComponent(btnCad))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,21 +368,25 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, cGarantiaFornecedor.apagar(cGarantiaFornecedor.garantiaFornecedor));
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void bntCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_bntCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntCancelar;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCad;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar2;
     private javax.swing.JComboBox<String> cbPesquisar;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblData;
-    private javax.swing.JTable tbBusca;
+    public static javax.swing.JTable tbBusca;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPesquisar;
     private javax.swing.JTextField txtValor;

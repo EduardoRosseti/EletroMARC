@@ -8,7 +8,6 @@ package VISUAL;
 import CONTROLE.CFuncionario;
 import CONTROLE.CTabela;
 import CONTROLE.CUsuario;
-import static VISUAL.TelaControleMercadoria.tbBusca;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 
@@ -222,6 +221,11 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         });
 
         btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
@@ -394,6 +398,11 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         tbBusca.setAutoCreateRowSorter(true);
         cTabela.tabela.setTipo(1);
     }//GEN-LAST:event_txtNomeKeyReleased
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

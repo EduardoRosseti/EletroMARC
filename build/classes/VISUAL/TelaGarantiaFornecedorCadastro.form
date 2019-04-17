@@ -25,7 +25,7 @@
               <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
               <Component id="btnExcluir" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="110" max="-2" attributes="0"/>
+              <Component id="bntCancelar" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace pref="113" max="32767" attributes="0"/>
               <Component id="btnCad" min="-2" pref="110" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
@@ -70,7 +70,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnAlterar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bntCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -169,10 +169,13 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPesquisarKeyReleased"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="bntCancelar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bntCancelarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnPesquisar2">
       <Properties>
