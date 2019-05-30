@@ -9,7 +9,7 @@ import CONTROLE.CTabela;
 import CONTROLE.CValoresServicos;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-
+//atualizado
 /**
  *
  * @author eduar
@@ -175,7 +175,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        lblDat.setText("jLabel5");
+        lblDat.setText("Data");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

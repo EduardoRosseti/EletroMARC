@@ -67,6 +67,8 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -265,6 +267,13 @@ public class TelaPrincipal extends javax.swing.JFrame  {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu6.setText("RELÁTORIOS");
+
+        jMenuItem6.setText("Cliente");
+        jMenu6.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu6);
+
         jMenu2.setText("SAIR");
 
         jMenuItem3.setText("Sair do Sistema");
@@ -459,6 +468,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenu jMenu9;
@@ -469,6 +479,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;

@@ -13,7 +13,7 @@ import CONTROLE.CPagamento;
 import CONTROLE.CTabela;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-
+//atualizado
 /**
  *
  * @author jose
@@ -56,7 +56,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar2 = new javax.swing.JComboBox<>();
+        cbPesquisar2 = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -68,7 +68,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         txtValTot = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cbFor = new javax.swing.JComboBox<>();
+        cbFor = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtDat = new javax.swing.JLabel();
@@ -79,7 +79,12 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
-        jButton1.setText("Confirmar");
+        jButton1.setText("Alterar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnDadExcluir.setText("Excluir");
         btnDadExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -142,7 +147,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbBusca);
 
-        cbPesquisar2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_PAGAMENTO", "NOME_CLIENTE" }));
+        cbPesquisar2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_PAGAMENTO", "NOME_CLIENTE" }));
         cbPesquisar2.setToolTipText("");
         cbPesquisar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,7 +218,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Data Do Pagamento:");
 
-        cbFor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartao", "Cheque" }));
+        cbFor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dinheiro", "Cartao", "Cheque" }));
 
         jLabel2.setText("Forma de pagamento:");
 
@@ -298,26 +303,26 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(119, 119, 119)
-                            .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(47, 47, 47)
-                            .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(78, 78, 78)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(56, 56, 56)
-                            .addComponent(btnCadastrar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
+                .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCadastrar)
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -438,6 +443,10 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         x1 -= x2;
         txtValTot.setText(Float.toString(x1));
     }//GEN-LAST:event_txtDesKeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

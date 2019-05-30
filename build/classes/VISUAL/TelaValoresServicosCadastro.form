@@ -290,7 +290,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblDat">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel5"/>
+            <Property name="text" type="java.lang.String" value="Data"/>
           </Properties>
         </Component>
       </SubComponents>
