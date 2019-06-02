@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tbOrcamento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6cfff114-b605-4361-bb88-dcdff5d2cc78">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="localhost"/>
+	<queryString language="SQL">
+		<![CDATA[select *from tborcamento]]>
+	</queryString>
+	<field name="COD_ORCAMENTO" class="java.lang.String"/>
+	<field name="COD_MERCADORIA" class="java.lang.String"/>
+	<field name="COD_CLIENTE" class="java.lang.String"/>
+	<field name="COD_PRESTACAO_SERVICO" class="java.lang.String"/>
+	<field name="SERVICO_SOLICITADO" class="java.lang.String"/>
+	<field name="DESCRICAO" class="java.lang.String"/>
+	<field name="DATA" class="java.lang.String"/>
+	<field name="VALOR_MERCADORIA" class="java.lang.String"/>
+	<field name="VALOR_TOTAL" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="STATUS_PAG" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="0" width="100" height="30" uuid="0291ef38-7733-4e6c-ac71-2edabadd7e56"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORÇAMENTO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="490" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="30" uuid="cac75464-af41-4614-bf9e-dd0dd03f9377"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD ORÇAMENTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="0" width="140" height="30" uuid="cf87e636-27fb-4e26-952a-6b354f012533"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_ORCAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="0" width="114" height="30" uuid="10b44b86-8a15-46b0-8635-d3cf8cd9ae4d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATUS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="30" width="120" height="30" uuid="74e3dbed-60ca-40f0-ac09-c523af4f5849"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD MERCADORIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="30" width="150" height="30" uuid="10f8cfe1-daf3-434b-a554-c5e79be4ca4f"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_MERCADORIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="120" width="150" height="30" uuid="e09d5fdd-03ae-4673-9b14-1d7003238731"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SERVIÇO SOLICITADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="30" uuid="b7ffc9f2-2e08-4743-90c0-88be5da859b2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD CLIENTE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="60" width="130" height="30" uuid="bd0d7044-0d5a-4a9d-acc6-715a8fdb0981"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_CLIENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="140" width="550" height="70" uuid="9c0beb7e-8149-4f88-8011-1127d58a8903"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SERVICO_SOLICITADO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="210" width="100" height="30" uuid="c54db8dc-98d8-49b2-ab95-69d9f00cfa01"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIÇÃO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="230" width="550" height="100" uuid="a8c928e7-11d4-45ee-8127-9cce1a41bd2d"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRICAO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="400" width="100" height="30" uuid="15e399c0-93d4-4759-9b66-54bd037359c2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="400" width="100" height="30" uuid="207dacab-2681-49d1-b963-e5263b588c9e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="340" width="160" height="30" uuid="c0d8dec4-0c15-411f-ad4a-410667251fce"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR MERCADORIA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="340" width="160" height="30" uuid="ca879392-1b33-445a-8c4e-8fc3cd784005"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VALOR_MERCADORIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="430" width="160" height="30" uuid="87957a53-b8d0-410b-96b8-789bd1f77786"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATUS_PAG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="430" width="150" height="30" uuid="43c4d048-d32d-4902-ae2f-67b90a3e9035"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS PAG:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="370" width="100" height="30" uuid="84b11c9d-c9c7-4202-801b-d166849aa960"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="370" width="150" height="30" uuid="1022c822-9157-48a5-9091-5b0a3996ad68"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VALOR_TOTAL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="380" y="0" width="100" height="30" uuid="4f8c607b-1db0-480f-95ea-b669d8b35eb8"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[STATUS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="100" height="30" uuid="df6ad50b-b580-461c-9228-552ef25d1849"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD SERVIÇO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="90" width="240" height="30" uuid="9539c3f9-a4fa-4046-b47c-f1643012b6c6"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_PRESTACAO_SERVICO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

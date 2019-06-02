@@ -14,7 +14,7 @@ import MODELO.Validacao;
 import static VISUAL.TelaFuncionarioCadastro.tbBusca;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-
+//atualizado
 /**
  *
  * @author jose
@@ -77,13 +77,13 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         txtCadFunCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadFunUf = new javax.swing.JComboBox<>();
+        cbCadFunUf = new javax.swing.JComboBox<String>();
         btnCadCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
         btnDadExcluir1 = new javax.swing.JButton();
@@ -259,7 +259,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("UF");
 
-        cbCadFunUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadFunUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadFunUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadFunUfActionPerformed(evt);
@@ -382,7 +382,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_FUNCIONARIO", "Nome", "NascData", "Telefone" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_FUNCIONARIO", "Nome", "NascData", "Telefone" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,16 +455,19 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnDadExcluir1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(137, 137, 137)
-                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(93, 93, 93)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44))
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
                                 .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(131, 131, 131)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -487,16 +490,15 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
                     .addComponent(btnPesquisar))
                 .addGap(7, 7, 7)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCadastrar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnCadCancelar)
-                        .addComponent(btnAlterar))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnCadCancelar)
                     .addComponent(btnDadExcluir1))
                 .addGap(25, 25, 25))
         );
@@ -528,12 +530,11 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbCadFunUfActionPerformed
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         // TODO add your handling code here:
-
         cFuncionario.funcionario.setNome(txtCadFunNom.getText());
         cFuncionario.funcionario.setDataNasc((txtCadFunDat.getText()).replace("/", "-"));
         cFuncionario.funcionario.setTelefone(cFuncionario.funcionario.retiraCel(txtCadFunTel.getText()));
@@ -549,10 +550,14 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cFuncionario.funcionario.setComplemento(txtCadFunCom.getText());
         cFuncionario.funcionario.setEstado(cbCadFunUf.getItemAt(cbCadFunUf.getSelectedIndex()));
         // cFuncionario.funcionario.setObservacao(txtCadFunFunObs.getText());
-        if (Validacao.validaCpf(cFuncionario.funcionario.getCpf())) {
-            JOptionPane.showMessageDialog(null, cFuncionario.gravar(cFuncionario.funcionario));
+        if (Validacao.validaCpf(cFuncionario.funcionario.getCep())) {
+            if(Validacao.validarEmail(cFuncionario.funcionario.getEmail()) > 0){
+                JOptionPane.showMessageDialog(null, cFuncionario.gravar(cFuncionario.funcionario));
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "cpf invalido");
+            JOptionPane.showMessageDialog(null, "CPF não valido");
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
@@ -663,10 +668,14 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cFuncionario.funcionario.setComplemento(txtCadFunCom.getText());
         cFuncionario.funcionario.setEstado(cbCadFunUf.getItemAt(cbCadFunUf.getSelectedIndex()));
         // cFuncionario.funcionario.setObservacao(txtCadFunFunObs.getText());
-        if (Validacao.validaCpf(cFuncionario.funcionario.getCpf())) {
-            JOptionPane.showMessageDialog(null, cFuncionario.alterar(cFuncionario.funcionario));
+        if (Validacao.validaCpf(cFuncionario.funcionario.getCep())) {
+            if(Validacao.validarEmail(cFuncionario.funcionario.getEmail()) > 0){
+                JOptionPane.showMessageDialog(null, cFuncionario.alterar(cFuncionario.funcionario));
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "cpf invalido");
+            JOptionPane.showMessageDialog(null, "CPF não valido");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

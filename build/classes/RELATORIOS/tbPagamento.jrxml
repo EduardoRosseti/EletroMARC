@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tbPagamento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="41f4598c-8fac-4af5-9ee2-59c971337ee6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="localhost"/>
+	<queryString language="SQL">
+		<![CDATA[select *from tbpagamento]]>
+	</queryString>
+	<field name="COD_PAGAMENTO" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="COD_PAGAMENTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbpagamento"/>
+	</field>
+	<field name="FORMA_PAGAMENTO" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="FORMA_PAGAMENTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbpagamento"/>
+	</field>
+	<field name="COD_ORCAMENTO" class="java.lang.String"/>
+	<field name="DESCONTO" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="DESCONTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbpagamento"/>
+	</field>
+	<field name="DATA_PAGAMENTO" class="java.sql.Timestamp">
+		<property name="com.jaspersoft.studio.field.label" value="DATA_PAGAMENTO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbpagamento"/>
+	</field>
+	<field name="TOTAL" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbpagamento"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="270" height="30" uuid="0f05ac5b-7e86-4619-b08f-13f53d0e5604"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPROVANTE DE PAGAMENTO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="211" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="140" height="30" uuid="8d3023be-8382-42ef-9a97-19c540db0d68"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD PAGAMENTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="0" width="170" height="30" uuid="60bac8be-b50a-4e53-8e99-d88abca63e64"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_PAGAMENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="60" width="180" height="30" uuid="d172bc31-44a2-4997-b745-60d99a5f0cb4"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMA DE PAGAMENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="120" height="30" uuid="b5c3a910-9287-4205-a71b-5bf7d4078f18"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD ORÇAMENTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="30" width="140" height="30" uuid="e0019146-28e7-4944-9e69-21900887a630"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_ORCAMENTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="60" width="160" height="30" uuid="a9d32da7-2b9a-41cf-bfc0-1e3544634ed2"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{FORMA_PAGAMENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="90" width="100" height="30" uuid="e36f1a78-0654-40ab-9b50-2633dc14dfad"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="100" height="30" uuid="96b11cb5-fa5d-42c8-98ce-1cb4d89968f1"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCONTO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="120" width="100" height="30" uuid="877d6954-c615-4469-a50c-73e9ab05b6e4"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCONTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="90" width="170" height="30" uuid="2d7bc2a8-35d9-411b-9587-a5bcdab4daca"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATA_PAGAMENTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="150" width="100" height="30" uuid="bfd9460a-e0d4-444c-9fed-fe177a00bd6c"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="50" y="150" width="100" height="30" uuid="f8e0c0aa-8b23-4532-9ec1-f7905ca3bd32"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOTAL}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

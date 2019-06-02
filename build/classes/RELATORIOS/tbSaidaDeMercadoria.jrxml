@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tbSaidaDeMercadoria" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9e1bc15d-270b-4f45-83e8-b5c09e601c65">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="localhost"/>
+	<queryString language="SQL">
+		<![CDATA[select *from tbsaidamercadoria]]>
+	</queryString>
+	<field name="COD_SAIDA_MERCADORIA" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="COD_SAIDA_MERCADORIA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbsaidamercadoria"/>
+	</field>
+	<field name="NOME_MERCADORIA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NOME_MERCADORIA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbsaidamercadoria"/>
+	</field>
+	<field name="MOTIVO_SAIDA" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MOTIVO_SAIDA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbsaidamercadoria"/>
+	</field>
+	<field name="DATA_SAIDA" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="DATA_SAIDA"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbsaidamercadoria"/>
+	</field>
+	<field name="VALOR" class="java.lang.Float">
+		<property name="com.jaspersoft.studio.field.label" value="VALOR"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tbsaidamercadoria"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="170" y="0" width="230" height="30" uuid="1774afdd-27bb-4786-822e-cfcdaef684ba"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SAIDA DE MERCADORIA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="d75c4bd5-c865-4377-9cee-773760472885"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD SAÍDA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="80" y="0" width="180" height="30" uuid="366723b8-3564-4709-bbac-9f0e14712530"/>
+				<textFieldExpression><![CDATA[$F{COD_SAIDA_MERCADORIA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="9b3fec99-38a9-4b5b-aef2-6f1549ae9d6b"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MERCADORIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="130" height="30" uuid="fbbe4a6f-fda9-4e69-b255-fd87c3817fc0"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOTIVO DA SAIDA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="90" y="0" width="230" height="30" uuid="352c38c6-ea4b-47b7-89c3-91d67fc483a7"/>
+				<textFieldExpression><![CDATA[$F{NOME_MERCADORIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="60" width="550" height="50" uuid="0ce563b9-3a23-4183-b18b-632711ef66c3"/>
+				<textFieldExpression><![CDATA[$F{MOTIVO_SAIDA}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="30" uuid="e35fe428-8b24-499a-8c2d-54310fe0444b"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA DA SAÍDA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="40" width="100" height="30" uuid="c9a344fb-3696-4bf1-9d04-1ec44093e0b7"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="0" width="100" height="30" uuid="dc92f4e5-81ba-4dc1-af36-fcfa66cd7bef"/>
+				<textFieldExpression><![CDATA[$F{DATA_SAIDA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="40" width="100" height="30" uuid="5e0f81ab-12d7-4542-a1bd-960caf1cdefb"/>
+				<textFieldExpression><![CDATA[$F{VALOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

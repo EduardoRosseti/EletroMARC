@@ -11,9 +11,10 @@ import CONTROLE.CMercadoria;
 import CONTROLE.CTabela;
 import CONTROLE.COrcamento;
 import CONTROLE.CValoresServicos;
+import MODELO.JavaMailApp;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-
+//atualizado
 /**
  *
  * @author jose
@@ -61,11 +62,11 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         btnCadastrar = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnCadastrar2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -76,7 +77,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         txtCadDes = new javax.swing.JTextField();
         txtCadVal = new javax.swing.JTextField();
-        cbStatus = new javax.swing.JComboBox<>();
+        cbStatus = new javax.swing.JComboBox<String>();
         jLabel9 = new javax.swing.JLabel();
         txtCadValTot = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -144,7 +145,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane5.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_ORCAMENTO", "NOME", "DATA", " " }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_ORCAMENTO", "NOME", "DATA", " " }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,10 +176,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnCadastrar2.setText("Cancelar");
-        btnCadastrar2.addActionListener(new java.awt.event.ActionListener() {
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrar2ActionPerformed(evt);
+                btnCancelarActionPerformed(evt);
             }
         });
 
@@ -227,7 +228,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando aprovacao", "Aprovado", "Reprovado", "Concluido", " " }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aguardando aprovacao", "Aprovado", "Reprovado", "Concluido", " " }));
 
         jLabel9.setText("Status");
 
@@ -306,8 +307,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
+                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblValMao)
                         .addGap(55, 55, 55)
                         .addComponent(jLabel8)
@@ -384,7 +385,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addGap(70, 70, 70)
                 .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76)
-                .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75)
                 .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(98, 98, 98)
@@ -406,7 +407,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAlterar)
-                    .addComponent(btnCadastrar2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcluir)
                     .addComponent(btnCadastrar)))
         );
@@ -536,6 +537,14 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
         cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
         JOptionPane.showMessageDialog(null, cOrcamento.gravar(cOrcamento.orcamento));
+        if ("Aguardando aprovacao".equals(cOrcamento.orcamento.getStatus())) {
+            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manuteção do " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ". Estou no aguardo para realizar a aprovação do Orcamento. Obrigado pela Atenção"
+                    + " \n\n att.";
+            JavaMailApp.enviarEmail(cCliente.cliente.getEmail(), "Aguardando Aprovação do Orçamento: ", corpo);
+        } else if ("Concluido".equals(cOrcamento.orcamento.getStatus())) {
+            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manutenção do(a) " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ", aguardamos o Sr. para retirada do aparelho. \n\n Att.";
+            JavaMailApp.enviarEmail(cCliente.cliente.getEmail(), "Serviço concluído", corpo);
+        }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtCadCliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadCliKeyPressed
@@ -602,9 +611,10 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         JOptionPane.showMessageDialog(null, cOrcamento.apagar(cOrcamento.orcamento));
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnCadastrar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrar2ActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCadastrar2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
@@ -612,12 +622,20 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cOrcamento.orcamento.setDataSolicitacao((txtCadDat.getText()).replace("/", "-"));
         cOrcamento.orcamento.setCodMercadoria(cMercadoria.mercadoria.getCod());
         cOrcamento.orcamento.setServicoSolicitado(txtCadSer.getText());
-        cOrcamento.orcamento.setcodPrestacaoServicos(Integer.parseInt(txtCadValMao.getText()));
+        cOrcamento.orcamento.setcodPrestacaoServicos(cValoresServicos.valoresServicos.getCod());
         cOrcamento.orcamento.setValorProdutoUtilizado(Float.parseFloat(txtCadVal.getText()));
         cOrcamento.orcamento.setValorTotal(Float.parseFloat(txtCadValTot.getText()));
         cOrcamento.orcamento.setDescricaoProblema(txtCadDes.getText());
         cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
         JOptionPane.showMessageDialog(null, cOrcamento.alterar(cOrcamento.orcamento));
+        if ("Aguardando aprovacao".equals(cOrcamento.orcamento.getStatus())) {
+            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manuteção do " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ". Estou no aguardo para realizar a aprovação do Orcamento. Obrigado pela Atenção"
+                    + " \n\n att.";
+            JavaMailApp.enviarEmail(cCliente.cliente.getEmail(), "Aguardando Aprovação do Orçamento ", corpo);
+        } else if ("Concluido".equals(cOrcamento.orcamento.getStatus())) {
+            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manutenção do(a) " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ", aguardamos o Sr. para retirada do aparelho. \n\n Att.";
+            JavaMailApp.enviarEmail(cCliente.cliente.getEmail(), "Serviço concluído", corpo);
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void txtCadValKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCadValKeyReleased
@@ -660,7 +678,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCadCliOrc;
     private javax.swing.JButton btnCadMerOrc;
     private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCadastrar2;
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JComboBox<String> cbPesquisar;

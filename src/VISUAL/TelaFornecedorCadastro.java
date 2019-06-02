@@ -9,14 +9,10 @@ import CONTROLE.CFornecedor;
 import CONTROLE.CTabela;
 import CONTROLE.CValidacao;
 import CONTROLE.CWebServiceCep;
-import MODELO.WebServiceCep;
-import static VISUAL.TelaClienteCadastro.tbBusca;
-import java.util.ArrayList;
+import MODELO.Validacao;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
 import net.proteanit.sql.DbUtils;
-
+//atualizado
 /**
  *
  * @author jose
@@ -81,10 +77,10 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         txtCadForCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadForUf = new javax.swing.JComboBox<>();
+        cbCadForUf = new javax.swing.JComboBox<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnCadFor = new javax.swing.JButton();
@@ -220,7 +216,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("*UF:");
 
-        cbCadForUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadForUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadForUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadForUfActionPerformed(evt);
@@ -374,7 +370,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)))
         );
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_FORNECEDOR\t", "NOME" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_FORNECEDOR\t", "NOME" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -449,15 +445,15 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                                 .addComponent(btnPesquisar)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59)
+                        .addGap(88, 88, 88)
                         .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72)
+                        .addGap(83, 83, 83)
                         .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCadFor, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
+                        .addGap(75, 75, 75))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -471,18 +467,18 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDadExcluir)
-                    .addComponent(btnCadFor)
                     .addComponent(btnCadCancelar)
-                    .addComponent(btnAlterar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAlterar)
+                    .addComponent(btnCadFor)
+                    .addComponent(btnDadExcluir))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void btnCadForActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadForActionPerformed
@@ -501,13 +497,13 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
-            if (true) {
+            if(Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0){
                 JOptionPane.showMessageDialog(null, cFornecedor.gravar(cFornecedor.fornecedor));
-            } else {
-
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "CNPJ invalido");
+            JOptionPane.showMessageDialog(null, "CNPJ não valido");
         }
     }//GEN-LAST:event_btnCadForActionPerformed
 
@@ -614,13 +610,13 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
-            if (true) {
+            if(Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0){
                 JOptionPane.showMessageDialog(null, cFornecedor.alterar(cFornecedor.fornecedor));
-            } else {
-
+            }else{
+                JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "CNPJ invalido");
+            JOptionPane.showMessageDialog(null, "CNPJ não valido");
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 

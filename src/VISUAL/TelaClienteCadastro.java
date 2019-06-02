@@ -12,7 +12,7 @@ import CONTROLE.CWebServiceCep;
 import MODELO.Validacao;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
-
+//atualizado
 /**
  *
  * @author jose
@@ -25,19 +25,19 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     Validacao validacao;
     CCliente ccliente;
     CTabela cTabela;
-
+    
     public TelaClienteCadastro() {
         initComponents();
         cTabela = new CTabela();
         ccliente = new CCliente();
         //JOptionPane.showMessageDialog(null, TelaLogin.getTipoUsuario());
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnDadExcluir.setEnabled(false);
         } else {
-
+            
         }
     }
 
@@ -80,13 +80,13 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         txtCadCep = new javax.swing.JFormattedTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        cbCadUf = new javax.swing.JComboBox<>();
+        cbCadUf = new javax.swing.JComboBox<String>();
         btnCadCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbBusca = new javax.swing.JTable();
-        cbPesquisar = new javax.swing.JComboBox<>();
+        cbPesquisar = new javax.swing.JComboBox<String>();
         txtPesquisar = new javax.swing.JTextField();
         btnPesquisar = new javax.swing.JButton();
         btnDadExcluir = new javax.swing.JButton();
@@ -211,7 +211,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Estado:");
 
-        cbCadUf.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbCadUf.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbCadUf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbCadUfActionPerformed(evt);
@@ -345,10 +345,10 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtCadEma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         btnCadCancelar.setText("Cancelar");
@@ -407,7 +407,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tbBusca);
 
-        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COD_CLIENTE", "NOME", "DATA_NASCIMENTO", "TELEFONE" }));
+        cbPesquisar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COD_CLIENTE", "NOME", "DATA_NASCIMENTO", "TELEFONE" }));
         cbPesquisar.setToolTipText("");
         cbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -482,21 +482,20 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98)
+                        .addComponent(btnDadExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 775, Short.MAX_VALUE))
-                .addContainerGap())
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -504,21 +503,21 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadCancelar)
                     .addComponent(btnCadastrar)
                     .addComponent(btnDadExcluir)
                     .addComponent(btnAlterar))
-                .addGap(15, 15, 15))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadCancelarActionPerformed
-
+        this.dispose();
     }//GEN-LAST:event_btnCadCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -540,8 +539,11 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
         // ccliente.cliente.setObservacao(txtCadObs.getText());
         if (Validacao.validaCpf(ccliente.cliente.getCpf())) {
-            JOptionPane.showMessageDialog(null, ccliente.gravar(ccliente.cliente));
-
+            if (Validacao.validarEmail(ccliente.cliente.getEmail()) > 0) {
+                JOptionPane.showMessageDialog(null, ccliente.gravar(ccliente.cliente));
+            } else {
+                JOptionPane.showMessageDialog(null, "Email não valido");
+            }
         } else {
             JOptionPane.showMessageDialog(null, "cpf invalido");
         }
@@ -643,7 +645,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbCadUfActionPerformed
 
     private void txtCadCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadCepActionPerformed
-
+        
         CWebServiceCep cWeb = new CWebServiceCep();
         //A ferramenta de busca ignora qualquer caracter que n?o seja n?mero.
         //caso a busca ocorra bem, imprime os resultados.
@@ -656,7 +658,6 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             //caso haja problemas imprime as exce??es.
         } else {
             JOptionPane.showMessageDialog(null, "Erro numero: " + cWeb.webServiceCep.getResulCode());
-
             JOptionPane.showMessageDialog(null, "Descrição do erro: " + cWeb.webServiceCep.getResultText());
         }
     }//GEN-LAST:event_txtCadCepActionPerformed
@@ -689,12 +690,15 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
         // ccliente.cliente.setObservacao(txtCadObs.getText());
         if (Validacao.validaCpf(ccliente.cliente.getCpf())) {
-            if (!ccliente.alterar(ccliente.cliente)) {
-                JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");
+            if (Validacao.validarEmail(ccliente.cliente.getEmail()) > 0) {
+                if (!ccliente.alterar(ccliente.cliente)) {
+                    JOptionPane.showMessageDialog(null, "Atualização realizada com sucesso");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Não reliada a atualização");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Não reliada a atualização");
+                JOptionPane.showMessageDialog(null, "Email não valido");
             }
-
         } else {
             JOptionPane.showMessageDialog(null, "cpf invalido");
         }
