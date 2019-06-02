@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tbGarantiaFornecedor" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85c68c06-86d1-41bd-bfc7-35aefbe6c487">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="localhost"/>
+	<queryString language="SQL">
+		<![CDATA[select *from tbgarantiafornecedor]]>
+	</queryString>
+	<field name="COD_GARANTIA_FORNECEDOR" class="java.lang.String"/>
+	<field name="COD_MERCADORIA" class="java.lang.String"/>
+	<field name="DATA" class="java.lang.String"/>
+	<field name="VALOR_PAGO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="30" uuid="2b6f7173-2a36-48b8-ba3c-227aba4ebedd"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GARANTIA DO FORNECEDOR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="160" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="30" uuid="81d8a8a8-7e82-43c2-a122-4e92de42085d"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD GARANTIA: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="150" height="30" uuid="03be6378-c4a5-4e8f-985c-57c49cc437f9"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD MERCADORIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="100" height="30" uuid="64c2bfeb-352f-46f0-84ec-e15eec2ebc8a"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="100" height="30" uuid="abee4850-dc6d-44be-8a2a-c77c4b7d7fd9"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR PAGO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="0" width="220" height="30" uuid="629a056f-153b-4937-bcd0-f1fefca2d33c"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_MERCADORIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="60" width="100" height="30" uuid="d86ed212-a3f7-49ad-92be-6708fcfc0afa"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DATA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="90" width="180" height="30" uuid="53962dc4-b2c0-40f6-8cc6-7e95a5e9e39e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VALOR_PAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="30" width="260" height="30" uuid="bc0d3608-1941-4a34-9a00-2ef4415ee96d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_GARANTIA_FORNECEDOR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -34,7 +34,7 @@ public class BD {
             connection = DriverManager.getConnection(url, user, password);
             //JOptionPane.showMessageDialog(null, "Certo");
             return connection;
-        } catch (Exception erro) {
+        } catch (ClassNotFoundException | SQLException erro) {
             JOptionPane.showMessageDialog(null,erro);
             return null;
         }
