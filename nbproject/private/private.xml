@@ -3,10 +3,28 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/RelatorioDAO.java</file>
-            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/RELATORIOS/RelatorioService.java</file>
-            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CRelatorio.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CFabricante.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaControlePagamento.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaMercadoriaCadastro.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/MercadoriaDAO.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CUsuario.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CGarantiaFornecedor.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/ControleMercadoriaDAO.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CFuncionario.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaLogin.java</file>
             <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CCliente.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/GarantiaFornecedorDAO.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaControleMercadoria.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/ClienteDAO.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaGerarOrcamentoCadastro.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaUsuarioCadastro.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/MODELO/Cliente.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaFuncionarioCadastro.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/FuncionarioDAO.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/CONTROLE/CControleMercadoria.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/VISUAL/TelaGarantiaFornecedorCadastro.java</file>
+            <file>file:/C:/Users/JOSE/Documents/GitHub/EletroMARC/src/DAO/FabricanteDAO.java</file>
         </group>
     </open-files>
 </project-private>
