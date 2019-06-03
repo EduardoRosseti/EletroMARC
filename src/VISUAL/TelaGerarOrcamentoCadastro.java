@@ -15,6 +15,7 @@ import MODELO.JavaMailApp;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -41,7 +42,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         lblValMao.setVisible(false);
         cValoresServicos = new CValoresServicos();
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
@@ -162,7 +164,7 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -417,6 +419,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         switch (cTabela.tabela.getTipo()) {
             case 1:
                 Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
@@ -522,7 +526,25 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        cOrcamento.orcamento.setCod(0);
+        cOrcamento.orcamento.setCodCliente(0);
+        cOrcamento.orcamento.setCodMercadoria(0);
+        cOrcamento.orcamento.setcodPrestacaoServicos(0);
+        cCliente.cliente.setCod(0);
+        cMercadoria.mercadoria.setCod(0);
+        cValoresServicos.valoresServicos.setCod(0);
+        txtCadCli.setText("");
+        txtCadMer.setText("");
+        txtCadValMao.setText("");
+        lblValMao.setText("");
+        txtCadSer.setText("");
+        txtCadDes.setText("");
+        txtCadDat.setText("");
+        txtCadVal.setText("");
+        txtCadValTot.setText("");
+        txtCadValTot.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed

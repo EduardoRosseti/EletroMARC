@@ -11,6 +11,7 @@ import CONTROLE.CTabela;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author eduar
@@ -29,6 +30,15 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
         cTabela = new CTabela();
         cGarantiaFornecedor = new CGarantiaFornecedor();
         cMercadoria = new CMercadoria();
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        } else {
+
+        }
     }
 
     /**
@@ -137,7 +147,7 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar2.setText("Pesquisar");
+        btnPesquisar2.setText("Limpar");
         btnPesquisar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisar2ActionPerformed(evt);
@@ -295,7 +305,14 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisar2ActionPerformed
         // TODO add your handling code here:
-
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        cMercadoria.mercadoria.setCod(0);
+        cMercadoria.mercadoria.setCodFabricante(0);
+        cMercadoria.mercadoria.setCodFornecedor(0);
+        txtNome.setText("");
+        lblData.setText("");
+        txtValor.setText("");
     }//GEN-LAST:event_btnPesquisar2ActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -325,6 +342,8 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCadActionPerformed
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         switch (cTabela.tabela.getTipo()) {
             case 1:
                 Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 6);

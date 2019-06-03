@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tbFuncionario" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6a2e7c2-b5c5-4fd5-b4c8-83e4625f263e">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="localhost"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Eletromarc"/>
 	<queryString language="SQL">
 		<![CDATA[select *from tbfuncionario]]>
 	</queryString>
@@ -107,21 +107,21 @@
 				<text><![CDATA[CODIGO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="38" y="270" width="100" height="30" uuid="2478174d-6a26-445d-aa8d-a0d80acc827e"/>
+				<reportElement x="30" y="258" width="100" height="30" uuid="2478174d-6a26-445d-aa8d-a0d80acc827e"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CELULAR}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="1" y="300" width="70" height="20" uuid="5e9f8d4e-5a74-45a1-b619-291ed0610919"/>
+				<reportElement x="1" y="288" width="70" height="20" uuid="5e9f8d4e-5a74-45a1-b619-291ed0610919"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TEL:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="270" width="50" height="20" uuid="cf4f545b-d967-4b45-9a2b-e6e5d853c987"/>
+				<reportElement x="1" y="258" width="50" height="20" uuid="cf4f545b-d967-4b45-9a2b-e6e5d853c987"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
@@ -135,42 +135,42 @@
 				<text><![CDATA[CPF:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="240" width="100" height="30" uuid="f9393163-22be-4efd-8d0e-3b37a2839376"/>
+				<reportElement x="0" y="228" width="100" height="30" uuid="f9393163-22be-4efd-8d0e-3b37a2839376"/>
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[EMAIL:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="58" y="0" width="142" height="30" uuid="5f3a3623-5d9a-4d13-af24-0bf3bb53aea2"/>
+				<reportElement x="50" y="0" width="142" height="30" uuid="5f3a3623-5d9a-4d13-af24-0bf3bb53aea2"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{COD_FUNCIONARIO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="48" y="30" width="162" height="30" uuid="c99c39f0-59d6-468e-a904-bc394955de97"/>
+				<reportElement x="40" y="30" width="162" height="30" uuid="c99c39f0-59d6-468e-a904-bc394955de97"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NOME_FUNCIONARIO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="60" width="150" height="30" uuid="66162cbd-5523-4d8e-8202-3dbb10978413"/>
+				<reportElement x="72" y="60" width="150" height="30" uuid="66162cbd-5523-4d8e-8202-3dbb10978413"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DATA_NASCIMENTO}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="38" y="300" width="100" height="30" uuid="1fc3ca59-cacc-43dc-8710-168bd9d146b3"/>
+				<reportElement x="30" y="288" width="100" height="30" uuid="1fc3ca59-cacc-43dc-8710-168bd9d146b3"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TELEFONE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="50" y="240" width="100" height="30" uuid="12b9ecf6-6778-4634-a79d-3465c21df576"/>
+				<reportElement x="45" y="240" width="170" height="30" uuid="12b9ecf6-6778-4634-a79d-3465c21df576"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -188,7 +188,7 @@
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[CONTATO:]]></text>
+				<text><![CDATA[CONTATO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="60" width="100" height="30" uuid="5d4328fa-affa-4105-a0a3-00af55e1cd31"/>
@@ -198,7 +198,7 @@
 				<text><![CDATA[DATA NASC:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="40" y="91" width="100" height="30" uuid="0201c752-0840-478b-a7e1-4b9be14658a5"/>
+				<reportElement x="32" y="91" width="100" height="30" uuid="0201c752-0840-478b-a7e1-4b9be14658a5"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -212,7 +212,7 @@
 				<text><![CDATA[RG:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="30" y="120" width="100" height="30" uuid="9a1aa6d2-9a27-4249-b492-fda9d81a20b9"/>
+				<reportElement x="22" y="120" width="100" height="30" uuid="9a1aa6d2-9a27-4249-b492-fda9d81a20b9"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -226,7 +226,7 @@
 				<text><![CDATA[COMPLEMENTO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="470" width="100" height="30" uuid="2eb3ee63-9be0-4e21-8782-b5733fc468a1"/>
+				<reportElement x="102" y="470" width="100" height="30" uuid="2eb3ee63-9be0-4e21-8782-b5733fc468a1"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -247,7 +247,7 @@
 				<text><![CDATA[ESTADO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="57" y="530" width="100" height="30" uuid="95e3d9f7-b70f-462c-b367-a558bfabaff7"/>
+				<reportElement x="49" y="530" width="100" height="30" uuid="95e3d9f7-b70f-462c-b367-a558bfabaff7"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -272,7 +272,7 @@
 				<textElement>
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ENDEREÇO:]]></text>
+				<text><![CDATA[ENDEREÇO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="440" y="410" width="63" height="30" uuid="a2762c4d-0c04-45ff-9cd2-56e1ab8ee310"/>
@@ -303,7 +303,7 @@
 				<text><![CDATA[BAIRRO:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="470" y="410" width="90" height="30" uuid="15fb21fb-2169-49ef-a472-cc86c304a1ec"/>
+				<reportElement x="462" y="410" width="90" height="30" uuid="15fb21fb-2169-49ef-a472-cc86c304a1ec"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>
@@ -317,7 +317,7 @@
 				<text><![CDATA[CEP:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="45" y="500" width="100" height="30" uuid="6d9e3e34-b763-42df-a9eb-9fa1adfcb645"/>
+				<reportElement x="37" y="500" width="100" height="30" uuid="6d9e3e34-b763-42df-a9eb-9fa1adfcb645"/>
 				<textElement>
 					<font fontName="Arial" size="12"/>
 				</textElement>

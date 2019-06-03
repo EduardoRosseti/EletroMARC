@@ -10,6 +10,7 @@ import CONTROLE.CValoresServicos;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author eduar
@@ -29,7 +30,8 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         lblDat.setEnabled(false);
         lblDat.setVisible(false);
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
@@ -134,7 +136,7 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar2.setText("Pesquisar");
+        btnPesquisar2.setText("Limpar");
         btnPesquisar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisar2ActionPerformed(evt);
@@ -293,6 +295,8 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         cTabela.tabela.setLin(tbBusca.getSelectedRow());
         int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
         cTabela.tabela.setCod(i);
@@ -334,6 +338,13 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisar2ActionPerformed
         // TODO add your handling code here:
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        cValoresServicos.valoresServicos.setCod(0);
+        txtCadNom.setText("");
+        lblDat.setText("");
+        txtDesc.setText("");
+        txtVal.setText("");
     }//GEN-LAST:event_btnPesquisar2ActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed

@@ -16,11 +16,10 @@ import java.sql.Connection;
 
 public class CRelatorio {
 
-    public CRelatorio cRelatorio;
+
     public RelatorioDAO relatorioDao;
     
     public CRelatorio(){
-        cRelatorio = new CRelatorio();
         relatorioDao = new RelatorioDAO();
     }
     

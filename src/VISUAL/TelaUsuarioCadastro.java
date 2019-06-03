@@ -11,6 +11,7 @@ import CONTROLE.CUsuario;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author eduar
@@ -30,7 +31,8 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         cUsuario = new CUsuario();
         cFuncionario = new CFuncionario();
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnExcluir.setEnabled(false);
@@ -128,7 +130,7 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -296,6 +298,8 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnExcluir.setEnabled(true);
         switch (cTabela.tabela.getTipo()) {
             case 1:
                 Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
@@ -313,7 +317,7 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
                 result = cUsuario.buscar(cUsuario.usuario);
                 //JOptionPane.showMessageDialog(null, result);
                 if (result) {
-                                                            System.out.println("teste");
+                    System.out.println("teste");
 
                     cFuncionario.funcionario.setCod(cUsuario.usuario.getFuncionario());
 
@@ -353,6 +357,15 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+        cUsuario.usuario.setCod(0);
+        cUsuario.usuario.setFuncionario(0);
+        cFuncionario.funcionario.setCod(0);
+        lblCpf.setText("");
+        txtNome.setText("");
+        txtLogin.setText("");
+        txtSenha.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void cbPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPerfilActionPerformed

@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -33,6 +34,8 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         lblDt.setEnabled(false);
         lblDt.setVisible(false);
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
 
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
@@ -94,26 +97,26 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
         tbBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tbBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Codigo", "Nome", "Data", "Telefone"
+                "Codigo", "Nome Mercadoria", "Motivo", "Data Saida", "Valor"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -155,7 +158,7 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -313,11 +316,13 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnDadExcluir.setEnabled(true);
 
         // TODO add your handling code here:
         switch (cTabela.tabela.getTipo()) {
             case 1:
-                Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);
+                Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 6);
                 Object d = tbBusca.getValueAt(tbBusca.getSelectedRow(), 0);
                 txtNomMer.setText((String) t);
                 cMercadoria.mercadoria.setCod((int) d);
@@ -373,6 +378,15 @@ public class TelaControleMercadoria extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
+        btnAlterar.setEnabled(false);
+        btnDadExcluir.setEnabled(false);
+        cMercadoria.mercadoria.setCod(0);
+        cMercadoria.mercadoria.setCodFabricante(0);
+        cMercadoria.mercadoria.setCodFornecedor(0);
+        txtMotSai.setText("");
+        txtNomMer.setText("");
+        txtVal.setText("");
+        lblDt.setText("");
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
