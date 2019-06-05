@@ -350,7 +350,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         btnCadCancelar.setText("Cancelar");
@@ -505,14 +505,14 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadCancelar)
                     .addComponent(btnCadastrar)
                     .addComponent(btnDadExcluir)
                     .addComponent(btnAlterar))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -588,7 +588,6 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             txtCadBairro.setText(ccliente.cliente.getBairro());
             txtCadCidade.setText(ccliente.cliente.getCidade());
             txtCadComplem.setText(ccliente.cliente.getComplemento());
-            txtCadComplem.setText(ccliente.cliente.getEstado());
         }
 
     }//GEN-LAST:event_tbBuscaMouseClicked

@@ -71,6 +71,10 @@ public class TelaUsuarioCadastro extends javax.swing.JInternalFrame {
         btnAlterar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         tbBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tbBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -70,6 +70,10 @@ public class TelaValoresServicosCadastro extends javax.swing.JInternalFrame {
         btnCancelar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         btnCad.setText("Cadastrar");
         btnCad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

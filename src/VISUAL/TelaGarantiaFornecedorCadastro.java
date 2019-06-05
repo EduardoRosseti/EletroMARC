@@ -67,6 +67,10 @@ public class TelaGarantiaFornecedorCadastro extends javax.swing.JInternalFrame {
         lblData = new javax.swing.JLabel();
         btnAlterar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         tbBusca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tbBusca.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

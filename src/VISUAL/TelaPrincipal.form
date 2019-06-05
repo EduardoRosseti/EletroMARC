@@ -140,7 +140,7 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="cadFun">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="TelaFuncion&#xe1;rioCadastro"/>
+                    <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio Cadastro"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadFunActionPerformed"/>
@@ -148,7 +148,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="cadUsu">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="TelaUsu&#xe1;rioCadastro"/>
+                    <Property name="text" type="java.lang.String" value="Usu&#xe1;rio Cadastro"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadUsuActionPerformed"/>

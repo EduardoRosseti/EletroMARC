@@ -309,8 +309,8 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCadValMao, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblValMao)
                         .addGap(55, 55, 55)
                         .addComponent(jLabel8)
@@ -560,11 +560,11 @@ public class TelaGerarOrcamentoCadastro extends javax.swing.JInternalFrame {
         cOrcamento.orcamento.setStatus(cbStatus.getItemAt(cbStatus.getSelectedIndex()));
         JOptionPane.showMessageDialog(null, cOrcamento.gravar(cOrcamento.orcamento));
         if ("Aguardando aprovacao".equals(cOrcamento.orcamento.getStatus())) {
-            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manuteção do " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ". Estou no aguardo para realizar a aprovação do Orcamento. Obrigado pela Atenção"
+            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manuteção do " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ". Estou no aguardo para realizar a aprovação do Orcamento.Copie o link no seu navegador para APROVAR seu orçamento www.localhost/cadastrar.php .Obrigado pela Atenção !!!"
                     + " \n\n att.";
             JavaMailApp.enviarEmail(cCliente.cliente.getEmail(), "Aguardando Aprovação do Orçamento: ", corpo);
         } else if ("Concluido".equals(cOrcamento.orcamento.getStatus())) {
-            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manutenção do(a) " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ", aguardamos o Sr. para retirada do aparelho. \n\n Att.";
+            String corpo = "Sr." + cCliente.cliente.getNome() + " o orçamento do Sr. referente a manutenção do(a) " + cMercadoria.mercadoria.getNome() + " ficou um custo total de R$ " + cOrcamento.orcamento.getValorTotal() + ", aguardamos o Sr. para retirada do aparelho. \n\n Att. ";
             JavaMailApp.enviarEmail(cCliente.cliente.getEmail(), "Serviço concluído", corpo);
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed

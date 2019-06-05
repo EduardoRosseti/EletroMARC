@@ -30,7 +30,7 @@ public class RelatorioService implements Serializable {
     private CRelatorio cRelatorio;
 
     public RelatorioService() {
-        cRelatorio = new  CRelatorio();
+        cRelatorio = new CRelatorio();
 
     }
 
@@ -41,7 +41,6 @@ public class RelatorioService implements Serializable {
                 .getResource(FOLDER_RELATORIOS).getPath();
 
         /* caminho completo até o relatório compilado indicado */
-
         String caminhoArquivosJasper = caminhoRelatorio + File.separator
                 + nomeRelatorioJasper + ".jasper";
 
@@ -50,9 +49,9 @@ public class RelatorioService implements Serializable {
                 .loadObjectFromFile(caminhoArquivosJasper);
 
         /* Carrega o arquivo */
-       JasperPrint impressoraJasper = JasperFillManager.fillReport(
+        JasperPrint impressoraJasper = JasperFillManager.fillReport(
                 relatorioJasper, parametrosRelatorio, cRelatorio.relatorioDao.conectar());
-        
+
         if (tipoExportar.equalsIgnoreCase("pdf")) {
             exporter = new JRPdfExporter();
         } else if (tipoExportar.equalsIgnoreCase("xls")) {

@@ -30,7 +30,6 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         PainelImagemFundo bg = new PainelImagemFundo();
         desktop.add(bg);
         bg.setVisible(true);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -193,7 +192,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
 
         jMenu9.setText("Colaboradores");
 
-        cadFun.setText("TelaFuncionárioCadastro");
+        cadFun.setText("Funcionário Cadastro");
         cadFun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadFunActionPerformed(evt);
@@ -201,7 +200,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         });
         jMenu9.add(cadFun);
 
-        cadUsu.setText("TelaUsuárioCadastro");
+        cadUsu.setText("Usuário Cadastro");
         cadUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadUsuActionPerformed(evt);
