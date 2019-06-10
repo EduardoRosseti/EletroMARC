@@ -15,6 +15,7 @@ import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -36,7 +37,8 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante = new CFabricante();
         cValidacao = new CValidacao();
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnDadExcluir.setEnabled(false);
@@ -45,7 +47,6 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         }
 
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -374,7 +375,7 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -493,9 +494,9 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(WIDTH));
         if (cValidacao.validaCnpj(cFabricante.fabricante.getCnpj())) {
-            if(Validacao.validarEmail(cFabricante.fabricante.getEmail()) > 0){
+            if (Validacao.validarEmail(cFabricante.fabricante.getEmail()) > 0) {
                 JOptionPane.showMessageDialog(null, cFabricante.gravar(cFabricante.fabricante));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
@@ -528,6 +529,8 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnDadExcluir.setEnabled(true);
         cTabela.tabela.setLin(tbBusca.getSelectedRow());
         int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
         cTabela.tabela.setCod(i);
@@ -576,7 +579,21 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
-
+        btnAlterar.setEnabled(false);
+        btnDadExcluir.setEnabled(false);
+        cFabricante.fabricante.setCod(0);
+        txtCadFabNome.setText("");
+        txtCadFabTel.setText("");
+        txtCadFabCnpj.setText("");
+        txtCadFabCel.setText("");
+        txtCadFabTel.setText("");
+        txtCadFabEma.setText("");
+        txtCadFabCep.setText("");
+        txtCadFabNum.setText("");
+        txtCadFabRua.setText("");
+        txtCadFabBai.setText("");
+        txtCadFabCid.setText("");
+        txtCadFabCom.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnDadExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluirMouseClicked
@@ -606,9 +623,9 @@ public class TelaFabricanteCadastro extends javax.swing.JInternalFrame {
         cFabricante.fabricante.setComplemento(txtCadFabCom.getText());
         cFabricante.fabricante.setEstado(cbCadFabUf.getItemAt(cbCadFabUf.getSelectedIndex()));
         if (cValidacao.validaCnpj(cFabricante.fabricante.getCnpj())) {
-            if(Validacao.validarEmail(cFabricante.fabricante.getEmail()) > 0){
+            if (Validacao.validarEmail(cFabricante.fabricante.getEmail()) > 0) {
                 JOptionPane.showMessageDialog(null, cFabricante.alterar(cFabricante.fabricante));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {

@@ -15,6 +15,7 @@ import static VISUAL.TelaFuncionarioCadastro.tbBusca;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -35,8 +36,16 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cTabela = new CTabela();
         cvalidacao = new CValidacao();
         cFuncionario = new CFuncionario();
-    }
+        if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir1.setEnabled(false);
+        } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
+            btnAlterar.setEnabled(false);
+            btnDadExcluir1.setEnabled(false);
+        } else {
 
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -375,7 +384,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -470,15 +479,15 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
                                 .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(cbPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnPesquisar)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,9 +560,9 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cFuncionario.funcionario.setEstado(cbCadFunUf.getItemAt(cbCadFunUf.getSelectedIndex()));
         // cFuncionario.funcionario.setObservacao(txtCadFunFunObs.getText());
         if (Validacao.validaCpf(cFuncionario.funcionario.getCep())) {
-            if(Validacao.validarEmail(cFuncionario.funcionario.getEmail()) > 0){
+            if (Validacao.validarEmail(cFuncionario.funcionario.getEmail()) > 0) {
                 JOptionPane.showMessageDialog(null, cFuncionario.gravar(cFuncionario.funcionario));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
@@ -573,6 +582,8 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnDadExcluir1.setEnabled(true);
         cTabela.tabela.setLin(tbBusca.getSelectedRow());
         int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
         cTabela.tabela.setCod(i);
@@ -641,6 +652,22 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
+        btnAlterar.setEnabled(false);
+        btnDadExcluir1.setEnabled(false);
+        cFuncionario.funcionario.setCod(0);
+        txtCadFunNom.setText("");
+        txtCadFunTel.setText("");
+        txtCadFunDat.setText("");
+        txtCadFunCel.setText("");
+        txtCadFunCpf.setText("");
+        txtCadFunRg.setText("");
+        txtCadFunEma.setText("");
+        txtCadFunRua.setText("");
+        txtCadFunNum.setText("");
+        txtCadFunCep.setText("");
+        txtCadFunBai.setText("");
+        txtCadFunCid.setText("");
+        txtCadFunCom.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void txtCadFunNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadFunNumActionPerformed
@@ -654,7 +681,7 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
         cFuncionario.funcionario.setNome(txtCadFunNom.getText());
-        cFuncionario.funcionario.setDataNasc((txtCadFunDat.getText()).replace("/",""));
+        cFuncionario.funcionario.setDataNasc((txtCadFunDat.getText()).replace("/", ""));
         cFuncionario.funcionario.setTelefone(cFuncionario.funcionario.retiraCel(txtCadFunTel.getText()));
         cFuncionario.funcionario.setCelular(cFuncionario.funcionario.retiraCel(txtCadFunCel.getText()));
         cFuncionario.funcionario.setCpf(cFuncionario.funcionario.retira(txtCadFunCpf.getText()));
@@ -669,9 +696,9 @@ public class TelaFuncionarioCadastro extends javax.swing.JInternalFrame {
         cFuncionario.funcionario.setEstado(cbCadFunUf.getItemAt(cbCadFunUf.getSelectedIndex()));
         // cFuncionario.funcionario.setObservacao(txtCadFunFunObs.getText());
         if (Validacao.validaCpf(cFuncionario.funcionario.getCep())) {
-            if(Validacao.validarEmail(cFuncionario.funcionario.getEmail()) > 0){
+            if (Validacao.validarEmail(cFuncionario.funcionario.getEmail()) > 0) {
                 JOptionPane.showMessageDialog(null, cFuncionario.alterar(cFuncionario.funcionario));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {

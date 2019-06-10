@@ -13,6 +13,7 @@ import MODELO.Validacao;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -25,19 +26,20 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     Validacao validacao;
     CCliente ccliente;
     CTabela cTabela;
-    
+
     public TelaClienteCadastro() {
         initComponents();
         cTabela = new CTabela();
         ccliente = new CCliente();
         //JOptionPane.showMessageDialog(null, TelaLogin.getTipoUsuario());
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-            
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnDadExcluir.setEnabled(false);
         } else {
-            
+
         }
     }
 
@@ -348,7 +350,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 40, Short.MAX_VALUE))
+                .addGap(0, 46, Short.MAX_VALUE))
         );
 
         btnCadCancelar.setText("Cancelar");
@@ -424,7 +426,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -503,14 +505,14 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadCancelar)
                     .addComponent(btnCadastrar)
                     .addComponent(btnDadExcluir)
                     .addComponent(btnAlterar))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -555,6 +557,8 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnDadExcluir.setEnabled(true);
         cTabela.tabela.setLin(tbBusca.getSelectedRow());
         int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
         cTabela.tabela.setCod(i);
@@ -584,8 +588,8 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
             txtCadBairro.setText(ccliente.cliente.getBairro());
             txtCadCidade.setText(ccliente.cliente.getCidade());
             txtCadComplem.setText(ccliente.cliente.getComplemento());
-            txtCadComplem.setText(ccliente.cliente.getEstado());
         }
+
     }//GEN-LAST:event_tbBuscaMouseClicked
 
     private void cbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPesquisarActionPerformed
@@ -620,7 +624,24 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPesquisarKeyReleased
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-
+        btnAlterar.setEnabled(false);
+        btnDadExcluir.setEnabled(false);
+        ccliente.cliente.setCod(0);
+        txtCadNome.setText("");
+        txtCadTel.setText("");
+        ccliente.cliente.setDataNasc("");
+        txtCadDataNasc.setText("");
+        txtCadCel.setText("");
+        txtCadCpf.setText("");
+        txtCadRg.setText("");
+        txtCadEma.setText("");
+        txtCadRua.setText("");
+        txtCadNum.setText("");
+        txtCadCep.setText("");
+        txtCadBairro.setText("");
+        txtCadCidade.setText("");
+        txtCadComplem.setText("");
+        txtCadComplem.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void btnDadExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDadExcluirMouseClicked
@@ -645,7 +666,7 @@ public class TelaClienteCadastro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbCadUfActionPerformed
 
     private void txtCadCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCadCepActionPerformed
-        
+
         CWebServiceCep cWeb = new CWebServiceCep();
         //A ferramenta de busca ignora qualquer caracter que n?o seja n?mero.
         //caso a busca ocorra bem, imprime os resultados.

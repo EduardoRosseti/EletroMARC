@@ -14,6 +14,7 @@ import CONTROLE.CTabela;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -33,7 +34,8 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
         cCliente = new CCliente();
         txtValOrc.setEditable(false);
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            jButton1.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnDadExcluir.setEnabled(false);
         } else {
@@ -164,7 +166,7 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -372,10 +374,21 @@ public class TelaControlePagamento extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
+        btnDadExcluir.setEnabled(false);
+        jButton1.setEnabled(false);
+        cPagamento.pagamento.setCodOrcamento(0);
+        cPagamento.pagamento.setCod(0);
+        txtDat.setText("");
+        txtDes.setText("");
+        txtNome.setText("");
+        txtValOrc.setText("");
+        txtValTot.setText("");
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        jButton1.setEnabled(true);
+        btnDadExcluir.setEnabled(true);
         switch (cTabela.tabela.getTipo()) {
             case 1:
                 Object t = tbBusca.getValueAt(tbBusca.getSelectedRow(), 1);

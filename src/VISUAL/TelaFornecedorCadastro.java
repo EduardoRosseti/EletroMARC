@@ -13,6 +13,7 @@ import MODELO.Validacao;
 import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
 //atualizado
+
 /**
  *
  * @author jose
@@ -32,7 +33,8 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cValidacao = new CValidacao();
         cTabela = new CTabela();
         if ("Administrativo".equals(TelaLogin.tipoUsuario)) {
-
+            btnAlterar.setEnabled(false);
+            btnDadExcluir.setEnabled(false);
         } else if ("Comum".equals(TelaLogin.tipoUsuario)) {
             btnAlterar.setEnabled(false);
             btnDadExcluir.setEnabled(false);
@@ -387,7 +389,7 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.setText("Limpar");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPesquisarActionPerformed(evt);
@@ -497,9 +499,9 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
-            if(Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0){
+            if (Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0) {
                 JOptionPane.showMessageDialog(null, cFornecedor.gravar(cFornecedor.fornecedor));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {
@@ -531,6 +533,8 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
     private void tbBuscaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBuscaMouseClicked
         // TODO add your handling code here:
+        btnAlterar.setEnabled(true);
+        btnDadExcluir.setEnabled(true);
         cTabela.tabela.setLin(tbBusca.getSelectedRow());
         int i = Integer.parseInt((tbBusca.getModel()).getValueAt(cTabela.tabela.getLin(), 0).toString());
         cTabela.tabela.setCod(i);
@@ -581,6 +585,21 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         // TODO add your handling code here:
+        btnAlterar.setEnabled(false);
+        btnDadExcluir.setEnabled(false);
+        cFornecedor.fornecedor.setCod(0);
+        txtCadForNome.setText("");
+        txtCadForTel.setText("");
+        txtCadForCnpj.setText("");
+        txtCadForCel.setText("");
+        txtCadForTel.setText("");
+        txtCadForEma.setText("");
+        txtCadForCep.setText("");
+        txtCadForNum.setText("");
+        txtCadForRua.setText("");
+        txtCadForBai.setText("");
+        txtCadForCid.setText("");
+        txtCadForCom.setText("");
 
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
@@ -610,9 +629,9 @@ public class TelaFornecedorCadastro extends javax.swing.JInternalFrame {
         cFornecedor.fornecedor.setEstado(cbCadForUf.getItemAt(cbCadForUf.getSelectedIndex()));
         // cFornecedor.fornecedor.setObservacao(txtCadObs.getText());
         if (cValidacao.validaCnpj(cFornecedor.fornecedor.getCnpj())) {
-            if(Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0){
+            if (Validacao.validarEmail(cFornecedor.fornecedor.getEmail()) > 0) {
                 JOptionPane.showMessageDialog(null, cFornecedor.alterar(cFornecedor.fornecedor));
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Email não valido");
             }
         } else {

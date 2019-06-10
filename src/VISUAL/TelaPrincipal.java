@@ -6,6 +6,14 @@
 package VISUAL;
 
 import CONTROLE.CTabela;
+import RELATORIOS.RelatorioService;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 
 public class TelaPrincipal extends javax.swing.JFrame  {
@@ -22,7 +30,6 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         PainelImagemFundo bg = new PainelImagemFundo();
         desktop.add(bg);
         bg.setVisible(true);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -64,11 +71,19 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         CadCon = new javax.swing.JMenuItem();
         cadVal = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -177,7 +192,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
 
         jMenu9.setText("Colaboradores");
 
-        cadFun.setText("TelaFuncionárioCadastro");
+        cadFun.setText("Funcionário Cadastro");
         cadFun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadFunActionPerformed(evt);
@@ -185,7 +200,7 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         });
         jMenu9.add(cadFun);
 
-        cadUsu.setText("TelaUsuárioCadastro");
+        cadUsu.setText("Usuário Cadastro");
         cadUsu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadUsuActionPerformed(evt);
@@ -256,10 +271,12 @@ public class TelaPrincipal extends javax.swing.JFrame  {
 
         jMenu1.setText("SISTEMA");
 
-        jMenuItem2.setText("Gerenciador");
-        jMenu1.add(jMenuItem2);
-
         jMenuItem1.setText("Trocar Usuário");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuItem4.setText("Sobre?");
@@ -277,11 +294,88 @@ public class TelaPrincipal extends javax.swing.JFrame  {
         });
         jMenu6.add(jMenuItem6);
 
+        jMenuItem7.setText("Fabricante");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem7);
+
+        jMenuItem8.setText("Fornecedor");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem9.setText("Funcionário");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem9);
+
+        jMenuItem10.setText("Garantia Fornecedor");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem10);
+
+        jMenuItem11.setText("Mercadoria");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem11);
+
+        jMenuItem12.setText("Orcamento");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem12);
+
+        jMenuItem13.setText("Pagamento");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem13);
+
+        jMenuItem14.setText("Saida de Mercadoria");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem14);
+
+        jMenuItem15.setText("Prestação de Serviço");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem15);
+
         jMenuBar1.add(jMenu6);
 
         jMenu2.setText("SAIR");
 
         jMenuItem3.setText("Sair do Sistema");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem3);
 
         jMenuBar1.add(jMenu2);
@@ -407,9 +501,225 @@ public class TelaPrincipal extends javax.swing.JFrame  {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        TelaRelatorioListarCliente r = new TelaRelatorioListarCliente();
-        r.setVisible(true);
+
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbClientes", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbFabricante", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbFornecedor", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbFuncionario", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbGarantiaFornecedor", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbMercadoria", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbOrcamento", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbPagamento", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbSaidaDeMercadoria", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        
+        //Lista com os parametros para o relátorio
+                    HashMap params = new HashMap<>();
+ 
+                    //Invocando a geração do relatório 
+                    String file;
+                    
+        try {
+            file = new RelatorioService().gerarRelatorio(params,
+                    "tbprestacaoservico", "pdf");
+            //Exibindo o relatório na tela para o usuário
+            
+            Desktop.getDesktop().open(new File(file));
+        } catch (IOException ex) {
+             } catch (Exception ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        TelaLogin t = new TelaLogin();
+        t.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -486,11 +796,19 @@ public class TelaPrincipal extends javax.swing.JFrame  {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
