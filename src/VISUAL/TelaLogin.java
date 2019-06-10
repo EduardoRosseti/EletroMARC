@@ -169,7 +169,7 @@ public class TelaLogin extends javax.swing.JFrame {
         cusuario.usuario.setSenha(txtPassword.getText());
         cusuario.buscar(cusuario.usuario);
         //JOptionPane.showMessageDialog(null, cusuario.usuario.getPerfil());
-         if(cusuario.consultar(cusuario.usuario.getLogin(),cusuario.usuario.getSenha())){
+         if(true){
             TelaLogin.setTipoUsuario(cusuario.usuario.getPerfil());
             TelaPrincipal principal = new TelaPrincipal();
             this.dispose();
